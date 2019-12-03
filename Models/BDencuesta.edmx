@@ -1,0 +1,844 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="csstdura_encuestaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="encuaesta_opciones">
+          <Key>
+            <PropertyRef Name="opcion_id" />
+          </Key>
+          <Property Name="opcion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opcion_desc" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="encuaesta_rotacion">
+          <Key>
+            <PropertyRef Name="rotacionturno_id" />
+          </Key>
+          <Property Name="rotacionturno_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rotacionturno_desc" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="encuesta_det_encuesta">
+          <Key>
+            <PropertyRef Name="denc_id" />
+          </Key>
+          <Property Name="denc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denc_encu_id" Type="int" />
+          <Property Name="denc_descrip" Type="nvarchar" MaxLength="200" />
+          <Property Name="denc_valor" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_status" Type="nvarchar" MaxLength="1" />
+          <Property Name="denc_u_alta" Type="nvarchar" MaxLength="20" />
+          <Property Name="denc_f_alta" Type="date" />
+          <Property Name="denc_u_cancela" Type="nvarchar" MaxLength="20" />
+          <Property Name="denc_f_cancela" Type="date" />
+          <Property Name="denc_valor_1" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_valor_2" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_valor_3" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_valor_4" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_valor_5" Type="nvarchar" MaxLength="3" />
+          <Property Name="denc_parte" Type="int" />
+        </EntityType>
+        <EntityType Name="encuesta_edades">
+          <Key>
+            <PropertyRef Name="edad_id" />
+          </Key>
+          <Property Name="edad_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="edad_desc" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="encuesta_edocivil">
+          <Key>
+            <PropertyRef Name="edocivil_id" />
+          </Key>
+          <Property Name="edocivil_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="edocivil_desc" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="encuesta_empresa">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_descrip" Type="nvarchar" MaxLength="200" />
+          <Property Name="emp_estatus" Type="nvarchar" MaxLength="1" />
+          <Property Name="emp_u_alta" Type="nvarchar" MaxLength="60" />
+          <Property Name="emp_f_alta" Type="date" />
+          <Property Name="emp_u_cancela" Type="nvarchar" MaxLength="20" />
+          <Property Name="emp_f_cancela" Type="date" />
+          <Property Name="emp_no_trabajadores" Type="varchar" MaxLength="20" />
+          <Property Name="emp_direccion" Type="varchar" MaxLength="50" />
+          <Property Name="emp_telefono" Type="varchar" MaxLength="15" />
+          <Property Name="emp_person_contac" Type="nvarchar" MaxLength="200" />
+          <Property Name="emp_correo" Type="nvarchar" MaxLength="60" />
+          <Property Name="emp_cp" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="encuesta_encuesta">
+          <Key>
+            <PropertyRef Name="encu_id" />
+          </Key>
+          <Property Name="encu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="encu_descrip" Type="nvarchar" MaxLength="200" />
+          <Property Name="encu_status" Type="nvarchar" MaxLength="1" />
+          <Property Name="encu_u_alta" Type="nvarchar" MaxLength="20" />
+          <Property Name="encu_f_alta" Type="date" />
+          <Property Name="encu_u_cancela" Type="nvarchar" MaxLength="20" />
+          <Property Name="encu_f_cancela" Type="date" />
+        </EntityType>
+        <EntityType Name="encuesta_explab">
+          <Key>
+            <PropertyRef Name="explab_id" />
+          </Key>
+          <Property Name="explab_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="explab_desc" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="encuesta_procesoedu">
+          <Key>
+            <PropertyRef Name="procesoedu_id" />
+          </Key>
+          <Property Name="procesoedu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="procesoedu_desc" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="encuesta_resultados">
+          <Key>
+            <PropertyRef Name="resu_id" />
+          </Key>
+          <Property Name="resu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resu_emp_id" Type="int" />
+          <Property Name="resu_encu_id" Type="int" />
+          <Property Name="resu_denc_id" Type="int" />
+          <Property Name="resu_usua_id" Type="int" />
+          <Property Name="resu_resultado" Type="nvarchar" MaxLength="3" />
+          <Property Name="resu_fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="encuesta_sexo">
+          <Key>
+            <PropertyRef Name="sexo_id" />
+          </Key>
+          <Property Name="sexo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sexo_desc" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="encuesta_tiempopuesto">
+          <Key>
+            <PropertyRef Name="tiempopue_id" />
+          </Key>
+          <Property Name="tiempopue_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tiempopue_desc" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="encuesta_tipocontrata">
+          <Key>
+            <PropertyRef Name="tipocont_id" />
+          </Key>
+          <Property Name="tipocont_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipocont_desc" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="encuesta_tipojornada">
+          <Key>
+            <PropertyRef Name="tipojornada_id" />
+          </Key>
+          <Property Name="tipojornada_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipojornada_desc" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="encuesta_tipopersonal">
+          <Key>
+            <PropertyRef Name="tipoperson_id" />
+          </Key>
+          <Property Name="tipoperson_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoperson_desc" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="encuesta_tipopuesto">
+          <Key>
+            <PropertyRef Name="tipopuesto_id" />
+          </Key>
+          <Property Name="tipopuesto_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipopuesto_desc" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="encuesta_usuarios">
+          <Key>
+            <PropertyRef Name="usua_id" />
+          </Key>
+          <Property Name="usua_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usua_nombre" Type="nvarchar(max)" />
+          <Property Name="usua_empresa" Type="int" />
+          <Property Name="usua_f_aplica" Type="datetime2" Precision="7" />
+          <Property Name="usua_tipo" Type="nvarchar(max)" />
+          <Property Name="usua_estatus" Type="nvarchar(max)" />
+          <Property Name="usua_n_usuario" Type="nvarchar(max)" />
+          <Property Name="usua_p_usuario" Type="nvarchar(max)" />
+          <Property Name="usua_u_alta" Type="nvarchar(max)" />
+          <Property Name="usua_f_alta" Type="datetime2" Precision="7" />
+          <Property Name="usua_u_cancela" Type="nvarchar(max)" />
+          <Property Name="usua_f_cancela" Type="datetime2" Precision="7" />
+          <Property Name="usua_genero" Type="int" />
+          <Property Name="usua_edad" Type="int" />
+          <Property Name="usua_edo_civil" Type="int" />
+          <Property Name="usua_sin_forma" Type="int" />
+          <Property Name="usua_primaria" Type="int" />
+          <Property Name="usua_secundaria" Type="int" />
+          <Property Name="usua_preparatoria" Type="int" />
+          <Property Name="usua_tecnico" Type="int" />
+          <Property Name="usua_licenciatura" Type="int" />
+          <Property Name="usua_maestria" Type="int" />
+          <Property Name="usua_doctorado" Type="int" />
+          <Property Name="usua_tipo_puesto" Type="int" />
+          <Property Name="usua_tipo_contratacion" Type="int" />
+          <Property Name="usua_tipo_personal" Type="int" />
+          <Property Name="usua_tipo_jornada" Type="int" />
+          <Property Name="usua_rotacion_turno" Type="int" />
+          <Property Name="usua_tiempo_puesto" Type="int" />
+          <Property Name="usua_exp_laboral" Type="int" />
+          <Property Name="usua_presento" Type="char" MaxLength="3" />
+        </EntityType>
+        <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
+          <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_det_encuesta" Type="Self.encuesta_det_encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_encuesta">
+              <PropertyRef Name="encu_id" />
+            </Principal>
+            <Dependent Role="encuesta_det_encuesta">
+              <PropertyRef Name="denc_encu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_det_encuesta">
+          <End Role="encuesta_det_encuesta" Type="Self.encuesta_det_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_det_encuesta">
+              <PropertyRef Name="denc_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_denc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_empresa">
+          <End Role="encuesta_empresa" Type="Self.encuesta_empresa" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_empresa">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_encuesta">
+          <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_encuesta">
+              <PropertyRef Name="encu_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_encu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_usuarios">
+          <End Role="encuesta_usuarios" Type="Self.encuesta_usuarios" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_usuarios">
+              <PropertyRef Name="usua_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_usua_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="csstdura_encuestaModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuaesta_opciones" EntityType="Self.encuaesta_opciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuaesta_rotacion" EntityType="Self.encuaesta_rotacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_det_encuesta" EntityType="Self.encuesta_det_encuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_edades" EntityType="Self.encuesta_edades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_edocivil" EntityType="Self.encuesta_edocivil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_empresa" EntityType="Self.encuesta_empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_encuesta" EntityType="Self.encuesta_encuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_explab" EntityType="Self.encuesta_explab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_procesoedu" EntityType="Self.encuesta_procesoedu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_resultados" EntityType="Self.encuesta_resultados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_sexo" EntityType="Self.encuesta_sexo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_tiempopuesto" EntityType="Self.encuesta_tiempopuesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_tipocontrata" EntityType="Self.encuesta_tipocontrata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_tipojornada" EntityType="Self.encuesta_tipojornada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_tipopersonal" EntityType="Self.encuesta_tipopersonal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_tipopuesto" EntityType="Self.encuesta_tipopuesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuesta_usuarios" EntityType="Self.encuesta_usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_encuesta_det_encuesta_encuesta_encuesta" Association="Self.FK_encuesta_det_encuesta_encuesta_encuesta">
+            <End Role="encuesta_encuesta" EntitySet="encuesta_encuesta" />
+            <End Role="encuesta_det_encuesta" EntitySet="encuesta_det_encuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_det_encuesta" Association="Self.FK_encuesta_resultados_encuesta_det_encuesta">
+            <End Role="encuesta_det_encuesta" EntitySet="encuesta_det_encuesta" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_empresa" Association="Self.FK_encuesta_resultados_encuesta_empresa">
+            <End Role="encuesta_empresa" EntitySet="encuesta_empresa" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_encuesta" Association="Self.FK_encuesta_resultados_encuesta_encuesta">
+            <End Role="encuesta_encuesta" EntitySet="encuesta_encuesta" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_usuarios" Association="Self.FK_encuesta_resultados_encuesta_usuarios">
+            <End Role="encuesta_usuarios" EntitySet="encuesta_usuarios" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="csstdura_encuestaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="encuaesta_opciones">
+          <Key>
+            <PropertyRef Name="opcion_id" />
+          </Key>
+          <Property Name="opcion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opcion_desc" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuaesta_rotacion">
+          <Key>
+            <PropertyRef Name="rotacionturno_id" />
+          </Key>
+          <Property Name="rotacionturno_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rotacionturno_desc" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_det_encuesta">
+          <Key>
+            <PropertyRef Name="denc_id" />
+          </Key>
+          <Property Name="denc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denc_encu_id" Type="Int32" />
+          <Property Name="denc_descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="denc_valor" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="denc_status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="denc_u_alta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="denc_f_alta" Type="DateTime" Precision="0" />
+          <Property Name="denc_u_cancela" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="denc_f_cancela" Type="DateTime" Precision="0" />
+          <Property Name="denc_valor_1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="denc_valor_2" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="denc_valor_3" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="denc_valor_4" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="denc_valor_5" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="encuesta_encuesta" Relationship="Self.FK_encuesta_det_encuesta_encuesta_encuesta" FromRole="encuesta_det_encuesta" ToRole="encuesta_encuesta" />
+          <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_det_encuesta" FromRole="encuesta_det_encuesta" ToRole="encuesta_resultados" />
+          <Property Name="denc_parte" Type="Int32" />
+        </EntityType>
+        <EntityType Name="encuesta_edades">
+          <Key>
+            <PropertyRef Name="edad_id" />
+          </Key>
+          <Property Name="edad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edad_desc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_edocivil">
+          <Key>
+            <PropertyRef Name="edocivil_id" />
+          </Key>
+          <Property Name="edocivil_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edocivil_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_empresa">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="emp_estatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="emp_u_alta" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="emp_f_alta" Type="DateTime" Precision="0" />
+          <Property Name="emp_u_cancela" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="emp_f_cancela" Type="DateTime" Precision="0" />
+          <Property Name="emp_no_trabajadores" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emp_direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emp_telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="emp_person_contac" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="emp_correo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="emp_cp" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_empresa" FromRole="encuesta_empresa" ToRole="encuesta_resultados" />
+        </EntityType>
+        <EntityType Name="encuesta_encuesta">
+          <Key>
+            <PropertyRef Name="encu_id" />
+          </Key>
+          <Property Name="encu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="encu_descrip" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="encu_status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="encu_u_alta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="encu_f_alta" Type="DateTime" Precision="0" />
+          <Property Name="encu_u_cancela" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="encu_f_cancela" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="encuesta_det_encuesta" Relationship="Self.FK_encuesta_det_encuesta_encuesta_encuesta" FromRole="encuesta_encuesta" ToRole="encuesta_det_encuesta" />
+          <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_encuesta" FromRole="encuesta_encuesta" ToRole="encuesta_resultados" />
+        </EntityType>
+        <EntityType Name="encuesta_explab">
+          <Key>
+            <PropertyRef Name="explab_id" />
+          </Key>
+          <Property Name="explab_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="explab_desc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_procesoedu">
+          <Key>
+            <PropertyRef Name="procesoedu_id" />
+          </Key>
+          <Property Name="procesoedu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="procesoedu_desc" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_resultados">
+          <Key>
+            <PropertyRef Name="resu_id" />
+          </Key>
+          <Property Name="resu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resu_emp_id" Type="Int32" />
+          <Property Name="resu_encu_id" Type="Int32" />
+          <Property Name="resu_denc_id" Type="Int32" />
+          <Property Name="resu_usua_id" Type="Int32" />
+          <Property Name="resu_resultado" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="resu_fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="encuesta_det_encuesta" Relationship="Self.FK_encuesta_resultados_encuesta_det_encuesta" FromRole="encuesta_resultados" ToRole="encuesta_det_encuesta" />
+          <NavigationProperty Name="encuesta_empresa" Relationship="Self.FK_encuesta_resultados_encuesta_empresa" FromRole="encuesta_resultados" ToRole="encuesta_empresa" />
+          <NavigationProperty Name="encuesta_encuesta" Relationship="Self.FK_encuesta_resultados_encuesta_encuesta" FromRole="encuesta_resultados" ToRole="encuesta_encuesta" />
+          <NavigationProperty Name="encuesta_usuarios" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_resultados" ToRole="encuesta_usuarios" />
+        </EntityType>
+        <EntityType Name="encuesta_sexo">
+          <Key>
+            <PropertyRef Name="sexo_id" />
+          </Key>
+          <Property Name="sexo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sexo_desc" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_tiempopuesto">
+          <Key>
+            <PropertyRef Name="tiempopue_id" />
+          </Key>
+          <Property Name="tiempopue_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tiempopue_desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_tipocontrata">
+          <Key>
+            <PropertyRef Name="tipocont_id" />
+          </Key>
+          <Property Name="tipocont_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipocont_desc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_tipojornada">
+          <Key>
+            <PropertyRef Name="tipojornada_id" />
+          </Key>
+          <Property Name="tipojornada_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipojornada_desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_tipopersonal">
+          <Key>
+            <PropertyRef Name="tipoperson_id" />
+          </Key>
+          <Property Name="tipoperson_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoperson_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_tipopuesto">
+          <Key>
+            <PropertyRef Name="tipopuesto_id" />
+          </Key>
+          <Property Name="tipopuesto_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipopuesto_desc" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuesta_usuarios">
+          <Key>
+            <PropertyRef Name="usua_id" />
+          </Key>
+          <Property Name="usua_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usua_nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_empresa" Type="Int32" />
+          <Property Name="usua_f_aplica" Type="DateTime" Precision="7" />
+          <Property Name="usua_tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_estatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_n_usuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_p_usuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_u_alta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_f_alta" Type="DateTime" Precision="7" />
+          <Property Name="usua_u_cancela" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="usua_f_cancela" Type="DateTime" Precision="7" />
+          <Property Name="usua_genero" Type="Int32" />
+          <Property Name="usua_edad" Type="Int32" />
+          <Property Name="usua_edo_civil" Type="Int32" />
+          <Property Name="usua_sin_forma" Type="Int32" />
+          <Property Name="usua_primaria" Type="Int32" />
+          <Property Name="usua_secundaria" Type="Int32" />
+          <Property Name="usua_preparatoria" Type="Int32" />
+          <Property Name="usua_tecnico" Type="Int32" />
+          <Property Name="usua_licenciatura" Type="Int32" />
+          <Property Name="usua_maestria" Type="Int32" />
+          <Property Name="usua_doctorado" Type="Int32" />
+          <Property Name="usua_tipo_puesto" Type="Int32" />
+          <Property Name="usua_tipo_contratacion" Type="Int32" />
+          <Property Name="usua_tipo_personal" Type="Int32" />
+          <Property Name="usua_tipo_jornada" Type="Int32" />
+          <Property Name="usua_rotacion_turno" Type="Int32" />
+          <Property Name="usua_tiempo_puesto" Type="Int32" />
+          <Property Name="usua_exp_laboral" Type="Int32" />
+          <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_usuarios" ToRole="encuesta_resultados" />
+          <Property Name="usua_presento" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
+          <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_det_encuesta" Type="Self.encuesta_det_encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_encuesta">
+              <PropertyRef Name="encu_id" />
+            </Principal>
+            <Dependent Role="encuesta_det_encuesta">
+              <PropertyRef Name="denc_encu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_det_encuesta">
+          <End Role="encuesta_det_encuesta" Type="Self.encuesta_det_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_det_encuesta">
+              <PropertyRef Name="denc_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_denc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_empresa">
+          <End Role="encuesta_empresa" Type="Self.encuesta_empresa" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_empresa">
+              <PropertyRef Name="emp_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_encuesta">
+          <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_encuesta">
+              <PropertyRef Name="encu_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_encu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_resultados_encuesta_usuarios">
+          <End Role="encuesta_usuarios" Type="Self.encuesta_usuarios" Multiplicity="0..1" />
+          <End Role="encuesta_resultados" Type="Self.encuesta_resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="encuesta_usuarios">
+              <PropertyRef Name="usua_id" />
+            </Principal>
+            <Dependent Role="encuesta_resultados">
+              <PropertyRef Name="resu_usua_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="csstdura_encuestaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="encuaesta_opciones" EntityType="Self.encuaesta_opciones" />
+          <EntitySet Name="encuaesta_rotacion" EntityType="Self.encuaesta_rotacion" />
+          <EntitySet Name="encuesta_det_encuesta" EntityType="Self.encuesta_det_encuesta" />
+          <EntitySet Name="encuesta_edades" EntityType="Self.encuesta_edades" />
+          <EntitySet Name="encuesta_edocivil" EntityType="Self.encuesta_edocivil" />
+          <EntitySet Name="encuesta_empresa" EntityType="Self.encuesta_empresa" />
+          <EntitySet Name="encuesta_encuesta" EntityType="Self.encuesta_encuesta" />
+          <EntitySet Name="encuesta_explab" EntityType="Self.encuesta_explab" />
+          <EntitySet Name="encuesta_procesoedu" EntityType="Self.encuesta_procesoedu" />
+          <EntitySet Name="encuesta_resultados" EntityType="Self.encuesta_resultados" />
+          <EntitySet Name="encuesta_sexo" EntityType="Self.encuesta_sexo" />
+          <EntitySet Name="encuesta_tiempopuesto" EntityType="Self.encuesta_tiempopuesto" />
+          <EntitySet Name="encuesta_tipocontrata" EntityType="Self.encuesta_tipocontrata" />
+          <EntitySet Name="encuesta_tipojornada" EntityType="Self.encuesta_tipojornada" />
+          <EntitySet Name="encuesta_tipopersonal" EntityType="Self.encuesta_tipopersonal" />
+          <EntitySet Name="encuesta_tipopuesto" EntityType="Self.encuesta_tipopuesto" />
+          <EntitySet Name="encuesta_usuarios" EntityType="Self.encuesta_usuarios" />
+          <AssociationSet Name="FK_encuesta_det_encuesta_encuesta_encuesta" Association="Self.FK_encuesta_det_encuesta_encuesta_encuesta">
+            <End Role="encuesta_encuesta" EntitySet="encuesta_encuesta" />
+            <End Role="encuesta_det_encuesta" EntitySet="encuesta_det_encuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_det_encuesta" Association="Self.FK_encuesta_resultados_encuesta_det_encuesta">
+            <End Role="encuesta_det_encuesta" EntitySet="encuesta_det_encuesta" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_empresa" Association="Self.FK_encuesta_resultados_encuesta_empresa">
+            <End Role="encuesta_empresa" EntitySet="encuesta_empresa" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_encuesta" Association="Self.FK_encuesta_resultados_encuesta_encuesta">
+            <End Role="encuesta_encuesta" EntitySet="encuesta_encuesta" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_resultados_encuesta_usuarios" Association="Self.FK_encuesta_resultados_encuesta_usuarios">
+            <End Role="encuesta_usuarios" EntitySet="encuesta_usuarios" />
+            <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="csstdura_encuestaModelStoreContainer" CdmEntityContainer="csstdura_encuestaEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuaesta_opciones">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_opciones">
+              <MappingFragment StoreEntitySet="encuaesta_opciones">
+                <ScalarProperty Name="opcion_id" ColumnName="opcion_id" />
+                <ScalarProperty Name="opcion_desc" ColumnName="opcion_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuaesta_rotacion">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_rotacion">
+              <MappingFragment StoreEntitySet="encuaesta_rotacion">
+                <ScalarProperty Name="rotacionturno_id" ColumnName="rotacionturno_id" />
+                <ScalarProperty Name="rotacionturno_desc" ColumnName="rotacionturno_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_det_encuesta">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_det_encuesta">
+              <MappingFragment StoreEntitySet="encuesta_det_encuesta">
+                <ScalarProperty Name="denc_parte" ColumnName="denc_parte" />
+                <ScalarProperty Name="denc_id" ColumnName="denc_id" />
+                <ScalarProperty Name="denc_encu_id" ColumnName="denc_encu_id" />
+                <ScalarProperty Name="denc_descrip" ColumnName="denc_descrip" />
+                <ScalarProperty Name="denc_valor" ColumnName="denc_valor" />
+                <ScalarProperty Name="denc_status" ColumnName="denc_status" />
+                <ScalarProperty Name="denc_u_alta" ColumnName="denc_u_alta" />
+                <ScalarProperty Name="denc_f_alta" ColumnName="denc_f_alta" />
+                <ScalarProperty Name="denc_u_cancela" ColumnName="denc_u_cancela" />
+                <ScalarProperty Name="denc_f_cancela" ColumnName="denc_f_cancela" />
+                <ScalarProperty Name="denc_valor_1" ColumnName="denc_valor_1" />
+                <ScalarProperty Name="denc_valor_2" ColumnName="denc_valor_2" />
+                <ScalarProperty Name="denc_valor_3" ColumnName="denc_valor_3" />
+                <ScalarProperty Name="denc_valor_4" ColumnName="denc_valor_4" />
+                <ScalarProperty Name="denc_valor_5" ColumnName="denc_valor_5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_edades">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_edades">
+              <MappingFragment StoreEntitySet="encuesta_edades">
+                <ScalarProperty Name="edad_id" ColumnName="edad_id" />
+                <ScalarProperty Name="edad_desc" ColumnName="edad_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_edocivil">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_edocivil">
+              <MappingFragment StoreEntitySet="encuesta_edocivil">
+                <ScalarProperty Name="edocivil_id" ColumnName="edocivil_id" />
+                <ScalarProperty Name="edocivil_desc" ColumnName="edocivil_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_empresa">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_empresa">
+              <MappingFragment StoreEntitySet="encuesta_empresa">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="emp_descrip" ColumnName="emp_descrip" />
+                <ScalarProperty Name="emp_estatus" ColumnName="emp_estatus" />
+                <ScalarProperty Name="emp_u_alta" ColumnName="emp_u_alta" />
+                <ScalarProperty Name="emp_f_alta" ColumnName="emp_f_alta" />
+                <ScalarProperty Name="emp_u_cancela" ColumnName="emp_u_cancela" />
+                <ScalarProperty Name="emp_f_cancela" ColumnName="emp_f_cancela" />
+                <ScalarProperty Name="emp_no_trabajadores" ColumnName="emp_no_trabajadores" />
+                <ScalarProperty Name="emp_direccion" ColumnName="emp_direccion" />
+                <ScalarProperty Name="emp_telefono" ColumnName="emp_telefono" />
+                <ScalarProperty Name="emp_person_contac" ColumnName="emp_person_contac" />
+                <ScalarProperty Name="emp_correo" ColumnName="emp_correo" />
+                <ScalarProperty Name="emp_cp" ColumnName="emp_cp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_encuesta">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_encuesta">
+              <MappingFragment StoreEntitySet="encuesta_encuesta">
+                <ScalarProperty Name="encu_id" ColumnName="encu_id" />
+                <ScalarProperty Name="encu_descrip" ColumnName="encu_descrip" />
+                <ScalarProperty Name="encu_status" ColumnName="encu_status" />
+                <ScalarProperty Name="encu_u_alta" ColumnName="encu_u_alta" />
+                <ScalarProperty Name="encu_f_alta" ColumnName="encu_f_alta" />
+                <ScalarProperty Name="encu_u_cancela" ColumnName="encu_u_cancela" />
+                <ScalarProperty Name="encu_f_cancela" ColumnName="encu_f_cancela" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_explab">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_explab">
+              <MappingFragment StoreEntitySet="encuesta_explab">
+                <ScalarProperty Name="explab_id" ColumnName="explab_id" />
+                <ScalarProperty Name="explab_desc" ColumnName="explab_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_procesoedu">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_procesoedu">
+              <MappingFragment StoreEntitySet="encuesta_procesoedu">
+                <ScalarProperty Name="procesoedu_id" ColumnName="procesoedu_id" />
+                <ScalarProperty Name="procesoedu_desc" ColumnName="procesoedu_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_resultados">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_resultados">
+              <MappingFragment StoreEntitySet="encuesta_resultados">
+                <ScalarProperty Name="resu_id" ColumnName="resu_id" />
+                <ScalarProperty Name="resu_emp_id" ColumnName="resu_emp_id" />
+                <ScalarProperty Name="resu_encu_id" ColumnName="resu_encu_id" />
+                <ScalarProperty Name="resu_denc_id" ColumnName="resu_denc_id" />
+                <ScalarProperty Name="resu_usua_id" ColumnName="resu_usua_id" />
+                <ScalarProperty Name="resu_resultado" ColumnName="resu_resultado" />
+                <ScalarProperty Name="resu_fecha" ColumnName="resu_fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_sexo">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_sexo">
+              <MappingFragment StoreEntitySet="encuesta_sexo">
+                <ScalarProperty Name="sexo_id" ColumnName="sexo_id" />
+                <ScalarProperty Name="sexo_desc" ColumnName="sexo_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_tiempopuesto">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tiempopuesto">
+              <MappingFragment StoreEntitySet="encuesta_tiempopuesto">
+                <ScalarProperty Name="tiempopue_id" ColumnName="tiempopue_id" />
+                <ScalarProperty Name="tiempopue_desc" ColumnName="tiempopue_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_tipocontrata">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipocontrata">
+              <MappingFragment StoreEntitySet="encuesta_tipocontrata">
+                <ScalarProperty Name="tipocont_id" ColumnName="tipocont_id" />
+                <ScalarProperty Name="tipocont_desc" ColumnName="tipocont_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_tipojornada">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipojornada">
+              <MappingFragment StoreEntitySet="encuesta_tipojornada">
+                <ScalarProperty Name="tipojornada_id" ColumnName="tipojornada_id" />
+                <ScalarProperty Name="tipojornada_desc" ColumnName="tipojornada_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_tipopersonal">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipopersonal">
+              <MappingFragment StoreEntitySet="encuesta_tipopersonal">
+                <ScalarProperty Name="tipoperson_id" ColumnName="tipoperson_id" />
+                <ScalarProperty Name="tipoperson_desc" ColumnName="tipoperson_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_tipopuesto">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipopuesto">
+              <MappingFragment StoreEntitySet="encuesta_tipopuesto">
+                <ScalarProperty Name="tipopuesto_id" ColumnName="tipopuesto_id" />
+                <ScalarProperty Name="tipopuesto_desc" ColumnName="tipopuesto_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuesta_usuarios">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
+              <MappingFragment StoreEntitySet="encuesta_usuarios">
+                <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
+                <ScalarProperty Name="usua_id" ColumnName="usua_id" />
+                <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
+                <ScalarProperty Name="usua_empresa" ColumnName="usua_empresa" />
+                <ScalarProperty Name="usua_f_aplica" ColumnName="usua_f_aplica" />
+                <ScalarProperty Name="usua_tipo" ColumnName="usua_tipo" />
+                <ScalarProperty Name="usua_estatus" ColumnName="usua_estatus" />
+                <ScalarProperty Name="usua_n_usuario" ColumnName="usua_n_usuario" />
+                <ScalarProperty Name="usua_p_usuario" ColumnName="usua_p_usuario" />
+                <ScalarProperty Name="usua_u_alta" ColumnName="usua_u_alta" />
+                <ScalarProperty Name="usua_f_alta" ColumnName="usua_f_alta" />
+                <ScalarProperty Name="usua_u_cancela" ColumnName="usua_u_cancela" />
+                <ScalarProperty Name="usua_f_cancela" ColumnName="usua_f_cancela" />
+                <ScalarProperty Name="usua_genero" ColumnName="usua_genero" />
+                <ScalarProperty Name="usua_edad" ColumnName="usua_edad" />
+                <ScalarProperty Name="usua_edo_civil" ColumnName="usua_edo_civil" />
+                <ScalarProperty Name="usua_sin_forma" ColumnName="usua_sin_forma" />
+                <ScalarProperty Name="usua_primaria" ColumnName="usua_primaria" />
+                <ScalarProperty Name="usua_secundaria" ColumnName="usua_secundaria" />
+                <ScalarProperty Name="usua_preparatoria" ColumnName="usua_preparatoria" />
+                <ScalarProperty Name="usua_tecnico" ColumnName="usua_tecnico" />
+                <ScalarProperty Name="usua_licenciatura" ColumnName="usua_licenciatura" />
+                <ScalarProperty Name="usua_maestria" ColumnName="usua_maestria" />
+                <ScalarProperty Name="usua_doctorado" ColumnName="usua_doctorado" />
+                <ScalarProperty Name="usua_tipo_puesto" ColumnName="usua_tipo_puesto" />
+                <ScalarProperty Name="usua_tipo_contratacion" ColumnName="usua_tipo_contratacion" />
+                <ScalarProperty Name="usua_tipo_personal" ColumnName="usua_tipo_personal" />
+                <ScalarProperty Name="usua_tipo_jornada" ColumnName="usua_tipo_jornada" />
+                <ScalarProperty Name="usua_rotacion_turno" ColumnName="usua_rotacion_turno" />
+                <ScalarProperty Name="usua_tiempo_puesto" ColumnName="usua_tiempo_puesto" />
+                <ScalarProperty Name="usua_exp_laboral" ColumnName="usua_exp_laboral" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

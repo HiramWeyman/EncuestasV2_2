@@ -1,0 +1,153 @@
+﻿
+@using EncuestasV2.Models;
+@model List<encuesta_empresaCLS>
+@{
+
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "ListarEmpresa";
+}
+<script>
+
+$(document).ready(function () {
+$('#dtVerticalScrollExample').DataTable({
+"scrollY": "200px",
+"scrollCollapse": true,
+});
+$('.dataTables_length').addClass('bs-select');
+});
+</script>
+
+<div id="contenedor">
+    <br />
+    <h2>Lista de Empresas</h2>
+    @using (Html.BeginForm("ListarEmpresa", "Admin", FormMethod.Post))
+    {
+        
+        <a href="@Url.Action("CatalogoEmpresa", "Admin")" class="btn btn-primary"><i class="fas fa-plus-circle"></i><span></span><b> Agregar</b></a>
+        @*@Html.ActionLink("Agregar", "CatalogoEmpresa", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })<span></span>*@
+        <a href="@Url.Action("GenerarPDF", "Admin")" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i><span></span><b> Generar PDF</b></a>
+        @*@Html.ActionLink("Generar PDF", "GenerarPDF", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0", @target = "_blank" })<span></span>*@
+        <a href="@Url.Action("generarExcelByte", "Admin")" class="btn btn-success"  target="_blank"><i class="fas fa-file-excel"></i><span></span><b> Generar Excel</b></a>
+        @*@Html.ActionLink("Generar Excel", "generarExcelByte", "Admin", new { area = "" }, new { @class = "btn btn-success my-2 my-sm-0 fas fa-file-excel", @target = "_blank" })*@
+        <br />
+        <i class="fas fa-search"></i>
+        <b><label>Buscar empresa</label></b>
+        <div class="row ml-1">
+            @Html.TextBox("emp_descrip", null, new { @class = "form-control" })
+            <button type="submit" class="btn btn-success">Consultar</button>
+        </div>
+
+        <br />
+
+        <table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+               width="100%">
+            <thead>
+                <tr>
+
+                    <th class="th-sm"><label>Id</label></th>
+                    <th class="th-sm"><label>Empresa</label></th>
+                    <th class="th-sm"><label>Estatus</label></th>
+                    <th class="th-sm"><label>Usuario Alta</label></th>
+                    <th class="th-sm"><label>Fecha Alta</label></th>
+                    <th class="th-sm"><label>Usuario cancela</label></th>
+                    <th class="th-sm"><label>Fecha cancela</label></th>
+                    <th class="th-sm"><label>Empleados</label></th>
+                    <th class="th-sm"><label>Dirección</label></th>
+                    <th class="th-sm"><label>Telefono</label></th>
+                    <th class="th-sm"><label>Contacto</label></th>
+                    <th class="th-sm"><label>Correo</label></th>
+                    <th class="th-sm"><label>C.P</label></th>
+                    <th class="th-sm"><label>Acciones</label></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.emp_id</td>
+                        <td>@item.emp_descrip</td>
+                        <td>@item.emp_estatus</td>
+                        <td>@item.emp_u_alta</td>
+                        <td>@item.emp_f_alta</td>
+                        <td>@item.emp_u_cancela</td>
+                        <td>@item.emp_f_cancela</td>
+                        <td>@item.emp_no_trabajadores</td>
+                        <td>@item.emp_direccion</td>
+                        <td>@item.emp_telefono</td>
+                        <td>@item.emp_person_contac</td>
+                        <td>@item.emp_correo</td>
+                        <td>@item.emp_cp</td>
+                        <td>
+                            <a href="@Url.Action("EditarEmpresa", "Admin",new { id = item.emp_id })" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                            <a href="@Url.Action("EliminarEmpresa", "Admin",new { id = item.emp_id })" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            @*@Html.ActionLink("Editar", "EditarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-warning my-2 my-sm-0" })*@
+                            @*@Html.ActionLink("Eliminar", "EliminarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-danger my-2 my-sm-0" })*@
+
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+
+        </table>
+
+        @*<div class="table-responsive text-nowrap overflow-auto h-50 ">
+                    <table class="table table-striped table-sm table-hover table-bordered h-50">
+                        <thead>
+                            <tr>
+                                <th><label>Id</label></th>
+                                <th><label>Empresa</label></th>
+                                <th><label>Estatus</label></th>
+                                <th><label>Usuario Alta</label></th>
+                                <th><label>Fecha Alta</label></th>
+                                <th><label>Usuario cancela</label></th>
+                                <th><label>Fecha cancela</label></th>
+                                <th><label>Empleados</label></th>
+                                <th><label>Dirección</label></th>
+                                <th><label>Telefono</label></th>
+                                <th><label>Contacto</label></th>
+                                <th><label>Correo</label></th>
+                                <th><label>C.P</label></th>
+                                <th><label>Acciones</label></th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>@item.emp_id</td>
+                                    <td>@item.emp_descrip</td>
+                                    <td>@item.emp_estatus</td>
+                                    <td>@item.emp_u_alta</td>
+                                    <td>@item.emp_f_alta</td>
+                                    <td>@item.emp_u_cancela</td>
+                                    <td>@item.emp_f_cancela</td>
+                                    <td>@item.emp_no_trabajadores</td>
+                                    <td>@item.emp_direccion</td>
+                                    <td>@item.emp_telefono</td>
+                                    <td>@item.emp_person_contac</td>
+                                    <td>@item.emp_correo</td>
+                                    <td>@item.emp_cp</td>
+                                    <td>
+                                        @Html.ActionLink("Editar", "EditarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-warning my-2 my-sm-0" })
+                                        @Html.ActionLink("Eliminar", "EliminarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-danger my-2 my-sm-0" })
+
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+
+                    </table>
+                </div>
+            }*@
+    }
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "Index")
+    </div>
+</div>

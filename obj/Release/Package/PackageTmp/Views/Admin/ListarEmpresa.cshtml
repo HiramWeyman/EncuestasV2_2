@@ -1,0 +1,82 @@
+﻿
+@using EncuestasV2.Models;
+@model List<encuesta_empresaCLS>
+@{
+
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "ListarEmpresa";
+}
+
+    <div style="height:600px;overflow:auto;margin-left:10px;">
+        <h2>Lista de Empresas</h2>
+        @using (Html.BeginForm("ListarEmpresa", "Admin", FormMethod.Post))
+        {
+            @Html.ActionLink("Agregar", "CatalogoEmpresa", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })<span></span>
+            @Html.ActionLink("Generar PDF", "GenerarPDF", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0",@target="_blank" })<br />
+
+        <b><label>Buscar empresa</label></b>
+        <div class="row ml-1">
+            @Html.TextBox("emp_descrip", null, new { @class = "form-control" })
+            <button type="submit" class="btn btn-success">Consultar</button>
+        </div>
+
+        <br />
+        <div class="table-responsive text-nowrap overflow-auto h-50 ">
+            <table class="table table-striped table-sm table-hover table-bordered h-50">
+                <thead>
+                    <tr>
+                        <th><label>Id</label></th>
+                        <th><label>Empresa</label></th>
+                        <th><label>Estatus</label></th>
+                        <th><label>Usuario Alta</label></th>
+                        <th><label>Fecha Alta</label></th>
+                        <th><label>Usuario cancela</label></th>
+                        <th><label>Fecha cancela</label></th>
+                        <th><label>Empleados</label></th>
+                        <th><label>Dirección</label></th>
+                        <th><label>Telefono</label></th>
+                        <th><label>Contacto</label></th>
+                        <th><label>Correo</label></th>
+                        <th><label>C.P</label></th>
+                        <th><label>Acciones</label></th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.emp_id</td>
+                            <td>@item.emp_descrip</td>
+                            <td>@item.emp_estatus</td>
+                            <td>@item.emp_u_alta</td>
+                            <td>@item.emp_f_alta</td>
+                            <td>@item.emp_u_cancela</td>
+                            <td>@item.emp_f_cancela</td>
+                            <td>@item.emp_no_trabajadores</td>
+                            <td>@item.emp_direccion</td>
+                            <td>@item.emp_telefono</td>
+                            <td>@item.emp_person_contac</td>
+                            <td>@item.emp_correo</td>
+                            <td>@item.emp_cp</td>
+                            <td>
+                                @Html.ActionLink("Editar", "EditarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-warning my-2 my-sm-0" })
+                                @Html.ActionLink("Eliminar", "EliminarEmpresa", "Admin", new { id = item.emp_id }, new { @class = "btn btn-danger my-2 my-sm-0" })
+
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "Index")
+    </div>
+    </div>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<br /><br />
+      <div align="center">
+          <h3>Gracias @ViewBag.nombreEmpleado por contestar nuestro cuestionario</h3>
+
+          <br /><br />
+          <h4>Que tengas buen día.</h4>
+          <br /><br />
+
+          @using (Html.BeginForm("Agregar27", "Encuesta3", FormMethod.Post, new { id = "Form" }))
+          {
+              @Html.TextBox("user", ViewBag.user as string, new { type = "hidden" })
+              <input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+
+              <input type="submit" value="Terminar" class="btn btn-primary" />
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          }
+      </div>

@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Index";
+    int x = 1;
+}
+
+<h2>Bienvenido: @ViewBag.nombreEmpleado</h2>
+@*<h2>Usuario-@ViewBag.Session</h2>*@
+
+@using (Html.BeginForm("Agregar5", "Encuesta3", FormMethod.Post))
+{
+    <h4> @ViewBag.encabezado</h4>
+    @Html.TextBox("user", ViewBag.user as string, new { type = "hidden" })
+    <input type="hidden" id="encu_id" name="encu_id" value=@ViewBag.id_encabezado />
+    <input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+    <input type="hidden" id="id_empresa" name="id_empresa" value=@ViewBag.id_empresa />
+
+    <h5>Para responder las preguntas siguientes considere las condiciones de su centro de trabajo, así como la cantidad y ritmo de trabajo.</h5>
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>PREGUNTA</th>
+                <th>SIEMPRE</th>
+                <th>CASI SIEMPRE</th>
+                <th>ALGUNAS VECES</th>
+                <th>CASI NUNCA</th>
+                <th>NUNCA</th>
+            </tr>
+        </thead>
+        <!-- Recorro el modelo para imprimir datos -->
+        @foreach (var elemento in Model)
+        {
+
+    <tr>
+
+        <td>
+            <input type="hidden" name="denc_id_@x" value="@elemento.denc_id" />@elemento.denc_id
+            <input type="hidden" name="Valor_radio_@x" id="Valor_radio_@x" />
+        </td>
+        <td>@elemento.denc_descrip</td>
+        <td><input onclick="ValRadio1(@x);" type="radio" id="radio1_@x" name="radio_@x" value="@elemento.denc_valor_1" required /></td>
+        <td><input onclick="ValRadio2(@x);" type="radio" id="radio2_@x" name="radio_@x" value="@elemento.denc_valor_2" required /></td>
+        <td><input onclick="ValRadio3(@x);" type="radio" id="radio3_@x" name="radio_@x" value="@elemento.denc_valor_3" required /></td>
+        <td><input onclick="ValRadio4(@x);" type="radio" id="radio4_@x" name="radio_@x" value="@elemento.denc_valor_4" required /></td>
+        <td><input onclick="ValRadio5(@x);" type="radio" id="radio5_@x" name="radio_@x" value="@elemento.denc_valor_5" required /></td>
+
+    </tr>
+            x = x + 1;
+        }
+        <tr>
+            <td><input type="submit" value="Guardar" class="btn btn-primary" /></td>
+        </tr>
+    </table>
+
+}
+
+<script>
+    function ValRadio1(valor_x) {
+        document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio1_" + valor_x).value;
+    }
+    function ValRadio2(valor_x) {
+        document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio2_" + valor_x).value;
+    }
+    function ValRadio3(valor_x) {
+        document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio3_" + valor_x).value;
+    }
+    function ValRadio4(valor_x) {
+        document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio4_" + valor_x).value;
+    }
+    function ValRadio5(valor_x) {
+        document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio5_" + valor_x).value;
+    }
+
+</script>
+
+

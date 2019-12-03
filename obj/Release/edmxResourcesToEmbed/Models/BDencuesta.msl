@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="csstdura_encuestaModelStoreContainer" CdmEntityContainer="csstdura_encuestaEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuaesta_opciones">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_opciones">
+        <MappingFragment StoreEntitySet="encuaesta_opciones">
+          <ScalarProperty Name="opcion_id" ColumnName="opcion_id" />
+          <ScalarProperty Name="opcion_desc" ColumnName="opcion_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuaesta_rotacion">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_rotacion">
+        <MappingFragment StoreEntitySet="encuaesta_rotacion">
+          <ScalarProperty Name="rotacionturno_id" ColumnName="rotacionturno_id" />
+          <ScalarProperty Name="rotacionturno_desc" ColumnName="rotacionturno_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_det_encuesta">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_det_encuesta">
+        <MappingFragment StoreEntitySet="encuesta_det_encuesta">
+          <ScalarProperty Name="denc_parte" ColumnName="denc_parte" />
+          <ScalarProperty Name="denc_id" ColumnName="denc_id" />
+          <ScalarProperty Name="denc_encu_id" ColumnName="denc_encu_id" />
+          <ScalarProperty Name="denc_descrip" ColumnName="denc_descrip" />
+          <ScalarProperty Name="denc_valor" ColumnName="denc_valor" />
+          <ScalarProperty Name="denc_status" ColumnName="denc_status" />
+          <ScalarProperty Name="denc_u_alta" ColumnName="denc_u_alta" />
+          <ScalarProperty Name="denc_f_alta" ColumnName="denc_f_alta" />
+          <ScalarProperty Name="denc_u_cancela" ColumnName="denc_u_cancela" />
+          <ScalarProperty Name="denc_f_cancela" ColumnName="denc_f_cancela" />
+          <ScalarProperty Name="denc_valor_1" ColumnName="denc_valor_1" />
+          <ScalarProperty Name="denc_valor_2" ColumnName="denc_valor_2" />
+          <ScalarProperty Name="denc_valor_3" ColumnName="denc_valor_3" />
+          <ScalarProperty Name="denc_valor_4" ColumnName="denc_valor_4" />
+          <ScalarProperty Name="denc_valor_5" ColumnName="denc_valor_5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_edades">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_edades">
+        <MappingFragment StoreEntitySet="encuesta_edades">
+          <ScalarProperty Name="edad_id" ColumnName="edad_id" />
+          <ScalarProperty Name="edad_desc" ColumnName="edad_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_edocivil">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_edocivil">
+        <MappingFragment StoreEntitySet="encuesta_edocivil">
+          <ScalarProperty Name="edocivil_id" ColumnName="edocivil_id" />
+          <ScalarProperty Name="edocivil_desc" ColumnName="edocivil_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_empresa">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_empresa">
+        <MappingFragment StoreEntitySet="encuesta_empresa">
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="emp_descrip" ColumnName="emp_descrip" />
+          <ScalarProperty Name="emp_estatus" ColumnName="emp_estatus" />
+          <ScalarProperty Name="emp_u_alta" ColumnName="emp_u_alta" />
+          <ScalarProperty Name="emp_f_alta" ColumnName="emp_f_alta" />
+          <ScalarProperty Name="emp_u_cancela" ColumnName="emp_u_cancela" />
+          <ScalarProperty Name="emp_f_cancela" ColumnName="emp_f_cancela" />
+          <ScalarProperty Name="emp_no_trabajadores" ColumnName="emp_no_trabajadores" />
+          <ScalarProperty Name="emp_direccion" ColumnName="emp_direccion" />
+          <ScalarProperty Name="emp_telefono" ColumnName="emp_telefono" />
+          <ScalarProperty Name="emp_person_contac" ColumnName="emp_person_contac" />
+          <ScalarProperty Name="emp_correo" ColumnName="emp_correo" />
+          <ScalarProperty Name="emp_cp" ColumnName="emp_cp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_encuesta">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_encuesta">
+        <MappingFragment StoreEntitySet="encuesta_encuesta">
+          <ScalarProperty Name="encu_id" ColumnName="encu_id" />
+          <ScalarProperty Name="encu_descrip" ColumnName="encu_descrip" />
+          <ScalarProperty Name="encu_status" ColumnName="encu_status" />
+          <ScalarProperty Name="encu_u_alta" ColumnName="encu_u_alta" />
+          <ScalarProperty Name="encu_f_alta" ColumnName="encu_f_alta" />
+          <ScalarProperty Name="encu_u_cancela" ColumnName="encu_u_cancela" />
+          <ScalarProperty Name="encu_f_cancela" ColumnName="encu_f_cancela" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_explab">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_explab">
+        <MappingFragment StoreEntitySet="encuesta_explab">
+          <ScalarProperty Name="explab_id" ColumnName="explab_id" />
+          <ScalarProperty Name="explab_desc" ColumnName="explab_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_procesoedu">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_procesoedu">
+        <MappingFragment StoreEntitySet="encuesta_procesoedu">
+          <ScalarProperty Name="procesoedu_id" ColumnName="procesoedu_id" />
+          <ScalarProperty Name="procesoedu_desc" ColumnName="procesoedu_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_resultados">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_resultados">
+        <MappingFragment StoreEntitySet="encuesta_resultados">
+          <ScalarProperty Name="resu_id" ColumnName="resu_id" />
+          <ScalarProperty Name="resu_emp_id" ColumnName="resu_emp_id" />
+          <ScalarProperty Name="resu_encu_id" ColumnName="resu_encu_id" />
+          <ScalarProperty Name="resu_denc_id" ColumnName="resu_denc_id" />
+          <ScalarProperty Name="resu_usua_id" ColumnName="resu_usua_id" />
+          <ScalarProperty Name="resu_resultado" ColumnName="resu_resultado" />
+          <ScalarProperty Name="resu_fecha" ColumnName="resu_fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_sexo">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_sexo">
+        <MappingFragment StoreEntitySet="encuesta_sexo">
+          <ScalarProperty Name="sexo_id" ColumnName="sexo_id" />
+          <ScalarProperty Name="sexo_desc" ColumnName="sexo_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_tiempopuesto">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tiempopuesto">
+        <MappingFragment StoreEntitySet="encuesta_tiempopuesto">
+          <ScalarProperty Name="tiempopue_id" ColumnName="tiempopue_id" />
+          <ScalarProperty Name="tiempopue_desc" ColumnName="tiempopue_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_tipocontrata">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipocontrata">
+        <MappingFragment StoreEntitySet="encuesta_tipocontrata">
+          <ScalarProperty Name="tipocont_id" ColumnName="tipocont_id" />
+          <ScalarProperty Name="tipocont_desc" ColumnName="tipocont_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_tipojornada">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipojornada">
+        <MappingFragment StoreEntitySet="encuesta_tipojornada">
+          <ScalarProperty Name="tipojornada_id" ColumnName="tipojornada_id" />
+          <ScalarProperty Name="tipojornada_desc" ColumnName="tipojornada_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_tipopersonal">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipopersonal">
+        <MappingFragment StoreEntitySet="encuesta_tipopersonal">
+          <ScalarProperty Name="tipoperson_id" ColumnName="tipoperson_id" />
+          <ScalarProperty Name="tipoperson_desc" ColumnName="tipoperson_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_tipopuesto">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_tipopuesto">
+        <MappingFragment StoreEntitySet="encuesta_tipopuesto">
+          <ScalarProperty Name="tipopuesto_id" ColumnName="tipopuesto_id" />
+          <ScalarProperty Name="tipopuesto_desc" ColumnName="tipopuesto_desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuesta_usuarios">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
+        <MappingFragment StoreEntitySet="encuesta_usuarios">
+          <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
+          <ScalarProperty Name="usua_id" ColumnName="usua_id" />
+          <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
+          <ScalarProperty Name="usua_empresa" ColumnName="usua_empresa" />
+          <ScalarProperty Name="usua_f_aplica" ColumnName="usua_f_aplica" />
+          <ScalarProperty Name="usua_tipo" ColumnName="usua_tipo" />
+          <ScalarProperty Name="usua_estatus" ColumnName="usua_estatus" />
+          <ScalarProperty Name="usua_n_usuario" ColumnName="usua_n_usuario" />
+          <ScalarProperty Name="usua_p_usuario" ColumnName="usua_p_usuario" />
+          <ScalarProperty Name="usua_u_alta" ColumnName="usua_u_alta" />
+          <ScalarProperty Name="usua_f_alta" ColumnName="usua_f_alta" />
+          <ScalarProperty Name="usua_u_cancela" ColumnName="usua_u_cancela" />
+          <ScalarProperty Name="usua_f_cancela" ColumnName="usua_f_cancela" />
+          <ScalarProperty Name="usua_genero" ColumnName="usua_genero" />
+          <ScalarProperty Name="usua_edad" ColumnName="usua_edad" />
+          <ScalarProperty Name="usua_edo_civil" ColumnName="usua_edo_civil" />
+          <ScalarProperty Name="usua_sin_forma" ColumnName="usua_sin_forma" />
+          <ScalarProperty Name="usua_primaria" ColumnName="usua_primaria" />
+          <ScalarProperty Name="usua_secundaria" ColumnName="usua_secundaria" />
+          <ScalarProperty Name="usua_preparatoria" ColumnName="usua_preparatoria" />
+          <ScalarProperty Name="usua_tecnico" ColumnName="usua_tecnico" />
+          <ScalarProperty Name="usua_licenciatura" ColumnName="usua_licenciatura" />
+          <ScalarProperty Name="usua_maestria" ColumnName="usua_maestria" />
+          <ScalarProperty Name="usua_doctorado" ColumnName="usua_doctorado" />
+          <ScalarProperty Name="usua_tipo_puesto" ColumnName="usua_tipo_puesto" />
+          <ScalarProperty Name="usua_tipo_contratacion" ColumnName="usua_tipo_contratacion" />
+          <ScalarProperty Name="usua_tipo_personal" ColumnName="usua_tipo_personal" />
+          <ScalarProperty Name="usua_tipo_jornada" ColumnName="usua_tipo_jornada" />
+          <ScalarProperty Name="usua_rotacion_turno" ColumnName="usua_rotacion_turno" />
+          <ScalarProperty Name="usua_tiempo_puesto" ColumnName="usua_tiempo_puesto" />
+          <ScalarProperty Name="usua_exp_laboral" ColumnName="usua_exp_laboral" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

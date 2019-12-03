@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab81b07312d845d9946c431f066d0f55" Name="Diagram1">
+        <EntityTypeShape EntityType="csstdura_encuestaModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuaesta_opciones" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuaesta_rotacion" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_det_encuesta" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_edades" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_edocivil" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_empresa" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_encuesta" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_explab" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_procesoedu" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_resultados" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_sexo" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_tiempopuesto" Width="1.5" PointX="7.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_tipocontrata" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_tipojornada" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_tipopersonal" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_tipopuesto" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuesta_usuarios" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_det_encuesta_encuesta_encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_det_encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_usuarios" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

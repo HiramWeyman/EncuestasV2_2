@@ -1,0 +1,41 @@
+﻿
+@using EncuestasV2.Models;
+@model List<encuesta_usuariosCLS>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <div id="contenedor">
+        <h2>Administrador</h2>
+        <hr />
+        <h2>Menu de opciones</h2>
+        <div class="table-responsive text-nowrap ">
+            <table class="table  table-sm  table-bordered ">
+
+                <tbody>
+
+                    <tr>
+                        <td><label>Empleados Registrados</label></td>
+                        <td> @Html.ActionLink("Mostrar", "Empleados", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
+                    </tr>
+
+                    <tr>
+                        <td><label>Ingresar Empresa</label></td>
+                        <td> @Html.ActionLink("Mostrar", "ListarEmpresa", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
+                    </tr>
+                    <tr>
+                        <td><label>Resultados de encuestas</label></td>
+                        <td> @Html.ActionLink("Mostrar", "ListarEncuesta", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
+                    </tr>
+
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+
+

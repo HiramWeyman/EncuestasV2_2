@@ -1,0 +1,85 @@
+﻿@using EncuestasV2.Models;
+@model List<encuesta_usuariosCLS>
+@{
+    ViewBag.Title = "ListarEncuesta";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    List<SelectListItem> listaEmp = (List<SelectListItem>)ViewBag.listaEmpresa;
+}
+
+<div style="height:600px;overflow:auto;margin-left:10px;">
+    <h2>Administrador</h2>
+    <hr />
+    @using (Html.BeginForm("ListarEncuesta", "Admin", FormMethod.Post, new { @id = "Form" }))
+    {
+        <div class="table-responsive text-nowrap overflow-auto h-50 ">
+            <table class="table table-striped table-sm table-hover table-bordered h-50">
+                <thead>
+                    <tr>
+                        <th><label>Empresa:</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DropDownList("usua_empresa", listaEmp, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive text-nowrap overflow-auto h-50 ">
+            <table class="table table-striped table-sm table-hover table-bordered h-50">
+                <thead>
+                    <tr>
+                        <th><label>Id</label></th>
+                        <th><label>Nombre</label></th>
+                        <th><label>Empresa</label></th>
+                        <th><label>Estatus</label></th>
+                        <th><label>Usuario</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.usua_id</td>
+                            <td>@item.usua_nombre</td>
+                            <td>@item.empleado_empresa</td>
+                            <td>@item.usua_estatus</td>
+                            <td>@item.usua_n_usuario</td>
+                            <td>
+                                @Html.ActionLink("Ver Resultado", "VerResultadoUsuario", "Admin", new { id = item.usua_id }, new { @class = "btn btn-primary my-2 my-sm-0" })
+
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "Index")
+    </div>
+
+</div>
+
+<script>
+
+    var frmFiltrado = document.getElementById("Form");
+
+    var controles = document.getElementsByClassName("form-control");
+    var ncontoles = controles.length;
+    for (var i = 0; i < ncontoles; i++) {
+        controles[i].onchange = function () {
+            frmFiltrado.submit();
+        }
+
+    }
+
+</script>

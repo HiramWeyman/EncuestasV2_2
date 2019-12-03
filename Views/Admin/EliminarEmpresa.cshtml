@@ -1,0 +1,113 @@
+﻿@using EncuestasV2.Models;
+@model encuesta_empresaCLS
+@{
+    ViewBag.Title = "Eliminar Empresa";
+}
+<script>
+        function InputToUpper(obj) {
+            if (obj.value != "") {
+                obj.value = obj.value.toUpperCase();
+            }
+        }
+</script>
+<h2>EditarEmpresa</h2>
+@using (Html.BeginForm("EliminarEmpresa", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h2>@ViewBag.user</h2>
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_id, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.ValidationMessageFor(model => model.emp_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_descrip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_descrip, new { htmlAttributes = new { @class = "form-control", @required = "true", onkeyup = "InputToUpper(this);", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.emp_descrip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_estatus, new { htmlAttributes = new { @class = "form-control", onkeyup = "InputToUpper(this);", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.emp_estatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.emp_u_alta, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_u_alta, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.user, @type = "hidden" } })
+                @Html.ValidationMessageFor(model => model.emp_u_alta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_no_trabajadores, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_no_trabajadores, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+                @Html.ValidationMessageFor(model => model.emp_no_trabajadores, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_direccion, new { htmlAttributes = new { @class = "form-control", onkeyup = "InputToUpper(this);", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.emp_direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_telefono, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emp_telefono, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_person_contac, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_person_contac, new { htmlAttributes = new { @class = "form-control", onkeyup = "InputToUpper(this);", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.emp_person_contac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_correo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_correo, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                @Html.ValidationMessageFor(model => model.emp_correo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.emp_cp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.emp_cp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.emp_cp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Eliminar Empresa" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar al Menu", "ListarEmpresa")
+</div>
+

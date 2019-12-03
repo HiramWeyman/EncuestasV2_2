@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Index";
+    int x = 1;
+}
+
+<h2>Bienvenido: @ViewBag.nombreEmpleado</h2>
+@*<h2>Usuario-@ViewBag.Session</h2>*@
+
+@using (Html.BeginForm("Agregar11", "Encuesta3", FormMethod.Post, new { id = "Form" }))
+{
+    <h4> @ViewBag.encabezado</h4>
+    @Html.TextBox("user", ViewBag.user as string, new { type = "hidden" })
+    <input type="hidden" id="encu_id" name="encu_id" value=@ViewBag.id_encabezado />
+    <input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+    <input type="hidden" id="id_empresa" name="id_empresa" value=@ViewBag.id_empresa />
+
+    <h5>Las preguntas siguientes están relacionadas con la atención a clientes y usuarios.</h5>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>PREGUNTA</th>
+                <th>SI</th>
+                <th>NO</th>
+            </tr>
+            <tr>
+                @foreach (var elemento in Model)
+                {
+                    if (elemento.denc_valor_3 == "N/A")
+                    {
+                        <td>
+                            <input type="hidden" name="denc_id" value="@elemento.denc_id" />@elemento.denc_id
+                            <input type="hidden" name="Valor_radio" id="Valor_radio" />
+                        </td>
+                        <td>@elemento.denc_descrip</td>
+                        <td><input onclick="enabledRadios(this.value);" type="radio" id="radio1" name="radio" value="SI" required /></td>
+                        <td><input onclick="enabledRadios(this.value);" type="radio" id="radio2" name="radio" value="NO" required /></td>
+                    }
+                }
+            </tr>
+        </thead>
+    </table>
+
+        <table class="table" id="table_radios" style="display:none;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>PREGUNTA</th>
+                    <th>SIEMPRE</th>
+                    <th>CASI SIEMPRE</th>
+                    <th>ALGUNAS VECES</th>
+                    <th>CASI NUNCA</th>
+                    <th>NUNCA</th>
+                </tr>
+            </thead>
+            <!-- Recorro el modelo para imprimir datos -->
+            @foreach (var elemento in Model)
+            {
+
+                if (elemento.denc_valor_3 != "N/A")
+                {
+                    <tr>
+
+                        <td>
+                            <input type="hidden" name="denc_id_@x" value="@elemento.denc_id" />@elemento.denc_id
+                            <input type="hidden" name="Valor_radio_@x" id="Valor_radio_@x" />
+                        </td>
+                        <td>@elemento.denc_descrip</td>
+
+
+                        <td><input class="radio" onclick="ValRadio1(@x);" type="radio" id="radio1_@x" name="radio_@x" value="@elemento.denc_valor_1" /></td>
+                        <td><input class="radio" onclick="ValRadio2(@x);" type="radio" id="radio2_@x" name="radio_@x" value="@elemento.denc_valor_2" /></td>
+                        <td><input class="radio" onclick="ValRadio3(@x);" type="radio" id="radio3_@x" name="radio_@x" value="@elemento.denc_valor_3" /></td>
+                        <td><input class="radio" onclick="ValRadio4(@x);" type="radio" id="radio4_@x" name="radio_@x" value="@elemento.denc_valor_4" /></td>
+                        <td><input class="radio" onclick="ValRadio5(@x);" type="radio" id="radio5_@x" name="radio_@x" value="@elemento.denc_valor_5" /></td>
+
+
+                    </tr>
+                }
+                x = x + 1;
+            }
+            <tr>
+                <td><input type="submit" value="Guardar" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+
+        }
+
+        <script>
+            function enabledRadios(Valor_radio) {
+                document.getElementById("Valor_radio").value = Valor_radio;
+                if (Valor_radio == "SI") {
+                    $(".radio").attr("required", "required");
+                    $("#table_radios").show(1000);
+                } else {
+                    $(".radio").removeAttr("required");
+                    $("#table_radios").hide(1000);
+                    document.getElementById("Form").submit();
+                }
+            }
+            function ValRadio1(valor_x) {
+                document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio1_" + valor_x).value;
+            }
+            function ValRadio2(valor_x) {
+                document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio2_" + valor_x).value;
+            }
+            function ValRadio3(valor_x) {
+                document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio3_" + valor_x).value;
+            }
+            function ValRadio4(valor_x) {
+                document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio4_" + valor_x).value;
+            }
+            function ValRadio5(valor_x) {
+                document.getElementById("Valor_radio_" + valor_x).value = document.getElementById("radio5_" + valor_x).value;
+            }
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+

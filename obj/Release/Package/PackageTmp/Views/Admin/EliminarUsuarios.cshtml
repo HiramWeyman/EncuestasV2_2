@@ -1,0 +1,208 @@
+﻿@using EncuestasV2.Models;
+@model encuesta_usuariosCLS
+@{
+    ViewBag.Title = "EliminarUsuarios";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    List<SelectListItem> listaEmp = (List<SelectListItem>)ViewBag.listaEmpresa;
+    List<SelectListItem> listaSex = (List<SelectListItem>)ViewBag.listaSexo;
+    List<SelectListItem> listaEdades = (List<SelectListItem>)ViewBag.listaEdad;
+    List<SelectListItem> listaEdoCivil = (List<SelectListItem>)ViewBag.listaEdoCivil;
+    List<SelectListItem> listaOpciones = (List<SelectListItem>)ViewBag.listaOpciones;
+    List<SelectListItem> listaProceso = (List<SelectListItem>)ViewBag.listaProceso;
+    List<SelectListItem> listaPuesto = (List<SelectListItem>)ViewBag.listaPuesto;
+    List<SelectListItem> listaContrata = (List<SelectListItem>)ViewBag.listaContrata;
+    List<SelectListItem> listaPersonal = (List<SelectListItem>)ViewBag.listaPersonal;
+    List<SelectListItem> listaJornada = (List<SelectListItem>)ViewBag.listaJornada;
+    List<SelectListItem> listaRotacion = (List<SelectListItem>)ViewBag.listaRotacion;
+    List<SelectListItem> listaTiempo = (List<SelectListItem>)ViewBag.listaTiempo;
+    List<SelectListItem> listaExpLab = (List<SelectListItem>)ViewBag.listaExpLab;
+}
+
+<h2>Eliminar Usuario</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("EliminarUsuarios", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div>
+                @Html.LabelFor(model => model.usua_nombre)
+                @Html.EditorFor(model => model.usua_nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.usua_nombre, "", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_empresa)
+                @Html.DropDownListFor(model => model.usua_empresa, listaEmp, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_empresa, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div>
+                @Html.LabelFor(model => model.usua_n_usuario)
+
+                @Html.EditorFor(model => model.usua_n_usuario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", type = "email", placeholder = "Introdusca su email", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.usua_n_usuario, "", new { @class = "text-danger" })
+
+            </div>
+
+
+
+            <div>
+                @Html.LabelFor(model => model.usua_genero)
+
+                @Html.DropDownListFor(model => model.usua_genero, listaSex, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_genero, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_edad)
+
+                @Html.DropDownListFor(model => model.usua_edad, listaEdades, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_edad, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_edo_civil)
+
+                @Html.DropDownListFor(model => model.usua_edo_civil, listaEdoCivil, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_edo_civil, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_sin_forma)
+
+                @Html.DropDownListFor(model => model.usua_sin_forma, listaOpciones, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_sin_forma, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_primaria)
+
+                @Html.DropDownListFor(model => model.usua_primaria, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_primaria, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_secundaria)
+
+                @Html.DropDownListFor(model => model.usua_secundaria, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_secundaria, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_preparatoria)
+
+                @Html.DropDownListFor(model => model.usua_preparatoria, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_preparatoria, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tecnico)
+
+                @Html.DropDownListFor(model => model.usua_tecnico, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tecnico, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_licenciatura)
+
+                @Html.DropDownListFor(model => model.usua_licenciatura, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_licenciatura, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_maestria)
+
+                @Html.DropDownListFor(model => model.usua_maestria, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_maestria, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_doctorado)
+
+                @Html.DropDownListFor(model => model.usua_doctorado, listaProceso, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_doctorado, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tipo_puesto)
+                @Html.DropDownListFor(model => model.usua_tipo_puesto, listaPuesto, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tipo_puesto, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tipo_contratacion)
+
+                @Html.DropDownListFor(model => model.usua_tipo_contratacion, listaContrata, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tipo_contratacion, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tipo_personal)
+
+                @Html.DropDownListFor(model => model.usua_tipo_personal, listaPersonal, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tipo_personal, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tipo_jornada)
+
+                @Html.DropDownListFor(model => model.usua_tipo_jornada, listaJornada, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tipo_jornada, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_rotacion_turno)
+
+                @Html.DropDownListFor(model => model.usua_rotacion_turno, listaRotacion, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_rotacion_turno, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_tiempo_puesto)
+
+                @Html.DropDownListFor(model => model.usua_tiempo_puesto, listaTiempo, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_tiempo_puesto, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.usua_exp_laboral)
+
+                @Html.DropDownListFor(model => model.usua_exp_laboral, listaExpLab, null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.usua_exp_laboral, "", new { @class = "text-danger" })
+
+            </div>
+            <br />
+            <div>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Eliminar Usuario" class="btn btn-primary" />
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+</div>
+<div>
+    @Html.ActionLink("Regresar al Menu", "Empleados")
+</div>
