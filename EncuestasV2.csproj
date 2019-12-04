@@ -333,6 +333,7 @@
     <Content Include="Views\Admin\VerResultadoUsuario2.cshtml" />
     <Content Include="Views\Admin\VerResultadoUsuario3.cshtml" />
     <Content Include="Views\Admin\VerResultadoUsuario4.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaII.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

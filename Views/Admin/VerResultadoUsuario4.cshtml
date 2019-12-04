@@ -32,18 +32,24 @@
     @if (x >= 2)
     {
         <strong>El trabajador <u>REQUIERE</u> atención clínica </strong>
-        <div>
-            @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
-            @Html.ActionLink("Siguiente", "VerResultadoUsuario4", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
-        </div>
     }
     else
     {
         <strong>El trabajador no requiere atención clínica </strong>
+    }
+    @ViewBag.num_empleados = num_empleados;
+    @if (int.Parse(@ViewBag.num_empleados) < 51)
+    {
         <div>
             @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
-            @Html.ActionLink("Siguiente", "EliminarUsuarios", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
+            @Html.ActionLink("Siguiente", "VerResultadoUsuarioGuiaII", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
         </div>
+    }else
+    {
+<div>
+    @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    @Html.ActionLink("Siguiente", "VerResultadoUsuarioGuiaIII", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
+</div>
     }
 </div>
 

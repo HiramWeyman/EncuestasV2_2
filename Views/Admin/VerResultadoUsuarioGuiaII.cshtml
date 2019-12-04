@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "VerResultadoUsuarioGuiaII";
+}
+
+<input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+<h5><strong>CUESTIONARIO PARA IDENTIFICAR LOS FACTORES DE RIESGO PSICOSOCIAL EN LOS CENTROS DE TRABAJO.</strong></h5>
+<p>Nombre del empleado: <strong>@ViewBag.nombreEmpleado</strong></p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Resultado del dominio</th>
+            <th>Suma Total</th>
+            <th>Nivel de riesgo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Condiciones en el ambiente de trabajo</td>
+            <td>@ViewBag.CondicionesAmbienteTrabajo</td>
+            @if (@ViewBag.CondicionesAmbienteTrabajo < 3)
+            {
+                <td>Nulo o despreciable</td>
+}
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 3 && @ViewBag.CondicionesAmbienteTrabajo < 5)
+            {
+                <td>Bajo</td>
+}
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 5 && @ViewBag.CondicionesAmbienteTrabajo < 7)
+            {
+                <td>Medio</td>
+}
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 7 && @ViewBag.CondicionesAmbienteTrabajo < 9)
+            {
+                <td>Alto</td>
+}
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 9)
+            {
+                <td>Muy Alto</td>
+}
+        </tr>
+        <tr>
+            <td>Carga de trabajo</td>
+            <td>@ViewBag.CargaTrabajo</td>
+            @if (@ViewBag.CargaTrabajo < 12)
+            {
+                <td>Nulo o despreciable</td>
+}
+            @if (@ViewBag.CargaTrabajo >= 12 && @ViewBag.CargaTrabajo < 16)
+            {
+                <td>Bajo</td>
+}
+            @if (@ViewBag.CargaTrabajo >= 16 && @ViewBag.CargaTrabajo < 20)
+            {
+                <td>Medio</td>
+}
+            @if (@ViewBag.CargaTrabajo >= 20 && @ViewBag.CargaTrabajo < 24)
+            {
+                <td>Alto</td>
+}
+            @if (@ViewBag.CargaTrabajo >= 24)
+            {
+                <td>Muy Alto</td>
+}
+        </tr>
+    </tbody>
+</table>
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    </div>
+
+
+
+
+
+
+
+
+
+

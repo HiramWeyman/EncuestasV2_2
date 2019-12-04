@@ -1169,10 +1169,12 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id = '" + id + "'").FirstOrDefault();
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
+                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
                 ViewBag.nombreEmpleado = nombreEmpleado;
+                ViewBag.num_empleados = num_empleados;
             }
-            Console.WriteLine("Hello World");
             return View(list);
 
         }
@@ -1195,9 +1197,9 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
             }
-            Console.WriteLine("Hello World");
             return View(list);
 
         }
@@ -1220,9 +1222,9 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
             }
-            Console.WriteLine("Hello World");
             return View(list);
 
         }
@@ -1230,6 +1232,7 @@ namespace EncuestasV2.Controllers
         public ActionResult VerResultadoUsuario4(int id)
         {
             ViewBag.id_usuario = id;
+
             List<encuesta_mostrarPreguntas2CLS> list;
             using (var db = new csstdura_encuestaEntities())
             {
@@ -1245,10 +1248,45 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
+                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
+                String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
+                ViewBag.num_empleados = num_empleados;
             }
-            Console.WriteLine("Hello World");
             return View(list);
+
+        }
+
+        public ActionResult VerResultadoUsuarioGuiaII(int id)
+        {
+            ViewBag.id_usuario = id;
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+
+                //condiciones en el ambiente de trabajo
+                int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (21, 22, 23) ").FirstOrDefault();
+                ViewBag.CondicionesAmbienteTrabajo = CondicionesAmbienteTrabajo;
+
+                //condiciones en el ambiente de trabajo
+                int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = "+id+" " +
+                                                            " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+                ViewBag.CargaTrabajo = CargaTrabajo;
+
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
+            }
+            return View();
 
         }
     }
