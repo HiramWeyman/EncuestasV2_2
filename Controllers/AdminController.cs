@@ -22,6 +22,7 @@ namespace EncuestasV2.Controllers
     [AccederAdmin]
     public class AdminController : Controller
     {
+
         List<SelectListItem> listaEmpresa;
         List<SelectListItem> listaSexo;
         List<SelectListItem> listaEdad;
@@ -1283,11 +1284,229 @@ namespace EncuestasV2.Controllers
                                                             " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
                 ViewBag.CargaTrabajo = CargaTrabajo;
 
+                //falta de control sobre el trabajo
+                int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+                ViewBag.FaltaControlSobreTrabajo = FaltaControlSobreTrabajo;
+
+                //jornada de trabajo
+                int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (34,35) ").FirstOrDefault();
+                ViewBag.JornadaTrabajo = JornadaTrabajo;
+
+                //Interferencia en la relación trabajo-familia
+                int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (36,37) ").FirstOrDefault();
+                ViewBag.InfluenciaTrabajoFueraCentroLaboral = InfluenciaTrabajoFueraCentroLaboral;
+
+                //Liderazgo
+                int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+                ViewBag.Liderazgo = Liderazgo;
+
+                //Relaciones en el trabajo
+                int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+                ViewBag.RelacionesTrabajo = RelacionesTrabajo;
+
+                //Violencia
+                int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+                ViewBag.Violencia = Violencia;
+
+
                 string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
                 ViewBag.nombreEmpleado = nombreEmpleado;
             }
             return View();
 
+        }
+
+        public ActionResult VerResultadoUsuarioGuiaIICategoria(int id)
+        {
+            ViewBag.id_usuario = id;
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+                //condiciones en el ambiente de trabajo
+                int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (21, 22, 23) ").FirstOrDefault();
+
+                //condiciones en el ambiente de trabajo
+                int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+
+                //falta de control sobre el trabajo
+                int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+
+                //jornada de trabajo
+                int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (34,35) ").FirstOrDefault();
+
+                //Interferencia en la relación trabajo-familia
+                int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (36,37) ").FirstOrDefault();
+
+                //Liderazgo
+                int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+
+                //Relaciones en el trabajo
+                int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+
+                //Violencia
+                int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
+
+                ViewBag.AmbienteTrabajo = CondicionesAmbienteTrabajo;
+                ViewBag.FactoresPropiosActividad = CargaTrabajo + FaltaControlSobreTrabajo;
+                ViewBag.OrganizacionTiempoTrabajo = JornadaTrabajo + InfluenciaTrabajoFueraCentroLaboral;
+                ViewBag.LiderazgoRelacionesTrabajo = Liderazgo + RelacionesTrabajo + Violencia;
+            }
+
+            return View();
+        }
+        
+        public ActionResult VerResultadoUsuarioGuiaIIFinal(int id)
+        {
+            ViewBag.id_usuario = id;
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+                //condiciones en el ambiente de trabajo
+                int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (21, 22, 23) ").FirstOrDefault();
+
+                //condiciones en el ambiente de trabajo
+                int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+
+                //falta de control sobre el trabajo
+                int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+
+                //jornada de trabajo
+                int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (34,35) ").FirstOrDefault();
+
+                //Interferencia en la relación trabajo-familia
+                int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (36,37) ").FirstOrDefault();
+
+                //Liderazgo
+                int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+
+                //Relaciones en el trabajo
+                int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+
+                //Violencia
+                int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
+
+                ViewBag.CalificacionFinalCuestionario = CondicionesAmbienteTrabajo + CargaTrabajo + FaltaControlSobreTrabajo +
+                                                        JornadaTrabajo + InfluenciaTrabajoFueraCentroLaboral + Liderazgo +
+                                                        RelacionesTrabajo + Violencia;
+            }
+
+            return View();
         }
     }
 }
