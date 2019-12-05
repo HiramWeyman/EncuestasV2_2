@@ -1508,5 +1508,74 @@ namespace EncuestasV2.Controllers
 
             return View();
         }
+        
+        public ActionResult VerResultadoUsuarioGuiaIII(int id)
+        {
+            ViewBag.id_usuario = id;
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+
+                //condiciones en el ambiente de trabajo
+                int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (69,70,71,72,73) ").FirstOrDefault();
+                ViewBag.CondicionesAmbienteTrabajo = CondicionesAmbienteTrabajo;
+
+                //carga de trabajo
+                int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (74,80,75,76,77,78,79,134,135,136,137,81,82,83,84) ").FirstOrDefault();
+                ViewBag.CargaTrabajo = CargaTrabajo;
+
+                //Falta de control sobre el trabajo
+                int FaltaControlTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (93,94,95,96,91,92,97,98,103,104) ").FirstOrDefault();
+                ViewBag.FaltaControlTrabajo = FaltaControlTrabajo;
+
+                //Jornada de trabajo
+                int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (85,86) ").FirstOrDefault();
+                ViewBag.JornadaTrabajo = JornadaTrabajo;
+
+                //Interferencia en la relación trabajo-familia
+                int InterferenciaRelacionTrabajoFamilia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (87,88,89,90) ").FirstOrDefault();
+                ViewBag.InterferenciaRelacionTrabajoFamilia = InterferenciaRelacionTrabajoFamilia;
+
+                //Liderazgo
+                int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 3 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + id + " " +
+                                                            " and denc_id in (99,100,101,102,105,106,107,108,109) ").FirstOrDefault();
+                ViewBag.Liderazgo = Liderazgo;
+
+
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                ViewBag.nombreEmpleado = nombreEmpleado;
+            }
+            return View();
+
+        }
     }
 }

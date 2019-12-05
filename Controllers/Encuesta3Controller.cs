@@ -1140,6 +1140,14 @@ namespace EncuestasV2.Controllers
                             }
                         }
 
+                        int id_user = int.Parse(Request.Form["id_usuario"]);
+
+                        encuesta_usuarios Oencuesta_usuarios = db.encuesta_usuarios.Where(p => p.usua_id.Equals(id_user)).First();
+                        Oencuesta_usuarios.usua_presento = "S";
+                        res = db.SaveChanges();
+
+                        transaction.Complete();
+
                         transaction.Complete();
                     }
                     catch (DbEntityValidationException dbEx)
