@@ -736,7 +736,132 @@ namespace EncuestasV2.Controllers
             }
             return View(listaRpta);
         }
-        [AccederAdmin]
+
+        public ActionResult DesactivarUsuarios(encuesta_usuariosCLS empleados_) 
+        {
+            listarCombos();
+            ViewBag.listaEmpresa = listaEmpresa;
+            List<encuesta_usuariosCLS> listaEmpleado = null;
+            using (var db = new csstdura_encuestaEntities())
+            {
+                if (empleados_.usua_empresa != 0)
+                {
+                    listaEmpleado = (from empleado in db.encuesta_usuarios
+                                     join empresa in db.encuesta_empresa
+                                     on empleado.usua_empresa equals empresa.emp_id
+                                     join genero in db.encuesta_sexo
+                                     on empleado.usua_genero equals genero.sexo_id
+                                     join edad_emp in db.encuesta_edades
+                                     on empleado.usua_edad equals edad_emp.edad_id
+                                     join edo in db.encuesta_edocivil
+                                     on empleado.usua_edo_civil equals edo.edocivil_id
+                                     join op in db.encuaesta_opciones
+                                     on empleado.usua_sin_forma equals op.opcion_id
+                                     join primaria in db.encuesta_procesoedu
+                                     on empleado.usua_primaria equals primaria.procesoedu_id
+                                     join secundaria in db.encuesta_procesoedu
+                                     on empleado.usua_secundaria equals secundaria.procesoedu_id
+                                     join prepa in db.encuesta_procesoedu
+                                     on empleado.usua_preparatoria equals prepa.procesoedu_id
+                                     join tecnico in db.encuesta_procesoedu
+                                     on empleado.usua_tecnico equals tecnico.procesoedu_id
+                                     join lic in db.encuesta_procesoedu
+                                     on empleado.usua_licenciatura equals lic.procesoedu_id
+                                     join maestria in db.encuesta_procesoedu
+                                     on empleado.usua_maestria equals maestria.procesoedu_id
+                                     join doc in db.encuesta_procesoedu
+                                     on empleado.usua_doctorado equals doc.procesoedu_id
+                                     join tipopuesto in db.encuesta_tipopuesto
+                                     on empleado.usua_tipo_puesto equals tipopuesto.tipopuesto_id
+                                     join tipocont in db.encuesta_tipocontrata
+                                     on empleado.usua_tipo_contratacion equals tipocont.tipocont_id
+                                     join tipopersonal in db.encuesta_tipopersonal
+                                     on empleado.usua_tipo_personal equals tipopersonal.tipoperson_id
+                                     join tipojornada in db.encuesta_tipojornada
+                                     on empleado.usua_tipo_jornada equals tipojornada.tipojornada_id
+                                     join rota in db.encuaesta_rotacion
+                                     on empleado.usua_rotacion_turno equals rota.rotacionturno_id
+                                     join tiempo in db.encuesta_tiempopuesto
+                                     on empleado.usua_tiempo_puesto equals tiempo.tiempopue_id
+                                     join exp in db.encuesta_explab
+                                     on empleado.usua_exp_laboral equals exp.explab_id
+                                     where empleado.usua_empresa==empleados_.usua_empresa
+                                     select new encuesta_usuariosCLS
+                                     {
+                                         usua_id = empleado.usua_id,
+                                         usua_nombre = empleado.usua_nombre,
+                                         usua_f_aplica = (DateTime)empleado.usua_f_aplica,
+                                         usua_estatus = empleado.usua_estatus,
+                                         usua_n_usuario = empleado.usua_n_usuario,
+                                         usua_p_usuario = empleado.usua_p_usuario,
+                                         usua_f_alta = (DateTime)empleado.usua_f_alta,
+                                         usua_f_cancela = empleado.usua_f_cancela,
+                                         usua_empresa = (int)empleado.usua_empresa,
+                                         usua_genero = (int)empleado.usua_genero,
+                                         usua_edad = (int)empleado.usua_edad,
+                                         usua_edo_civil = (int)empleado.usua_edo_civil,
+                                         usua_presento = empleado.usua_presento,
+                                         empleado_empresa = empresa.emp_descrip,
+                                         empleado_genero = genero.sexo_desc,
+                                         empleado_edad = edad_emp.edad_desc,
+                                         empleado_edocivil = edo.edocivil_desc,
+                                         empleado_sinformacion = op.opcion_desc,
+                                         empleado_primaria = primaria.procesoedu_desc,
+                                         empleado_secundaria = secundaria.procesoedu_desc,
+                                         empleado_preparatoria = prepa.procesoedu_desc,
+                                         empleado_tecnico = tecnico.procesoedu_desc,
+                                         empleado_licenciatura = lic.procesoedu_desc,
+                                         empleado_maestria = maestria.procesoedu_desc,
+                                         empleado_doctorado = doc.procesoedu_desc,
+                                         empleado_tipopuesto = tipopuesto.tipopuesto_desc,
+                                         empleado_tipocontata = tipocont.tipocont_desc,
+                                         empleado_tipopersonal = tipopersonal.tipoperson_desc,
+                                         empleado_tipojornada = tipojornada.tipojornada_desc,
+                                         empleado_rotacion = rota.rotacionturno_desc,
+                                         empleado_tiempopuesto = tiempo.tiempopue_desc,
+                                         empleado_explab = exp.explab_desc
+
+                                     }).ToList();
+                }
+
+            }
+               
+            return View(listaEmpleado);
+        
+        }
+        [HttpPost]
+        public ActionResult Desactivar(string id) 
+        {
+            int idx = 0;
+            if (id != null) {
+                idx = Int32.Parse(id);
+            }
+            encuesta_usuariosCLS Oencuesta_usuarioCLS = new encuesta_usuariosCLS();
+            int res = 0;
+            using (var db = new csstdura_encuestaEntities())
+            {
+                //encuesta_usuarios Oencuesta_usuario = db.encuesta_usuarios.Where(p => p.usua_id.Equals(id_usuario)).FirstOrDefault();
+                encuesta_usuarios Oencuesta_usuario = db.encuesta_usuarios.Where(p => p.usua_empresa.Equals(idx)).First();
+                Oencuesta_usuario.usua_estatus = "INACTIVO";
+                res = db.SaveChanges();
+
+            }
+            if (res == 1)
+            {
+
+                return Content("<script language='javascript' type='text/javascript'>alert('Usuarios Desactivadoso!');window.location = '/Admin/DesactivarUsuarios';</script>");
+
+            }
+            else
+            {
+
+                return Content("<script language='javascript' type='text/javascript'>alert('Ocurrio un error!');window.location = '/Admin/DesactivarUsuarios';</script>");
+
+            }
+            
+        }
+
+
         public ActionResult CatalogoEmpresa()
         {
             //var test = Session["Usuario"].ToString();
