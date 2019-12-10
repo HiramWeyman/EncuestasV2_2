@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "VerResultadoUsuarioGuiaIIICategoria";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+<h5><strong>CUESTIONARIO PARA IDENTIFICAR LOS FACTORES DE RIESGO PSICOSOCIAL Y EVALUAR EL ENTORNO ORGANIZACIONAL EN LOS CENTROS DE TRABAJO.</strong></h5>
+<p>Nombre del empleado: <strong>@ViewBag.nombreEmpleado</strong></p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Resultado del dominio</th>
+            <th>Suma Total</th>
+            <th>Nivel de riesgo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Ambiente de trabajo</td>
+            <td>@ViewBag.AmbienteTrabajo</td>
+            @if (@ViewBag.AmbienteTrabajo < 5)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.AmbienteTrabajo >= 5 && @ViewBag.AmbienteTrabajo < 9)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.AmbienteTrabajo >= 9 && @ViewBag.AmbienteTrabajo < 11)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.AmbienteTrabajo >= 11 && @ViewBag.AmbienteTrabajo < 14)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.AmbienteTrabajo >= 14)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Factores propios de la actividad</td>
+            <td>@ViewBag.FactoresPropiosActividad</td>
+            @if (@ViewBag.FactoresPropiosActividad < 15)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.FactoresPropiosActividad >= 15 && @ViewBag.FactoresPropiosActividad < 30)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.FactoresPropiosActividad >= 30 && @ViewBag.FactoresPropiosActividad < 45)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.FactoresPropiosActividad >= 45 && @ViewBag.FactoresPropiosActividad < 60)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.FactoresPropiosActividad >= 60)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Organización del tiempo de trabajo</td>
+            <td>@ViewBag.OrganizacionTiempoTrabajo</td>
+            @if (@ViewBag.OrganizacionTiempoTrabajo < 5)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.OrganizacionTiempoTrabajo >= 5 && @ViewBag.OrganizacionTiempoTrabajo < 7)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.OrganizacionTiempoTrabajo >= 7 && @ViewBag.OrganizacionTiempoTrabajo < 10)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.OrganizacionTiempoTrabajo >= 10 && @ViewBag.OrganizacionTiempoTrabajo < 13)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.OrganizacionTiempoTrabajo >= 13)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Liderazgo y relaciones en el trabajo</td>
+            <td>@ViewBag.LiderazgoRelacionesTrabajo</td>
+            @if (@ViewBag.LiderazgoRelacionesTrabajo < 14)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.LiderazgoRelacionesTrabajo >= 14 && @ViewBag.LiderazgoRelacionesTrabajo < 29)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.LiderazgoRelacionesTrabajo >= 29 && @ViewBag.LiderazgoRelacionesTrabajo < 42)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.LiderazgoRelacionesTrabajo >= 42 && @ViewBag.LiderazgoRelacionesTrabajo < 58)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.LiderazgoRelacionesTrabajo >= 58)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Entorno organizacional</td>
+            <td>@ViewBag.EntornoOrganizacional</td>
+            @if (@ViewBag.EntornoOrganizacional < 10)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.EntornoOrganizacional >= 10 && @ViewBag.EntornoOrganizacional < 14)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.EntornoOrganizacional >= 14 && @ViewBag.EntornoOrganizacional < 18)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.EntornoOrganizacional >= 18 && @ViewBag.EntornoOrganizacional < 23)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.EntornoOrganizacional >= 23)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    @Html.ActionLink("CALIFICACION FINAL", "VerResultadoUsuarioGuiaIIIFinal", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
