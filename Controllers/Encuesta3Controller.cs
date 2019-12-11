@@ -1148,7 +1148,6 @@ namespace EncuestasV2.Controllers
 
                         transaction.Complete();
 
-                        transaction.Complete();
                     }
                     catch (DbEntityValidationException dbEx)
                     {
