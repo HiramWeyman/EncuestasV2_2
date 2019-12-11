@@ -20,11 +20,12 @@
 }
 
 <div style="height:600px;overflow:auto;margin-left:10px;">
+    <br/>
     <h2>Administrador</h2>
     <hr />
     @using (Html.BeginForm("Empleados", "Admin", FormMethod.Post, new { @id = "frmFiltrado" }))
     {
-        <a href="@Url.Action("GenerarPDF", "Admin")" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i><span></span><b> Generar PDF</b></a>
+        <a href="@Url.Action("GenerarPDFUsuarios", "Admin")" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i><span></span><b> Generar PDF</b></a>
         <a href="@Url.Action("generarExcelEmpleados", "Admin")" class="btn btn-success" target="_blank"><i class="fas fa-file-excel"></i><span></span><b> Generar Excel</b></a>
 
         <div class="table-responsive text-nowrap overflow-auto h-50 ">
@@ -110,6 +111,7 @@
                         <th><label>Rotación turno</label></th>
                         <th><label>Tiempo en puesto</label></th>
                         <th><label>Exp Laboral</label></th>
+                        <th><label>Presento encuesta</label></th>
                         <th><label>Acciones</label></th>
                     </tr>
                 </thead>
@@ -117,36 +119,37 @@
                     @foreach (var item in Model)
                     {
 
-                        <tr>
-                            <td><b>@item.usua_id</b></td>
-                            <td><b>@item.usua_nombre</b></td>
-                            <td><b>@item.empleado_empresa</b></td>
-                            <td><b>@item.usua_estatus</b></td>
-                            <td><b>@item.usua_n_usuario</b></td>
-                            <td><b>@item.empleado_genero</b></td>
-                            <td><b>@item.empleado_edad</b></td>
-                            <td><b>@item.empleado_edocivil</b></td>
-                            <td><b>@item.empleado_sinformacion</b></td>
-                            <td><b>@item.empleado_primaria</b></td>
-                            <td><b>@item.empleado_secundaria</b></td>
-                            <td><b>@item.empleado_preparatoria</b></td>
-                            <td><b>@item.empleado_tecnico</b></td>
-                            <td><b>@item.empleado_licenciatura</b></td>
-                            <td><b>@item.empleado_maestria</b></td>
-                            <td><b>@item.empleado_doctorado</b></td>
-                            <td><b>@item.empleado_tipopuesto</b></td>
-                            <td><b>@item.empleado_tipocontata</b></td>
-                            <td><b>@item.empleado_tipopersonal</b></td>
-                            <td><b>@item.empleado_tipojornada</b></td>
-                            <td><b>@item.empleado_rotacion</b></td>
-                            <td><b>@item.empleado_tiempopuesto</b></td>
-                            <td><b>@item.empleado_explab</b></td>
-                            <td>
-                                @Html.ActionLink("Editar", "EditarUsuarios", "Admin", new { id = item.usua_id }, new { @class = "btn btn-warning my-2 my-sm-0" })
-                                @Html.ActionLink("Eliminar", "EliminarUsuarios", "Admin", new { id = item.usua_id }, new { @class = "btn btn-danger my-2 my-sm-0" })
+                    <tr>
+                        <td><b>@item.usua_id</b></td>
+                        <td><b>@item.usua_nombre</b></td>
+                        <td><b>@item.empleado_empresa</b></td>
+                        <td><b>@item.usua_estatus</b></td>
+                        <td><b>@item.usua_n_usuario</b></td>
+                        <td><b>@item.empleado_genero</b></td>
+                        <td><b>@item.empleado_edad</b></td>
+                        <td><b>@item.empleado_edocivil</b></td>
+                        <td><b>@item.empleado_sinformacion</b></td>
+                        <td><b>@item.empleado_primaria</b></td>
+                        <td><b>@item.empleado_secundaria</b></td>
+                        <td><b>@item.empleado_preparatoria</b></td>
+                        <td><b>@item.empleado_tecnico</b></td>
+                        <td><b>@item.empleado_licenciatura</b></td>
+                        <td><b>@item.empleado_maestria</b></td>
+                        <td><b>@item.empleado_doctorado</b></td>
+                        <td><b>@item.empleado_tipopuesto</b></td>
+                        <td><b>@item.empleado_tipocontata</b></td>
+                        <td><b>@item.empleado_tipopersonal</b></td>
+                        <td><b>@item.empleado_tipojornada</b></td>
+                        <td><b>@item.empleado_rotacion</b></td>
+                        <td><b>@item.empleado_tiempopuesto</b></td>
+                        <td><b>@item.empleado_explab</b></td>
+                        <td><b>@item.usua_presento</b></td>
+                        <td>
+                            @Html.ActionLink("Editar", "EditarUsuarios", "Admin", new { id = item.usua_id }, new { @class = "btn btn-warning my-2 my-sm-0" })
+                            @Html.ActionLink("Eliminar", "EliminarUsuarios", "Admin", new { id = item.usua_id }, new { @class = "btn btn-danger my-2 my-sm-0" })
 
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
 
                     }
 
@@ -157,7 +160,7 @@
     }
 
     <div>
-        @Html.ActionLink("Regresar al Menu", "Index")
+        @Html.ActionLink("Regresar al Menu", "Index", new { @class = "btn btn-primary my-2 my-sm-0" })
     </div>
 
 </div>
