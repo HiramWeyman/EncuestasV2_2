@@ -15,11 +15,30 @@ color:white;
 {
  width: 80px;
 }
-#main .carousel-inner img
-{
- max-height: 70vh;
- object-fit: cover;
- filter: grayscale(70%);
+/*@media (min-width: 1368px) {
+    #main .carousel-inner img {
+        max-height: 79.3vh;
+        object-fit: cover;
+        filter: grayscale(79%);
+    }
+}*/
+
+/*@media (min-width: 1920px) {
+    #main .carousel-inner img {
+        max-height: 93.7vh;
+        object-fit: cover;
+        filter: grayscale(83%);
+    }
+}*/
+#contenedor {
+    height: 496px;
+    overflow: auto;
+    margin-left: 10px;
+}
+#main .carousel-inner img {
+    max-height: 79.3vh;
+    object-fit: cover;
+    filter: grayscale(79%);
 }
 #carousel
 {
@@ -47,4 +66,17 @@ height: 100%;
 #footer a
 {
     color: white;
+}
+/*estilos de la tabla*/
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
 }

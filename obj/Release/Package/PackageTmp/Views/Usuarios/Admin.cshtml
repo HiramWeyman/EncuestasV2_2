@@ -80,15 +80,17 @@
                 <br>
 
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Entrar</button>
-                <div class="opcioncontra"><a href="">Olvidaste tu contraseña?</a></div>
+                <div class="opcioncontra">
+                    <a href="@Url.Action("Agregar", "Usuarios")" class="stretched-link"><b> Regresar al Inicio</b></a>
+                </div>
                 <div id="divRespuesta"></div>
             }
 
             @*@if (Model != null && Model.mensajeError != null)
-                {
-                    @Html.Label(Model.mensajeError, new { @class = "text-danger" })
+        {
+            @Html.Label(Model.mensajeError, new { @class = "text-danger" })
 
-                }*@
+        }*@
         </div>
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>

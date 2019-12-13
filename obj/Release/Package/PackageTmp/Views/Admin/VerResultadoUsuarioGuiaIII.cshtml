@@ -1,0 +1,278 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "VerResultadoUsuarioGuiaIII";
+}
+
+<input type="hidden" id="id_usuario" name="id_usuario" value=@ViewBag.id_usuario />
+<h5><strong>CUESTIONARIO PARA IDENTIFICAR LOS FACTORES DE RIESGO PSICOSOCIAL Y EVALUAR EL ENTORNO ORGANIZACIONAL EN LOS CENTROS DE TRABAJO.</strong></h5>
+<p>Nombre del empleado: <strong>@ViewBag.nombreEmpleado</strong></p>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Resultado del dominio</th>
+            <th>Suma Total</th>
+            <th>Nivel de riesgo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Condiciones en el ambiente de trabajo</td>
+            <td>@ViewBag.CondicionesAmbienteTrabajo</td>
+            @if (@ViewBag.CondicionesAmbienteTrabajo < 5)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 5 && @ViewBag.CondicionesAmbienteTrabajo < 9)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 9 && @ViewBag.CondicionesAmbienteTrabajo < 11)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 11 && @ViewBag.CondicionesAmbienteTrabajo < 14)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.CondicionesAmbienteTrabajo >= 14)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Carga de trabajo</td>
+            <td>@ViewBag.CargaTrabajo</td>
+            @if (@ViewBag.CargaTrabajo < 15)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.CargaTrabajo >= 15 && @ViewBag.CargaTrabajo < 21)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.CargaTrabajo >= 21 && @ViewBag.CargaTrabajo < 27)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.CargaTrabajo >= 27 && @ViewBag.CargaTrabajo < 37)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.CargaTrabajo >= 37)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Falta de control sobre el trabajo</td>
+            <td>@ViewBag.FaltaControlTrabajo</td>
+            @if (@ViewBag.FaltaControlTrabajo < 11)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.FaltaControlTrabajo >= 11 && @ViewBag.FaltaControlTrabajo < 16)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.FaltaControlTrabajo >= 16 && @ViewBag.FaltaControlTrabajo < 21)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.FaltaControlTrabajo >= 21 && @ViewBag.FaltaControlTrabajo < 25)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.FaltaControlTrabajo >= 25)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Jornada de trabajo</td>
+            <td>@ViewBag.JornadaTrabajo</td>
+            @if (@ViewBag.JornadaTrabajo < 1)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.JornadaTrabajo >= 1 && @ViewBag.JornadaTrabajo < 2)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.JornadaTrabajo >= 2 && @ViewBag.JornadaTrabajo < 4)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.JornadaTrabajo >= 4 && @ViewBag.JornadaTrabajo < 6)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.JornadaTrabajo >= 6)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Interferencia en la relación trabajo-familia</td>
+            <td>@ViewBag.InterferenciaRelacionTrabajoFamilia</td>
+            @if (@ViewBag.InterferenciaRelacionTrabajoFamilia < 4)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.InterferenciaRelacionTrabajoFamilia >= 4 && @ViewBag.InterferenciaRelacionTrabajoFamilia < 6)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.InterferenciaRelacionTrabajoFamilia >= 6 && @ViewBag.InterferenciaRelacionTrabajoFamilia < 8)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.InterferenciaRelacionTrabajoFamilia >= 8 && @ViewBag.InterferenciaRelacionTrabajoFamilia < 10)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.InterferenciaRelacionTrabajoFamilia >= 10)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Liderazgo</td>
+            <td>@ViewBag.Liderazgo</td>
+            @if (@ViewBag.Liderazgo < 9)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.Liderazgo >= 9 && @ViewBag.Liderazgo < 12)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.Liderazgo >= 12 && @ViewBag.Liderazgo < 16)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.Liderazgo >= 16 && @ViewBag.Liderazgo < 20)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.Liderazgo >= 20)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Relaciones en el trabajo</td>
+            <td>@ViewBag.RelacionesTrabajo</td>
+            @if (@ViewBag.RelacionesTrabajo < 10)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.RelacionesTrabajo >= 10 && @ViewBag.RelacionesTrabajo < 13)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.RelacionesTrabajo >= 13 && @ViewBag.RelacionesTrabajo < 17)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.RelacionesTrabajo >= 17 && @ViewBag.RelacionesTrabajo < 21)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.RelacionesTrabajo >= 21)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Violencia</td>
+            <td>@ViewBag.Violencia</td>
+            @if (@ViewBag.Violencia < 7)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.Violencia >= 7 && @ViewBag.Violencia < 10)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.Violencia >= 10 && @ViewBag.Violencia < 13)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.Violencia >= 13 && @ViewBag.Violencia < 16)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.Violencia >= 16)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Reconocimiento del desempeño</td>
+            <td>@ViewBag.ReconocimientoDesempeño</td>
+            @if (@ViewBag.ReconocimientoDesempeño < 6)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.ReconocimientoDesempeño >= 6 && @ViewBag.ReconocimientoDesempeño < 10)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.ReconocimientoDesempeño >= 10 && @ViewBag.ReconocimientoDesempeño < 14)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.ReconocimientoDesempeño >= 14 && @ViewBag.ReconocimientoDesempeño < 18)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.ReconocimientoDesempeño >= 18)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+        <tr>
+            <td>Insuficiente sentido de pertenencia e, inestabilidad</td>
+            <td>@ViewBag.InsuficienteSentido</td>
+            @if (@ViewBag.InsuficienteSentido < 4)
+            {
+                <td>Nulo o despreciable</td>
+            }
+            @if (@ViewBag.InsuficienteSentido >= 4 && @ViewBag.InsuficienteSentido < 6)
+            {
+                <td>Bajo</td>
+            }
+            @if (@ViewBag.InsuficienteSentido >= 6 && @ViewBag.InsuficienteSentido < 8)
+            {
+                <td>Medio</td>
+            }
+            @if (@ViewBag.InsuficienteSentido >= 8 && @ViewBag.InsuficienteSentido < 10)
+            {
+                <td>Alto</td>
+            }
+            @if (@ViewBag.InsuficienteSentido >= 10)
+            {
+                <td>Muy Alto</td>
+            }
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    @Html.ActionLink("CALIFICACIONES DE categoria", "VerResultadoUsuarioGuiaIIICategoria", "Admin", new { id = @ViewBag.id_usuario }, new { @class = "btn btn-primary my-2 my-sm-0" })
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

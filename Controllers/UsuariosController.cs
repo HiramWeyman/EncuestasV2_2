@@ -347,6 +347,7 @@ namespace EncuestasV2.Controllers
                     usuarios.usua_rotacion_turno = Oencuesta_usuariosCLS.usua_rotacion_turno;
                     usuarios.usua_tiempo_puesto = Oencuesta_usuariosCLS.usua_tiempo_puesto;
                     usuarios.usua_exp_laboral = Oencuesta_usuariosCLS.usua_exp_laboral;
+                    usuarios.usua_presento = "N";
                     db.encuesta_usuarios.Add(usuarios);
                     int res = db.SaveChanges();
                     transaction.Complete();

@@ -6,7 +6,8 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <div style="height:600px;overflow:auto;margin-left:10px;">
+    <div id="contenedor">
+        <br />
         <h2>Administrador</h2>
         <hr />
         <h2>Menu de opciones</h2>
@@ -26,7 +27,11 @@
                     </tr>
                     <tr>
                         <td><label>Resultados de encuestas</label></td>
-                        <td> @Html.ActionLink("Mostrar", "Index", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
+                        <td> @Html.ActionLink("Mostrar", "ListarEncuesta", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
+                    </tr>
+                    <tr>
+                        <td><label>Desactivar Usuarios por Empresa</label></td>
+                        <td> @Html.ActionLink("Mostrar", "DesactivarUsuarios", "Admin", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })</td>
                     </tr>
 
 
