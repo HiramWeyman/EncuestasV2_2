@@ -184,6 +184,9 @@ namespace EncuestasV2.Controllers
             {
                 using (var transaction = new TransactionScope())
                 {
+                    int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_n_usuario = '" + Usuario + "'").FirstOrDefault();
+                    String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
+
                     try
                     {
                         for (int x = 1; x < 6; x++)
@@ -218,8 +221,14 @@ namespace EncuestasV2.Controllers
                     }
                     if (res == 1)
                     {
-
-                        return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index5?user=" + Usuario + " ';</script>");
+                        if (int.Parse(num_empleados) < 51)
+                        {
+                            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index5?user=" + Usuario + " ';</script>");
+                        }
+                        {
+                            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index13?user=" + Usuario + " ';</script>");
+                        }
+                        //return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Encuesta3/Index5?user=" + Usuario + " ';</script>");
 
                     }
                     else
