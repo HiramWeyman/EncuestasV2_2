@@ -18,6 +18,7 @@ using OfficeOpenXml.Style;
 using System.Drawing;
 using Font = iTextSharp.text.Font;
 
+
 namespace EncuestasV2.Controllers
 {
     [AccederAdmin]
@@ -1216,6 +1217,128 @@ namespace EncuestasV2.Controllers
             }
             return RedirectToAction("ListarEmpresa");
         }
+
+
+        public ActionResult InsertaUsuario() {
+            listarCombos();
+            ViewBag.listaEmpresa = listaEmpresa;
+            ViewBag.listaSexo = listaSexo;
+            ViewBag.listaEdad = listaEdad;
+            ViewBag.listaEdoCivil = listaEdoCivil;
+            ViewBag.listaOpciones = listaOpciones;
+            ViewBag.listaProceso = listaProceso;
+            ViewBag.listaPuesto = listaPuesto;
+            ViewBag.listaContrata = listaContrata;
+            ViewBag.listaPersonal = listaPersonal;
+            ViewBag.listaJornada = listaJornada;
+            ViewBag.listaRotacion = listaRotacion;
+            ViewBag.listaTiempo = listaTiempo;
+            ViewBag.listaExpLab = listaExpLab;
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult InsertaUsuario(encuesta_usuariosCLS Oencuesta_usuariosCLS)
+        {
+            using (var db = new csstdura_encuestaEntities())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        llenarEmpresa();
+                        llenarSexo();
+                        llenarEdad();
+                        llenarEdoCivil();
+                        llenarOpciones();
+                        llenarProcesoEdu();
+                        llenarTipoPuesto();
+                        llenarTipoContratacion();
+                        llenarTipoPersonal();
+                        llenarTipoJornada();
+                        llenarRotacionTurno();
+                        llenarTiempoEmp();
+                        llenarExpLab();
+                        ViewBag.listaSexo = listaSexo;
+                        ViewBag.listaEdad = listaEdad;
+                        ViewBag.listaEdoCivil = listaEdoCivil;
+                        ViewBag.listaOpciones = listaOpciones;
+                        ViewBag.listaProceso = listaProceso;
+                        ViewBag.listaPuesto = listaPuesto;
+                        ViewBag.listaContrata = listaContrata;
+                        ViewBag.listaPersonal = listaPersonal;
+                        ViewBag.listaJornada = listaJornada;
+                        ViewBag.listaRotacion = listaRotacion;
+                        ViewBag.listaTiempo = listaTiempo;
+                        ViewBag.listaExpLab = listaExpLab;
+                        return View(Oencuesta_usuariosCLS);
+                    }
+                    //Usando clase de entity framework
+                    encuesta_usuarios usuarios = new encuesta_usuarios();
+                    usuarios.usua_nombre = Oencuesta_usuariosCLS.usua_nombre;
+                    usuarios.usua_empresa = Oencuesta_usuariosCLS.usua_empresa;
+                    usuarios.usua_f_aplica = DateTime.Now;
+                    usuarios.usua_tipo = "U";
+                    usuarios.usua_estatus = "ACTIVO";
+                    usuarios.usua_n_usuario = Oencuesta_usuariosCLS.usua_n_usuario;
+
+                    //Cifrando el password
+                    SHA256Managed sha = new SHA256Managed();
+                    byte[] byteContra = Encoding.Default.GetBytes(Oencuesta_usuariosCLS.usua_p_usuario);
+                    byte[] byteContraCifrado = sha.ComputeHash(byteContra);
+                    string contraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
+                    usuarios.usua_p_usuario = contraCifrada;
+
+                    //usuarios.usua_p_usuario = Oencuesta_usuariosCLS.usua_p_usuario;
+                    usuarios.usua_u_alta = "";
+                    usuarios.usua_f_alta = DateTime.Now;
+                    usuarios.usua_u_cancela = "";
+                    usuarios.usua_f_cancela = null;
+                    usuarios.usua_genero = Oencuesta_usuariosCLS.usua_genero;
+                    usuarios.usua_edad = Oencuesta_usuariosCLS.usua_edad;
+                    usuarios.usua_edo_civil = Oencuesta_usuariosCLS.usua_edo_civil;
+                    usuarios.usua_sin_forma = Oencuesta_usuariosCLS.usua_sin_forma;
+                    usuarios.usua_primaria = Oencuesta_usuariosCLS.usua_primaria;
+                    usuarios.usua_secundaria = Oencuesta_usuariosCLS.usua_secundaria;
+                    usuarios.usua_preparatoria = Oencuesta_usuariosCLS.usua_preparatoria;
+                    usuarios.usua_tecnico = Oencuesta_usuariosCLS.usua_tecnico;
+                    usuarios.usua_licenciatura = Oencuesta_usuariosCLS.usua_licenciatura;
+                    usuarios.usua_maestria = Oencuesta_usuariosCLS.usua_maestria;
+                    usuarios.usua_doctorado = Oencuesta_usuariosCLS.usua_doctorado;
+                    usuarios.usua_tipo_puesto = Oencuesta_usuariosCLS.usua_tipo_puesto;
+                    usuarios.usua_tipo_contratacion = Oencuesta_usuariosCLS.usua_tipo_contratacion;
+                    usuarios.usua_tipo_personal = Oencuesta_usuariosCLS.usua_tipo_personal;
+                    usuarios.usua_tipo_jornada = Oencuesta_usuariosCLS.usua_tipo_jornada;
+                    usuarios.usua_rotacion_turno = Oencuesta_usuariosCLS.usua_rotacion_turno;
+                    usuarios.usua_tiempo_puesto = Oencuesta_usuariosCLS.usua_tiempo_puesto;
+                    usuarios.usua_exp_laboral = Oencuesta_usuariosCLS.usua_exp_laboral;
+                    usuarios.usua_presento = "N";
+                    db.encuesta_usuarios.Add(usuarios);
+                    int res = db.SaveChanges();
+                    transaction.Complete();
+                    if (res == 1)
+                    {
+
+                        return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');window.location = '/Login/Index';</script>");
+
+                    }
+                    else
+                    {
+
+                        return Content("<script language='javascript' type='text/javascript'>alert('Ocurrio un error!');window.location = '/Usuarios/Agregar';</script>");
+
+                    }
+
+
+                }
+
+
+            }
+
+
+        }
+
 
         public ActionResult EditarUsuarios(int id)
         {

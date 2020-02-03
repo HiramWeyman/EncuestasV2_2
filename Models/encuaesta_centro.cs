@@ -12,9 +12,9 @@ namespace EncuestasV2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class encuesta_procesoedu
+    public partial class encuaesta_centro
     {
-        public int procesoedu_id { get; set; }
-        public string procesoedu_desc { get; set; }
+        public int centro_id { get; set; }
+        public string centro_desc { get; set; }
     }
 }

@@ -28,6 +28,7 @@
         <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_empresa" ManuallyRouted="false" />
         <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_encuesta" ManuallyRouted="false" />
         <AssociationConnector Association="csstdura_encuestaModel.FK_encuesta_resultados_encuesta_usuarios" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="csstdura_encuestaModel.encuaesta_centro" Width="1.5" PointX="5.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

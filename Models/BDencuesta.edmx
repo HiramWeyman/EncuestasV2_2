@@ -15,6 +15,13 @@
           <Property Name="Model" Type="varbinary(max)" Nullable="false" />
           <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="encuaesta_centro">
+          <Key>
+            <PropertyRef Name="centro_id" />
+          </Key>
+          <Property Name="centro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="centro_desc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="encuaesta_opciones">
           <Key>
             <PropertyRef Name="opcion_id" />
@@ -259,6 +266,7 @@
         </Association>
         <EntityContainer Name="csstdura_encuestaModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuaesta_centro" EntityType="Self.encuaesta_centro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuaesta_opciones" EntityType="Self.encuaesta_opciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuaesta_rotacion" EntityType="Self.encuaesta_rotacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuesta_det_encuesta" EntityType="Self.encuesta_det_encuesta" Schema="dbo" store:Type="Tables" />
@@ -602,7 +610,15 @@
             <End Role="encuesta_usuarios" EntitySet="encuesta_usuarios" />
             <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
           </AssociationSet>
+          <EntitySet Name="encuaesta_centro" EntityType="csstdura_encuestaModel.encuaesta_centro" />
         </EntityContainer>
+        <EntityType Name="encuaesta_centro">
+          <Key>
+            <PropertyRef Name="centro_id" />
+          </Key>
+          <Property Name="centro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="centro_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -818,6 +834,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="encuaesta_centro">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_centro">
+              <MappingFragment StoreEntitySet="encuaesta_centro">
+                <ScalarProperty Name="centro_desc" ColumnName="centro_desc" />
+                <ScalarProperty Name="centro_id" ColumnName="centro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -832,7 +856,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

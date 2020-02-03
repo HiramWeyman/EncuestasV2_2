@@ -45,7 +45,7 @@ tbody {
 tbody {
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 200px;
+  height: 300px;
 }
 
 td,
@@ -70,7 +70,7 @@ $('table').on('scroll', function() {
     <hr />
     @using (Html.BeginForm("Empleados", "Admin", FormMethod.Post, new { @id = "frmFiltrado" }))
     {
-        <a href="@Url.Action("Index", "Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-user-plus"></i><span></span><b> Agregar Nuevo Registro</b></a>
+        <a href="@Url.Action("InsertaUsuario","Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-user-plus"></i><span></span><b> Agregar Nuevo Registro</b></a>
         <a href="@Url.Action("GenerarPDFUsuarios", "Admin")" class="btn btn-danger" target="_blank"><i class="fas fa-file-pdf"></i><span></span><b> Generar PDF</b></a>
         <a href="@Url.Action("generarExcelEmpleados", "Admin")" class="btn btn-success" target="_blank"><i class="fas fa-file-excel"></i><span></span><b> Generar Excel</b></a>
         <a href="@Url.Action("Index", "Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-undo-alt"></i><span></span><b> Regresar a Menu</b></a>
@@ -188,6 +188,7 @@ $('table').on('scroll', function() {
 
 
 </div>
+ encuesta_usuariosCLS
 
 <script>
 

@@ -1,0 +1,27 @@
+﻿@model EncuestasV2.Models.encuaesta_centro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>encuaesta_centro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.centro_desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.centro_desc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.centro_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
