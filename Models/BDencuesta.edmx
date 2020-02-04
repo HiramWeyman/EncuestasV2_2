@@ -22,12 +22,27 @@
           <Property Name="centro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="centro_desc" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="encuaesta_departamento">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dep_desc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="encuaesta_opciones">
           <Key>
             <PropertyRef Name="opcion_id" />
           </Key>
           <Property Name="opcion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="opcion_desc" Type="nvarchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="encuaesta_periodo">
+          <Key>
+            <PropertyRef Name="periodo_id" />
+          </Key>
+          <Property Name="periodo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="periodo_desc" Type="nvarchar" MaxLength="20" />
+          <Property Name="periodo_estatus" Type="nvarchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="encuaesta_rotacion">
           <Key>
@@ -267,7 +282,9 @@
         <EntityContainer Name="csstdura_encuestaModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuaesta_centro" EntityType="Self.encuaesta_centro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuaesta_departamento" EntityType="Self.encuaesta_departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuaesta_opciones" EntityType="Self.encuaesta_opciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="encuaesta_periodo" EntityType="Self.encuaesta_periodo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuaesta_rotacion" EntityType="Self.encuaesta_rotacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuesta_det_encuesta" EntityType="Self.encuesta_det_encuesta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="encuesta_edades" EntityType="Self.encuesta_edades" Schema="dbo" store:Type="Tables" />
@@ -611,6 +628,8 @@
             <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
           </AssociationSet>
           <EntitySet Name="encuaesta_centro" EntityType="csstdura_encuestaModel.encuaesta_centro" />
+          <EntitySet Name="encuaesta_departamento" EntityType="csstdura_encuestaModel.encuaesta_departamento" />
+          <EntitySet Name="encuaesta_periodo" EntityType="csstdura_encuestaModel.encuaesta_periodo" />
         </EntityContainer>
         <EntityType Name="encuaesta_centro">
           <Key>
@@ -618,6 +637,21 @@
           </Key>
           <Property Name="centro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="centro_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuaesta_departamento">
+          <Key>
+            <PropertyRef Name="dep_id" />
+          </Key>
+          <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dep_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="encuaesta_periodo">
+          <Key>
+            <PropertyRef Name="periodo_id" />
+          </Key>
+          <Property Name="periodo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="periodo_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="periodo_estatus" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -839,6 +873,23 @@
               <MappingFragment StoreEntitySet="encuaesta_centro">
                 <ScalarProperty Name="centro_desc" ColumnName="centro_desc" />
                 <ScalarProperty Name="centro_id" ColumnName="centro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuaesta_departamento">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_departamento">
+              <MappingFragment StoreEntitySet="encuaesta_departamento">
+                <ScalarProperty Name="dep_desc" ColumnName="dep_desc" />
+                <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="encuaesta_periodo">
+            <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_periodo">
+              <MappingFragment StoreEntitySet="encuaesta_periodo">
+                <ScalarProperty Name="periodo_estatus" ColumnName="periodo_estatus" />
+                <ScalarProperty Name="periodo_desc" ColumnName="periodo_desc" />
+                <ScalarProperty Name="periodo_id" ColumnName="periodo_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

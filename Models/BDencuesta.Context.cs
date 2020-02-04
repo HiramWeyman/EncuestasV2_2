@@ -44,5 +44,7 @@ namespace EncuestasV2.Models
         public virtual DbSet<encuesta_tipopuesto> encuesta_tipopuesto { get; set; }
         public virtual DbSet<encuesta_usuarios> encuesta_usuarios { get; set; }
         public virtual DbSet<encuaesta_centro> encuaesta_centro { get; set; }
+        public virtual DbSet<encuaesta_departamento> encuaesta_departamento { get; set; }
+        public virtual DbSet<encuaesta_periodo> encuaesta_periodo { get; set; }
     }
 }
