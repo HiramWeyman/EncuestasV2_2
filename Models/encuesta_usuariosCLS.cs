@@ -112,6 +112,16 @@ namespace EncuestasV2.Models
 
         public string usua_presento { get; set; }
 
+        [Display(Name = "Departamento")]
+        public int usua_departamento { get; set; }
+
+        [Display(Name = "Centro de trabajo")]
+        public int usua_centro_trabajo { get; set; }
+
+        [Display(Name = "Periodo")]
+        public int usua_periodo { get; set; }
+
+
         ///propiedades adicionales////
         public string empleado_empresa { get; set; }
         public string empleado_genero { get; set; }

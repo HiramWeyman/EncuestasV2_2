@@ -16,6 +16,8 @@
     List<SelectListItem> listaRotacion = (List<SelectListItem>)ViewBag.listaRotacion;
     List<SelectListItem> listaTiempo = (List<SelectListItem>)ViewBag.listaTiempo;
     List<SelectListItem> listaExpLab = (List<SelectListItem>)ViewBag.listaExpLab;
+    List<SelectListItem> listaDepto = (List<SelectListItem>)ViewBag.listaDepto;
+    List<SelectListItem> listaCentro = (List<SelectListItem>)ViewBag.listaCentro;
 
 
 }
@@ -98,10 +100,20 @@ color:white;
                         @Html.ValidationMessageFor(model => model.usua_empresa, "", new { @class = "text-danger" })
                     </div>
 
+                    <div>
+                        @Html.LabelFor(model => model.usua_departamento)
+                        @Html.DropDownListFor(model => model.usua_departamento, listaDepto, null, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.usua_departamento, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div>
+                        @Html.LabelFor(model => model.usua_centro_trabajo)
+                        @Html.DropDownListFor(model => model.usua_centro_trabajo, listaCentro, null, new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(model => model.usua_centro_trabajo, "", new { @class = "text-danger" })
+                    </div>
 
                     <div>
                         @Html.LabelFor(model => model.usua_n_usuario)
-
                         @Html.EditorFor(model => model.usua_n_usuario, new { htmlAttributes = new { @class = "form-control", required = "required", type = "email", placeholder = "Introdusca su email", autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.usua_n_usuario, "", new { @class = "text-danger" })
 
@@ -257,6 +269,8 @@ color:white;
                         @Html.ValidationMessageFor(model => model.usua_exp_laboral, "", new { @class = "text-danger" })
 
                     </div>
+
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

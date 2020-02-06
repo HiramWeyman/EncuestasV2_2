@@ -35,6 +35,9 @@ namespace EncuestasV2.Controllers
         List<SelectListItem> listaRotacion;
         List<SelectListItem> listaTiempo;
         List<SelectListItem> listaExpLab;
+        List<SelectListItem> listaDepto;
+        List<SelectListItem> listaCentro;
+        
 
         private void llenarEmpresa()
         {
@@ -241,6 +244,38 @@ namespace EncuestasV2.Controllers
                 listaExpLab.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
             }
         }
+
+        private void llenarDepto()
+        {
+            using (var db = new csstdura_encuestaEntities())
+            {
+                listaDepto = (from dep in db.encuaesta_departamento
+                               select new SelectListItem
+                               {
+                                   Value = dep.dep_id.ToString(),
+                                   Text = dep.dep_desc,
+                                   Selected = false
+
+                               }).ToList();
+                listaDepto.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
+            }
+        }
+
+        private void llenarCentro()
+        {
+            using (var db = new csstdura_encuestaEntities())
+            {
+                listaCentro = (from centro in db.encuaesta_centro
+                              select new SelectListItem
+                              {
+                                  Value = centro.centro_id.ToString(),
+                                  Text = centro.centro_desc,
+                                  Selected = false
+
+                              }).ToList();
+                listaCentro.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
+            }
+        }
         public ActionResult Agregar()
         {
             llenarEmpresa();
@@ -256,6 +291,8 @@ namespace EncuestasV2.Controllers
             llenarRotacionTurno();
             llenarTiempoEmp();
             llenarExpLab();
+            llenarDepto();
+            llenarCentro();
             ViewBag.listaEmpresa = listaEmpresa;
             ViewBag.listaSexo = listaSexo;
             ViewBag.listaEdad = listaEdad;
@@ -269,6 +306,8 @@ namespace EncuestasV2.Controllers
             ViewBag.listaRotacion = listaRotacion;
             ViewBag.listaTiempo = listaTiempo;
             ViewBag.listaExpLab = listaExpLab;
+            ViewBag.listaDepto = listaDepto;
+            ViewBag.listaCentro = listaCentro;
             return View();
         }
 
@@ -294,6 +333,8 @@ namespace EncuestasV2.Controllers
                         llenarRotacionTurno();
                         llenarTiempoEmp();
                         llenarExpLab();
+                        llenarDepto();
+                        llenarCentro();
                         ViewBag.listaSexo = listaSexo;
                         ViewBag.listaEdad = listaEdad;
                         ViewBag.listaEdoCivil = listaEdoCivil;
@@ -306,6 +347,8 @@ namespace EncuestasV2.Controllers
                         ViewBag.listaRotacion = listaRotacion;
                         ViewBag.listaTiempo = listaTiempo;
                         ViewBag.listaExpLab = listaExpLab;
+                        ViewBag.listaDepto = listaDepto;
+                        ViewBag.listaCentro = listaCentro;
                         return View(Oencuesta_usuariosCLS);
                     }
                     //Usando clase de entity framework
@@ -348,6 +391,8 @@ namespace EncuestasV2.Controllers
                     usuarios.usua_tiempo_puesto = Oencuesta_usuariosCLS.usua_tiempo_puesto;
                     usuarios.usua_exp_laboral = Oencuesta_usuariosCLS.usua_exp_laboral;
                     usuarios.usua_presento = "N";
+                    usuarios.usua_departamento = Oencuesta_usuariosCLS.usua_departamento;
+                    usuarios.usua_centro_trabajo = Oencuesta_usuariosCLS.usua_centro_trabajo;
                     db.encuesta_usuarios.Add(usuarios);
                     int res = db.SaveChanges();
                     transaction.Complete();
