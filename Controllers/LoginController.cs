@@ -52,16 +52,19 @@ namespace EncuestasV2.Controllers
                 using (var db = new csstdura_encuestaEntities())
                 {
 
-                    int numeroVeces = db.encuesta_usuarios.Where(p => p.usua_n_usuario == nombre_usuario
-                                      && p.usua_p_usuario == contraCifrada && p.usua_presento=="N").Count();
-      
+                    //int numeroVeces = db.encuesta_usuarios.Where(p => p.usua_n_usuario == nombre_usuario
+                    //                  && p.usua_p_usuario == contraCifrada && p.usua_presento=="N").Count();
+
+                    int numeroVeces = db.Database.SqlQuery<int>("select count(*) from dbo.encuesta_usuarios,dbo.encuaesta_periodo where usua_periodo=periodo_id and usua_n_usuario=@usuario and usua_p_usuario=@password", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada))
+                                     .FirstOrDefault();
+
                     mensaje = numeroVeces.ToString();
                     if (mensaje == "0")
                     {
                         mensaje = "Usuario o contraseña Incorrecto";
                     }
                     else {
-                        string usuario = db.Database.SqlQuery<string>("Select usua_n_usuario from encuesta_usuarios where usua_n_usuario=@usuario and usua_p_usuario=@password", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada))
+                        string usuario = db.Database.SqlQuery<string>("Select usua_n_usuario from encuesta_usuarios,dbo.encuaesta_periodo where usua_periodo=periodo_id and usua_n_usuario=@usuario and usua_p_usuario=@password", new SqlParameter("@usuario", nombre_usuario), new SqlParameter("@password", contraCifrada))
                       .FirstOrDefault();
                         Session["Usuario"] = usuario;
                         Console.WriteLine(usuario);
@@ -144,7 +147,7 @@ namespace EncuestasV2.Controllers
         public ActionResult cerrarSessionAdmin()
         {
             Session["Usuario"] = null;
-            return RedirectToAction("Admin", "Usuarios");
+            return RedirectToAction("Agregar", "Usuarios");
         }
     }
 }

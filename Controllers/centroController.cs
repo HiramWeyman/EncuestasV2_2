@@ -8,9 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EncuestasV2.Models;
+using EncuestasV2.Filters;
 
 namespace EncuestasV2.Controllers
 {
+    [AccederAdmin]
     public class centroController : Controller
     {
         private csstdura_encuestaEntities db = new csstdura_encuestaEntities();

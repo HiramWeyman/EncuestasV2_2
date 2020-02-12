@@ -367,6 +367,9 @@ namespace EncuestasV2.Controllers
                     string contraCifrada = BitConverter.ToString(byteContraCifrado).Replace("-", "");
                     usuarios.usua_p_usuario = contraCifrada;
 
+                    int periodo = db.Database.SqlQuery<int>("Select periodo_id from encuaesta_periodo where periodo_estatus='A'")
+                      .FirstOrDefault();
+
                     //usuarios.usua_p_usuario = Oencuesta_usuariosCLS.usua_p_usuario;
                     usuarios.usua_u_alta = "";
                     usuarios.usua_f_alta = DateTime.Now;
@@ -393,6 +396,7 @@ namespace EncuestasV2.Controllers
                     usuarios.usua_presento = "N";
                     usuarios.usua_departamento = Oencuesta_usuariosCLS.usua_departamento;
                     usuarios.usua_centro_trabajo = Oencuesta_usuariosCLS.usua_centro_trabajo;
+                    usuarios.usua_periodo=periodo;
                     db.encuesta_usuarios.Add(usuarios);
                     int res = db.SaveChanges();
                     transaction.Complete();
