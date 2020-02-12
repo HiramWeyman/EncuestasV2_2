@@ -44,7 +44,7 @@
                     {
 
                         <tr>
-                            <td>@item.usua_id</td>
+                            <td>@item.usua_id <input type="hidden" id="id_usuario" name="id_usuario" value="@item.usua_id" /></td>
                             <td>@item.usua_nombre</td>
                             <td>@item.empleado_empresa</td>
                             <td>@item.usua_estatus</td>
@@ -63,9 +63,11 @@
         </div>
     }
 
-    <div>
-        @Html.ActionLink("Regresar al Menu", "Index", new { @class = "btn btn-primary my-2 my-sm-0" })
-    </div>
+<div>
+    @Html.ActionLink("Regresar al Menu", "Index", new { @class = "btn btn-primary my-2 my-sm-0" })
+    @Html.ActionLink("Resultado por empresa", "VerResultadoPorEmpresa", "Admin", new { id = [1,2] }, new { @class = "btn btn-primary my-2 my-sm-0" })
+    <button type="submit" class="btn btn-primary my-2 my-sm-0">Resultado por empresa</button>
+</div>
 
 </div>
 

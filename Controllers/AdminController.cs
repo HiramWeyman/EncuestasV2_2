@@ -1509,14 +1509,19 @@ namespace EncuestasV2.Controllers
             List<encuesta_usuariosCLS> listaEmpleado = null;
             List<encuesta_usuariosCLS> listaRpta = null;
             using (var db = new csstdura_encuestaEntities())
+
             {
+                int id_estatus = db.Database.SqlQuery<int>("select periodo_id from encuaesta_periodo where periodo_estatus = 'A'").FirstOrDefault();
                 listaEmpleado = (from empleado in db.encuesta_usuarios
-                                 where empleado.usua_estatus == "ACTIVO"
+                                 where empleado.usua_presento == "S"
+                                 && empleado.usua_periodo == id_estatus
                                  join empresa in db.encuesta_empresa
                                  on empleado.usua_empresa equals empresa.emp_id
                                  //from empleados in db.encuesta_usuarios
                                  join resultado in db.encuesta_resultados
                                  on empleado.usua_id equals resultado.resu_usua_id
+                                 
+
                                  select new encuesta_usuariosCLS
                                  {
                                      usua_id = empleado.usua_id,
@@ -2198,6 +2203,13 @@ namespace EncuestasV2.Controllers
             }
             return View();
 
+        }
+
+        public ActionResult VerResultadoPorEmpresa(int[] id_usuario)
+        {
+
+            //return View();
+            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');</script>");
         }
     }
 }
