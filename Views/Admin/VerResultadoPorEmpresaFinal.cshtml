@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "VerResultadoPorEmpresaFinal";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<input type="hidden" id="ids_usuarios" name="id_usuario" value=@ViewBag.ids />
+<h5><strong>Resultado de Final por empresa.</strong></h5>
+
+@if (int.Parse(@ViewBag.numeroEmpleados) < 51)
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Resultado</th>
+                <th>Suma Total</th>
+                <th>Nivel de riesgo</th>
+                <th>Necesidad de acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Calificación final del cuestionario</td>
+                <td>@ViewBag.CalificacionFinalCuestionario</td>
+                @if (@ViewBag.CalificacionFinalCuestionario < 20)
+                {
+                    <td>Nulo o despreciable</td>
+                    <td>El riesgo resulta despreciable por lo que no se requiere medidas adicionales.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionario >= 20 && @ViewBag.CalificacionFinalCuestionario < 45)
+                {
+                    <td>Bajo</td>
+                    <td>Es necesario una mayor difusión de la política de prevención de riesgos psicosociales y programas para: la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionario >= 45 && @ViewBag.CalificacionFinalCuestionario < 70)
+                {
+                    <td>Medio</td>
+                    <td>Medio	Se requiere revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión, mediante un Programa de intervención.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionario >= 70 && @ViewBag.CalificacionFinalCuestionario < 90)
+                {
+                    <td>Alto</td>
+                    <td>Se requiere realizar un análisis de cada categoría y dominio, de manera que se puedan determinar las acciones de intervención apropiadas a través de un Programa de intervención, que podrá incluir una evaluación específica1 y deberá incluir una campaña de sensibilización, revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionario >= 90)
+                {
+                    <td>Muy Alto</td>
+                    <td>Se requiere realizar el análisis de cada categoría y dominio para establecer las acciones de intervención apropiadas, mediante un Programa de intervención que deberá incluir evaluaciones específicas1, y contemplar campañas de sensibilización, revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión.</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Resultado</th>
+                <th>Suma Total</th>
+                <th>Nivel de riesgo</th>
+                <th>Necesidad de acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Calificación final del cuestionario</td>
+                <td>@ViewBag.CalificacionFinalCuestionarioIII</td>
+                @if (@ViewBag.CalificacionFinalCuestionarioIII < 50)
+                {
+                    <td>Nulo o despreciable</td>
+                    <td>El riesgo resulta despreciable por lo que no se requiere medidas adicionales.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionarioIII >= 50 && @ViewBag.CalificacionFinalCuestionarioIII < 75)
+                {
+                    <td>Bajo</td>
+                    <td>Es necesario una mayor difusión de la política de prevención de riesgos psicosociales y programas para: la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionarioIII >= 75 && @ViewBag.CalificacionFinalCuestionarioIII < 99)
+                {
+                    <td>Medio</td>
+                    <td>Se requiere revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión, mediante un Programa de intervención.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionarioIII >= 99 && @ViewBag.CalificacionFinalCuestionarioIII < 140)
+                {
+                    <td>Alto</td>
+                    <td>Se requiere realizar un análisis de cada categoría y dominio, de manera que se puedan determinar las acciones de intervención apropiadas a través de un Programa de intervención, que podrá incluir una evaluación específica1 y deberá incluir una campaña de sensibilización, revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión.</td>
+                }
+                @if (@ViewBag.CalificacionFinalCuestionarioIII >= 140)
+                {
+                    <td>Muy Alto</td>
+                    <td>Se requiere realizar el análisis de cada categoría y dominio para establecer las acciones de intervención apropiadas, mediante un Programa de intervención que deberá incluir evaluaciones específicas1, y contemplar campañas de sensibilización, revisar la política de prevención de riesgos psicosociales y programas para la prevención de los factores de riesgo psicosocial, la promoción de un entorno organizacional favorable y la prevención de la violencia laboral, así como reforzar su aplicación y difusión.</td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        @Html.ActionLink("Regresar al Menu", "ListarEncuesta", "Admin", new { @class = "btn btn-primary my-2 my-sm-0" })
+    </div>
+}
+

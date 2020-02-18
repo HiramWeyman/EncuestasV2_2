@@ -158,12 +158,12 @@ namespace EncuestasV2.Controllers
             return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
         }
-        public FileResult generarExcelByte() 
+        public FileResult generarExcelByte()
         {
 
             byte[] buffer;
             using (MemoryStream ms = new MemoryStream())
-            {   
+            {
                 //Todo el documento excel
                 ExcelPackage ep = new ExcelPackage();
                 //Crear una hoja
@@ -191,7 +191,7 @@ namespace EncuestasV2.Controllers
                 ew.Column(8).Width = 40;
                 ew.Column(9).Width = 10;
 
-                using (var range = ew.Cells[1,1,1,9]) 
+                using (var range = ew.Cells[1, 1, 1, 9])
                 {
                     range.Style.Fill.PatternType = ExcelFillStyle.Solid;
                     range.Style.Font.Color.SetColor(Color.White);
@@ -213,12 +213,12 @@ namespace EncuestasV2.Controllers
                     ew.Cells[i + 2, 9].Value = listaEmp[i].emp_cp;
                 }
                 ep.SaveAs(ms);
-                buffer=ms.ToArray();
+                buffer = ms.ToArray();
             }
 
-            return File(buffer,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            return File(buffer, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
-         }
+        }
 
 
 
@@ -353,7 +353,7 @@ namespace EncuestasV2.Controllers
                 PdfPTable tabla = new PdfPTable(11);
                 tabla.WidthPercentage = 100f;
                 //Asignando los anchos de las columnas
-                float[] valores = new float[11] { 10, 40, 40, 23, 47, 25, 17, 22,30,27,19 };
+                float[] valores = new float[11] { 10, 40, 40, 23, 47, 25, 17, 22, 30, 27, 19 };
                 tabla.SetWidths(valores);
 
                 //Creando celdas agregando contenido
@@ -397,7 +397,7 @@ namespace EncuestasV2.Controllers
                 celda8.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                 tabla.AddCell(celda8);
 
-                PdfPCell celda9= new PdfPCell(new Phrase("Tipo Puesto", font));
+                PdfPCell celda9 = new PdfPCell(new Phrase("Tipo Puesto", font));
                 celda9.BackgroundColor = new BaseColor(240, 240, 240);
                 celda9.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                 tabla.AddCell(celda9);
@@ -423,11 +423,11 @@ namespace EncuestasV2.Controllers
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].usua_estatus.ToString(), font)));
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].usua_n_usuario.ToString(), font)));
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_genero.ToString(), font)));
-                    tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_edad.ToString(), font))).HorizontalAlignment=PdfPCell.ALIGN_CENTER;
+                    tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_edad.ToString(), font))).HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_edocivil.ToString(), font)));
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_tipopuesto.ToString(), font)));
                     tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].empleado_tipopersonal.ToString(), font)));
-                    tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].usua_presento, font))).HorizontalAlignment=PdfPCell.ALIGN_CENTER;
+                    tabla.AddCell(new PdfPCell(new Phrase(listaUser[i].usua_presento, font))).HorizontalAlignment = PdfPCell.ALIGN_CENTER;
 
 
                 }
@@ -866,7 +866,7 @@ namespace EncuestasV2.Controllers
             return View(listaRpta);
         }
 
-        public ActionResult DesactivarUsuarios(encuesta_usuariosCLS empleados_) 
+        public ActionResult DesactivarUsuarios(encuesta_usuariosCLS empleados_)
         {
             listarCombos();
             ViewBag.listaEmpresa = listaEmpresa;
@@ -914,7 +914,7 @@ namespace EncuestasV2.Controllers
                                      on empleado.usua_tiempo_puesto equals tiempo.tiempopue_id
                                      join exp in db.encuesta_explab
                                      on empleado.usua_exp_laboral equals exp.explab_id
-                                     where empleado.usua_empresa==empleados_.usua_empresa
+                                     where empleado.usua_empresa == empleados_.usua_empresa
                                      select new encuesta_usuariosCLS
                                      {
                                          usua_id = empleado.usua_id,
@@ -954,9 +954,9 @@ namespace EncuestasV2.Controllers
                 }
 
             }
-               
+
             return View(listaEmpleado);
-        
+
         }
 
         public ActionResult Desactivar(string id)
@@ -1219,7 +1219,8 @@ namespace EncuestasV2.Controllers
         }
 
 
-        public ActionResult InsertaUsuario() {
+        public ActionResult InsertaUsuario()
+        {
             listarCombos();
             ViewBag.listaEmpresa = listaEmpresa;
             ViewBag.listaSexo = listaSexo;
@@ -1501,7 +1502,7 @@ namespace EncuestasV2.Controllers
         {
 
             int id_empresa = empleados_.usua_empresa;
-           
+
             listarCombos();
 
             ViewBag.listaEmpresa = listaEmpresa;
@@ -1520,7 +1521,7 @@ namespace EncuestasV2.Controllers
                                  //from empleados in db.encuesta_usuarios
                                  join resultado in db.encuesta_resultados
                                  on empleado.usua_id equals resultado.resu_usua_id
-                                 
+
 
                                  select new encuesta_usuariosCLS
                                  {
@@ -1533,13 +1534,13 @@ namespace EncuestasV2.Controllers
                                      empleado_empresa = empresa.emp_descrip,
 
                                  }).Distinct().ToList();
-                
-                    if (empleados_.usua_empresa != 0)
-                    {
-                        listaEmpleado = listaEmpleado.Where(p => p.usua_empresa.Equals(empleados_.usua_empresa)).ToList();
-                    }
 
-                    listaRpta = listaEmpleado;
+                if (empleados_.usua_empresa != 0)
+                {
+                    listaEmpleado = listaEmpleado.Where(p => p.usua_empresa.Equals(empleados_.usua_empresa)).ToList();
+                }
+
+                listaRpta = listaEmpleado;
 
             }
             return View(listaRpta);
@@ -1563,7 +1564,7 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
                 int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
                 String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
                 ViewBag.nombreEmpleado = nombreEmpleado;
@@ -1642,8 +1643,8 @@ namespace EncuestasV2.Controllers
                             resu_resultado = resultados.resu_resultado,
                             denc_parte = det_encuesta.denc_parte,
                         }).ToList();
-                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
-                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id ="+id).FirstOrDefault();
+                string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
+                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
                 String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
                 ViewBag.nombreEmpleado = nombreEmpleado;
                 ViewBag.num_empleados = num_empleados;
@@ -1673,7 +1674,7 @@ namespace EncuestasV2.Controllers
                                                             " from encuesta_det_encuesta, encuesta_resultados " +
                                                             " where denc_encu_id = 2 " +
                                                             " and resu_denc_id = denc_id " +
-                                                            " and resu_usua_id = "+id+" " +
+                                                            " and resu_usua_id = " + id + " " +
                                                             " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
                 ViewBag.CargaTrabajo = CargaTrabajo;
 
@@ -1820,7 +1821,7 @@ namespace EncuestasV2.Controllers
 
             return View();
         }
-        
+
         public ActionResult VerResultadoUsuarioGuiaIIFinal(int id)
         {
             ViewBag.id_usuario = id;
@@ -1901,7 +1902,7 @@ namespace EncuestasV2.Controllers
 
             return View();
         }
-        
+
         public ActionResult VerResultadoUsuarioGuiaIII(int id)
         {
             ViewBag.id_usuario = id;
@@ -2005,7 +2006,7 @@ namespace EncuestasV2.Controllers
             return View();
 
         }
-        
+
         public ActionResult VerResultadoUsuarioGuiaIIICategoria(int id)
         {
             ViewBag.id_usuario = id;
@@ -2105,7 +2106,7 @@ namespace EncuestasV2.Controllers
             return View();
 
         }
-        
+
         public ActionResult VerResultadoUsuarioGuiaIIIFinal(int id)
         {
             ViewBag.id_usuario = id;
@@ -2193,9 +2194,9 @@ namespace EncuestasV2.Controllers
                                                             " and resu_usua_id = " + id + " " +
                                                             " and denc_id in (124,121,122,123) ").FirstOrDefault();
 
-                ViewBag.CalificacionFinalCuestionarioIII = CondicionesAmbienteTrabajo+CargaTrabajo + FaltaControlTrabajo+
-                                                            JornadaTrabajo + InterferenciaRelacionTrabajoFamilia+Liderazgo + 
-                                                            RelacionesTrabajo + Violencia+ReconocimientoDesempeño + 
+                ViewBag.CalificacionFinalCuestionarioIII = CondicionesAmbienteTrabajo + CargaTrabajo + FaltaControlTrabajo +
+                                                            JornadaTrabajo + InterferenciaRelacionTrabajoFamilia + Liderazgo +
+                                                            RelacionesTrabajo + Violencia + ReconocimientoDesempeño +
                                                             InsuficienteSentido;
 
                 string nombreEmpleado = db.Database.SqlQuery<string>("select usua_nombre from encuesta_usuarios where usua_id =" + id).FirstOrDefault();
@@ -2205,11 +2206,975 @@ namespace EncuestasV2.Controllers
 
         }
 
-        public ActionResult VerResultadoPorEmpresa(int[] id_usuario)
+        public ActionResult VerResultadoPorEmpresa(string ids_usuarios)
         {
 
-            //return View();
-            return Content("<script language='javascript' type='text/javascript'>alert('Registro exitoso!');</script>");
+            if (ids_usuarios != null)
+            {
+                ViewBag.ids = ids_usuarios;
+                String[] str = ids_usuarios.Split(',');
+
+                using (var db = new csstdura_encuestaEntities())
+                {
+                    //con el primer registro sabemos de donde son los empleados(la empresa)
+                    int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + str[0]).FirstOrDefault();
+                    String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
+                    int No_Empleados = Convert.ToInt32(num_empleados);
+                    ViewBag.numeroEmpleados = num_empleados;
+
+                    if (No_Empleados < 51)
+                    {
+                        int _CondicionesAmbienteTrabajo = 0;
+                        int _CargaTrabajo = 0;
+                        int _FaltaControlSobreTrabajo = 0;
+                        int _JornadaTrabajo = 0;
+                        int _InfluenciaTrabajoFueraCentroLaboral = 0;
+                        int _Liderazgo = 0;
+                        int _RelacionesTrabajo = 0;
+                        int _Violencia = 0;
+                        double valorFinal = 0.00;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //condiciones en el ambiente de trabajo
+                            int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                        " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                        " where denc_encu_id = 2 " +
+                                                                        " and resu_denc_id = denc_id " +
+                                                                        " and resu_usua_id = " + value + " " +
+                                                                        " and denc_id in (21, 22, 23) ").FirstOrDefault();
+                            _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                        };
+                        valorFinal = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.CondicionesAmbienteTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //condiciones en el ambiente de trabajo
+                            int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+                            _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.CargaTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //falta de control sobre el trabajo
+                            int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+                            _FaltaControlSobreTrabajo = _FaltaControlSobreTrabajo + FaltaControlSobreTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_FaltaControlSobreTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.FaltaControlSobreTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //jornada de trabajo
+                            int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (34,35) ").FirstOrDefault();
+                            _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.JornadaTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Interferencia en la relación trabajo-familia
+                            int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (36,37) ").FirstOrDefault();
+                            _InfluenciaTrabajoFueraCentroLaboral = _InfluenciaTrabajoFueraCentroLaboral + InfluenciaTrabajoFueraCentroLaboral;
+                        }
+                        valorFinal = Convert.ToDouble(_InfluenciaTrabajoFueraCentroLaboral) / Convert.ToDouble(str.Length);
+                        ViewBag.InfluenciaTrabajoFueraCentroLaboral = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Liderazgo
+                            int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+                            _Liderazgo = _Liderazgo + Liderazgo;
+                        }
+                        valorFinal = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+                        ViewBag.Liderazgo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Relaciones en el trabajo
+                            int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+                            _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.RelacionesTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Violencia
+                            int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 2 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = ( " + value + ") " +
+                                                                    " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+                            _Violencia = _Violencia + Violencia;
+                        }
+
+                        valorFinal = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+                        ViewBag.Violencia = valorFinal;
+                    }
+                    else
+                    {
+                        double valorFinal = 0.00;
+                        int _CondicionesAmbienteTrabajo = 0;
+                        int _CargaTrabajo = 0;
+                        int _FaltaControlTrabajo = 0;
+                        int _JornadaTrabajo = 0;
+                        int _InterferenciaRelacionTrabajoFamilia = 0;
+                        int _Liderazgo = 0;
+                        int _RelacionesTrabajo = 0;
+                        int _Violencia = 0;
+                        int _ReconocimientoDesempeño = 0;
+                        int _InsuficienteSentido = 0;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //condiciones en el ambiente de trabajo
+                            int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                        " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                        " where denc_encu_id = 3 " +
+                                                                        " and resu_denc_id = denc_id " +
+                                                                        " and resu_usua_id = " + value + " " +
+                                                                        " and denc_id in (69,70,71,72,73) ").FirstOrDefault();
+                            _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.CondicionesAmbienteTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //carga de trabajo
+                            int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (74,80,75,76,77,78,79,134,135,136,137,81,82,83,84) ").FirstOrDefault();
+                            _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.CargaTrabajo = _CargaTrabajo;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Falta de control sobre el trabajo
+                            int FaltaControlTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (93,94,95,96,91,92,97,98,103,104) ").FirstOrDefault();
+                            _FaltaControlTrabajo = _FaltaControlTrabajo + FaltaControlTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_FaltaControlTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.FaltaControlTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Jornada de trabajo
+                            int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (85,86) ").FirstOrDefault();
+                            _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.JornadaTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Interferencia en la relación trabajo-familia
+                            int InterferenciaRelacionTrabajoFamilia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (87,88,89,90) ").FirstOrDefault();
+                            _InterferenciaRelacionTrabajoFamilia = _InterferenciaRelacionTrabajoFamilia + InterferenciaRelacionTrabajoFamilia;
+                        }
+                        valorFinal = Convert.ToDouble(_InterferenciaRelacionTrabajoFamilia) / Convert.ToDouble(str.Length);
+                        ViewBag.InterferenciaRelacionTrabajoFamilia = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Liderazgo
+                            int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (99,100,101,102,105,106,107,108,109) ").FirstOrDefault();
+                            _Liderazgo = _Liderazgo + Liderazgo;
+                        }
+                        valorFinal = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+                        ViewBag.Liderazgo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Relaciones en el trabajo
+                            int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                    " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                    " where denc_encu_id = 3 " +
+                                                                    " and resu_denc_id = denc_id " +
+                                                                    " and resu_usua_id = " + value + " " +
+                                                                    " and denc_id in (110,111,112,113,114,139,140,141,142) ").FirstOrDefault();
+                            _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                        }
+                        valorFinal = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+                        ViewBag.RelacionesTrabajo = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Violencia
+                            int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                        " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                        " where denc_encu_id = 3 " +
+                                                                        " and resu_denc_id = denc_id " +
+                                                                        " and resu_usua_id = " + value + " " +
+                                                                        " and denc_id in (125,126,127,128,129,130,131,132) ").FirstOrDefault();
+                            _Violencia = _Violencia + Violencia;
+                        }
+                        valorFinal = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+                        ViewBag.Violencia = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Reconocimiento del desempeño
+                            int ReconocimientoDesempeño = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                        " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                        " where denc_encu_id = 3 " +
+                                                                        " and resu_denc_id = denc_id " +
+                                                                        " and resu_usua_id = " + value + " " +
+                                                                        " and denc_id in (115,116,117,118,119,120) ").FirstOrDefault();
+                            _ReconocimientoDesempeño = _ReconocimientoDesempeño + ReconocimientoDesempeño;
+                        }
+                        valorFinal = Convert.ToDouble(_ReconocimientoDesempeño) / Convert.ToDouble(str.Length);
+                        ViewBag.ReconocimientoDesempeño = valorFinal;
+
+                        for (int x = 0; x < str.Length; x++)
+                        {
+                            int value = Convert.ToInt32(str[x]);
+                            //Insuficiente sentido de pertenencia e, inestabilidad
+                            int InsuficienteSentido = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                        " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                        " where denc_encu_id = 3 " +
+                                                                        " and resu_denc_id = denc_id " +
+                                                                        " and resu_usua_id = " + value + " " +
+                                                                        " and denc_id in (124,121,122,123) ").FirstOrDefault();
+                            _InsuficienteSentido = _InsuficienteSentido + InsuficienteSentido;
+                        }
+                        valorFinal = Convert.ToDouble(_InsuficienteSentido) / Convert.ToDouble(str.Length);
+                        ViewBag.InsuficienteSentido = valorFinal;
+
+                    }
+
+                }
+                return View();
+            }
+            else
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('Esta empresa aun no tiene algun empleado que presento.');</script>");
+            }
+
+            
+            
         }
+
+        public ActionResult VerResultadoPorEmpresaCategoria(string ids_usuarios)
+        {
+            ViewBag.ids = ids_usuarios;
+            String[] str = ids_usuarios.Split(',');
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+                //con el primer registro sabemos de donde son los empleados(la empresa)
+                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + str[0]).FirstOrDefault();
+                String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
+                int No_Empleados = Convert.ToInt32(num_empleados);
+                ViewBag.numeroEmpleados = num_empleados;
+
+                if (No_Empleados < 51)
+                {
+                    double valorFinal1 = 0.00;
+                    double valorFinal2 = 0.00;
+                    double valorFinal3 = 0.00;
+                    double valorFinal4 = 0.00;
+                    double valorFinal5 = 0.00;
+                    double valorFinal6 = 0.00;
+                    double valorFinal7 = 0.00;
+                    double valorFinal8 = 0.00;
+                    int _CondicionesAmbienteTrabajo = 0;
+                    int _CargaTrabajo = 0;
+                    int _FaltaControlSobreTrabajo = 0;
+                    int _JornadaTrabajo = 0;
+                    int _InfluenciaTrabajoFueraCentroLaboral = 0;
+                    int _Liderazgo = 0;
+                    int _RelacionesTrabajo = 0;
+                    int _Violencia = 0;
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + value + " " +
+                                                            " and denc_id in (21, 22, 23) ").FirstOrDefault();
+                        _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                    }
+                        valorFinal1 = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+                        _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                    }
+                    valorFinal2 = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //falta de control sobre el trabajo
+                        int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+                        _FaltaControlSobreTrabajo = _FaltaControlSobreTrabajo + FaltaControlSobreTrabajo;
+                    }
+                    valorFinal3 = Convert.ToDouble(_FaltaControlSobreTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //jornada de trabajo
+                        int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (34,35) ").FirstOrDefault();
+                        _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                    }
+                    valorFinal4 = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Interferencia en la relación trabajo-familia
+                        int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (36,37) ").FirstOrDefault();
+                        _InfluenciaTrabajoFueraCentroLaboral = _InfluenciaTrabajoFueraCentroLaboral + InfluenciaTrabajoFueraCentroLaboral;
+                    }
+                    valorFinal5 = Convert.ToDouble(_InfluenciaTrabajoFueraCentroLaboral) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Liderazgo
+                        int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+                        _Liderazgo = _Liderazgo + Liderazgo;
+                    }
+                    valorFinal6 = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Relaciones en el trabajo
+                        int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+                        _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                    }
+                    valorFinal7 = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Violencia
+                        int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+                        _Violencia = _Violencia + Violencia;
+                    }
+                    valorFinal8 = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+                
+                    ViewBag.AmbienteTrabajo = valorFinal1;
+                    ViewBag.FactoresPropiosActividad = valorFinal2 + valorFinal3;
+                    ViewBag.OrganizacionTiempoTrabajo = valorFinal4 + valorFinal5;
+                    ViewBag.LiderazgoRelacionesTrabajo = valorFinal6 + valorFinal7 + valorFinal8;
+                }
+                else
+                {
+                    double valorFinal1 = 0.00;
+                    double valorFinal2 = 0.00;
+                    double valorFinal3 = 0.00;
+                    double valorFinal4 = 0.00;
+                    double valorFinal5 = 0.00;
+                    double valorFinal6 = 0.00;
+                    double valorFinal7 = 0.00;
+                    double valorFinal8 = 0.00;
+                    double valorFinal9 = 0.00;
+                    double valorFinal10 = 0.00;
+                    int _CondicionesAmbienteTrabajo = 0;
+                    int _CargaTrabajo = 0;
+                    int _FaltaControlTrabajo = 0;
+                    int _JornadaTrabajo = 0;
+                    int _InterferenciaRelacionTrabajoFamilia = 0;
+                    int _Liderazgo = 0;
+                    int _RelacionesTrabajo = 0;
+                    int _Violencia = 0;
+                    int _ReconocimientoDesempeño = 0;
+                    int _InsuficienteSentido = 0;
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (69,70,71,72,73) ").FirstOrDefault();
+                        _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                    }
+                    valorFinal1 = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //carga de trabajo
+                        int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (74,80,75,76,77,78,79,134,135,136,137,81,82,83,84) ").FirstOrDefault();
+                        _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                    }
+                    valorFinal2 = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Falta de control sobre el trabajo
+                        int FaltaControlTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (93,94,95,96,91,92,97,98,103,104) ").FirstOrDefault();
+                        _FaltaControlTrabajo = _FaltaControlTrabajo + FaltaControlTrabajo;
+                    }
+                    valorFinal3 = Convert.ToDouble(_FaltaControlTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Jornada de trabajo
+                        int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (85,86) ").FirstOrDefault();
+                        _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                    }
+                    valorFinal4 = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Interferencia en la relación trabajo-familia
+                        int InterferenciaRelacionTrabajoFamilia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (87,88,89,90) ").FirstOrDefault();
+                        _InterferenciaRelacionTrabajoFamilia = _InterferenciaRelacionTrabajoFamilia + InterferenciaRelacionTrabajoFamilia;
+                    }
+                    valorFinal5 = Convert.ToDouble(_InterferenciaRelacionTrabajoFamilia) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Liderazgo
+                        int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (99,100,101,102,105,106,107,108,109) ").FirstOrDefault();
+                        _Liderazgo = _Liderazgo + Liderazgo;
+                    }
+                    valorFinal6 = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Relaciones en el trabajo
+                        int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (110,111,112,113,114,139,140,141,142) ").FirstOrDefault();
+                        _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                    }
+                    valorFinal7 = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Violencia
+                        int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (125,126,127,128,129,130,131,132) ").FirstOrDefault();
+                        _Violencia = _Violencia + Violencia;
+                    }
+                    valorFinal8 = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Reconocimiento del desempeño
+                        int ReconocimientoDesempeño = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (115,116,117,118,119,120) ").FirstOrDefault();
+                        _ReconocimientoDesempeño = _ReconocimientoDesempeño + ReconocimientoDesempeño;
+                    }
+                    valorFinal9 = Convert.ToDouble(_ReconocimientoDesempeño) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Insuficiente sentido de pertenencia e, inestabilidad
+                        int InsuficienteSentido = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (124,121,122,123) ").FirstOrDefault();
+                        _InsuficienteSentido = _InsuficienteSentido + InsuficienteSentido;
+                    }
+                    valorFinal10 = Convert.ToDouble(_InsuficienteSentido) / Convert.ToDouble(str.Length);
+
+                    ViewBag.AmbienteTrabajo = valorFinal1;
+                    ViewBag.FactoresPropiosActividad = valorFinal2 + valorFinal3;
+                    ViewBag.OrganizacionTiempoTrabajo = valorFinal4 + valorFinal5;
+                    ViewBag.LiderazgoRelacionesTrabajo = valorFinal6 + valorFinal7 + valorFinal8;
+                    ViewBag.EntornoOrganizacional = valorFinal9 + valorFinal10;
+                }
+                    
+
+            }
+                return View();
+        }
+
+        public ActionResult VerResultadoPorEmpresaFinal(string ids_usuarios)
+        {
+            ViewBag.ids = ids_usuarios;
+            String[] str = ids_usuarios.Split(',');
+
+            using (var db = new csstdura_encuestaEntities())
+            {
+                //con el primer registro sabemos de donde son los empleados(la empresa)
+                int id_empresa = db.Database.SqlQuery<int>("select usua_empresa from encuesta_usuarios where usua_id =" + str[0]).FirstOrDefault();
+                String num_empleados = db.Database.SqlQuery<String>("select emp_no_trabajadores from encuesta_empresa where emp_id = '" + id_empresa + "'").FirstOrDefault();
+                int No_Empleados = Convert.ToInt32(num_empleados);
+                ViewBag.numeroEmpleados = num_empleados;
+
+                if (No_Empleados < 51)
+                {
+                    double valorFinal1 = 0.00;
+                    double valorFinal2 = 0.00;
+                    double valorFinal3 = 0.00;
+                    double valorFinal4 = 0.00;
+                    double valorFinal5 = 0.00;
+                    double valorFinal6 = 0.00;
+                    double valorFinal7 = 0.00;
+                    double valorFinal8 = 0.00;
+                    int _CondicionesAmbienteTrabajo = 0;
+                    int _CargaTrabajo = 0;
+                    int _FaltaControlSobreTrabajo = 0;
+                    int _JornadaTrabajo = 0;
+                    int _InfluenciaTrabajoFueraCentroLaboral = 0;
+                    int _Liderazgo = 0;
+                    int _RelacionesTrabajo = 0;
+                    int _Violencia = 0;
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                            " from encuesta_det_encuesta, encuesta_resultados " +
+                                                            " where denc_encu_id = 2 " +
+                                                            " and resu_denc_id = denc_id " +
+                                                            " and resu_usua_id = " + value + " " +
+                                                            " and denc_id in (21, 22, 23) ").FirstOrDefault();
+                        _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                    }
+                    valorFinal1 = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (24,29,25,26,27,28,61,62,63,30,31,32,33) ").FirstOrDefault();
+                        _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                    }
+                    valorFinal2 = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //falta de control sobre el trabajo
+                        int FaltaControlSobreTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (40,41,42,38,39,68,46) ").FirstOrDefault();
+                        _FaltaControlSobreTrabajo = _FaltaControlSobreTrabajo + FaltaControlSobreTrabajo;
+                    }
+                    valorFinal3 = Convert.ToDouble(_FaltaControlSobreTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //jornada de trabajo
+                        int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (34,35) ").FirstOrDefault();
+                        _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                    }
+                    valorFinal4 = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Interferencia en la relación trabajo-familia
+                        int InfluenciaTrabajoFueraCentroLaboral = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (36,37) ").FirstOrDefault();
+                        _InfluenciaTrabajoFueraCentroLaboral = _InfluenciaTrabajoFueraCentroLaboral + InfluenciaTrabajoFueraCentroLaboral;
+                    }
+                    valorFinal5 = Convert.ToDouble(_InfluenciaTrabajoFueraCentroLaboral) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Liderazgo
+                        int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (43,44,45,47,48) ").FirstOrDefault();
+                        _Liderazgo = _Liderazgo + Liderazgo;
+                    }
+                    valorFinal6 = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Relaciones en el trabajo
+                        int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (49,50,51,65,66,67) ").FirstOrDefault();
+                        _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                    }
+                    valorFinal7 = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Violencia
+                        int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 2 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (52,53,54,55,56,57,58,59) ").FirstOrDefault();
+                        _Violencia = _Violencia + Violencia;
+                    }
+                    valorFinal8 = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+
+                    ViewBag.CalificacionFinalCuestionario = valorFinal1 + valorFinal2 + valorFinal3 +
+                                                            valorFinal4 + valorFinal5 + valorFinal6 +
+                                                            valorFinal7 + valorFinal8;
+                }
+                else
+                {
+                    double valorFinal1 = 0.00;
+                    double valorFinal2 = 0.00;
+                    double valorFinal3 = 0.00;
+                    double valorFinal4 = 0.00;
+                    double valorFinal5 = 0.00;
+                    double valorFinal6 = 0.00;
+                    double valorFinal7 = 0.00;
+                    double valorFinal8 = 0.00;
+                    double valorFinal9 = 0.00;
+                    double valorFinal10 = 0.00;
+                    int _CondicionesAmbienteTrabajo = 0;
+                    int _CargaTrabajo = 0;
+                    int _FaltaControlTrabajo = 0;
+                    int _JornadaTrabajo = 0;
+                    int _InterferenciaRelacionTrabajoFamilia = 0;
+                    int _Liderazgo = 0;
+                    int _RelacionesTrabajo = 0;
+                    int _Violencia = 0;
+                    int _ReconocimientoDesempeño = 0;
+                    int _InsuficienteSentido = 0;
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //condiciones en el ambiente de trabajo
+                        int CondicionesAmbienteTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (69,70,71,72,73) ").FirstOrDefault();
+                        _CondicionesAmbienteTrabajo = _CondicionesAmbienteTrabajo + CondicionesAmbienteTrabajo;
+                    }
+                    valorFinal1 = Convert.ToDouble(_CondicionesAmbienteTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //carga de trabajo
+                        int CargaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (74,80,75,76,77,78,79,134,135,136,137,81,82,83,84) ").FirstOrDefault();
+                        _CargaTrabajo = _CargaTrabajo + CargaTrabajo;
+                    }
+                    valorFinal2 = Convert.ToDouble(_CargaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Falta de control sobre el trabajo
+                        int FaltaControlTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (93,94,95,96,91,92,97,98,103,104) ").FirstOrDefault();
+                        _FaltaControlTrabajo = _FaltaControlTrabajo + FaltaControlTrabajo;
+                    }
+                    valorFinal3 = Convert.ToDouble(_FaltaControlTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Jornada de trabajo
+                        int JornadaTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (85,86) ").FirstOrDefault();
+                        _JornadaTrabajo = _JornadaTrabajo + JornadaTrabajo;
+                    }
+                    valorFinal4 = Convert.ToDouble(_JornadaTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Interferencia en la relación trabajo-familia
+                        int InterferenciaRelacionTrabajoFamilia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (87,88,89,90) ").FirstOrDefault();
+                        _InterferenciaRelacionTrabajoFamilia = _InterferenciaRelacionTrabajoFamilia + InterferenciaRelacionTrabajoFamilia;
+                    }
+                    valorFinal5 = Convert.ToDouble(_InterferenciaRelacionTrabajoFamilia) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Liderazgo
+                        int Liderazgo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (99,100,101,102,105,106,107,108,109) ").FirstOrDefault();
+                        _Liderazgo = _Liderazgo + Liderazgo;
+                    }
+                    valorFinal6 = Convert.ToDouble(_Liderazgo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Relaciones en el trabajo
+                        int RelacionesTrabajo = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (110,111,112,113,114,139,140,141,142) ").FirstOrDefault();
+                        _RelacionesTrabajo = _RelacionesTrabajo + RelacionesTrabajo;
+                    }
+                    valorFinal7 = Convert.ToDouble(_RelacionesTrabajo) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Violencia
+                        int Violencia = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (125,126,127,128,129,130,131,132) ").FirstOrDefault();
+                        _Violencia = _Violencia + Violencia;
+                    }
+                    valorFinal8 = Convert.ToDouble(_Violencia) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Reconocimiento del desempeño
+                        int ReconocimientoDesempeño = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (115,116,117,118,119,120) ").FirstOrDefault();
+                        _ReconocimientoDesempeño = _ReconocimientoDesempeño + ReconocimientoDesempeño;
+                    }
+                    valorFinal9 = Convert.ToDouble(_ReconocimientoDesempeño) / Convert.ToDouble(str.Length);
+
+                    for (int x = 0; x < str.Length; x++)
+                    {
+                        int value = Convert.ToInt32(str[x]);
+                        //Insuficiente sentido de pertenencia e, inestabilidad
+                        int InsuficienteSentido = db.Database.SqlQuery<int>("select sum(convert(int, resu_resultado)) " +
+                                                                " from encuesta_det_encuesta, encuesta_resultados " +
+                                                                " where denc_encu_id = 3 " +
+                                                                " and resu_denc_id = denc_id " +
+                                                                " and resu_usua_id = " + value + " " +
+                                                                " and denc_id in (124,121,122,123) ").FirstOrDefault();
+                        _InsuficienteSentido = _InsuficienteSentido + InsuficienteSentido;
+                    }
+                    valorFinal10 = Convert.ToDouble(_InsuficienteSentido) / Convert.ToDouble(str.Length);
+
+                    ViewBag.CalificacionFinalCuestionarioIII = valorFinal1 + valorFinal2 + valorFinal3 +
+                                                            valorFinal4 + valorFinal5 + valorFinal6 +
+                                                            valorFinal7 + valorFinal8 + valorFinal9 +
+                                                            valorFinal10;
+                }
+            }
+
+            return View();
+        }
+
     }
 }
