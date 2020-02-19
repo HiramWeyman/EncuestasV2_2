@@ -13,17 +13,17 @@ using EncuestasV2.Filters;
 namespace EncuestasV2.Controllers
 {
     [AccederAdmin]
-    public class centroController : Controller
+    public class CentroController : Controller
     {
         private csstdura_encuestaEntities db = new csstdura_encuestaEntities();
 
-        // GET: centro
+        // GET: Centro
         public async Task<ActionResult> Index()
         {
             return View(await db.encuaesta_centro.ToListAsync());
         }
 
-        // GET: centro/Details/5
+        // GET: Centro/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,13 +38,13 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_centro);
         }
 
-        // GET: centro/Create
+        // GET: Centro/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: centro/Create
+        // POST: Centro/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +61,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_centro);
         }
 
-        // GET: centro/Edit/5
+        // GET: Centro/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,7 +76,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_centro);
         }
 
-        // POST: centro/Edit/5
+        // POST: Centro/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,7 +92,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_centro);
         }
 
-        // GET: centro/Delete/5
+        // GET: Centro/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_centro);
         }
 
-        // POST: centro/Delete/5
+        // POST: Centro/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

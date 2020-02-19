@@ -5,32 +5,29 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <div class="container-fluid" style="height:496px;">
-        <h2>Borrar Centro de Trabajo</h2>
+<h2>Delete</h2>
 
-        <h3>Esta usted seguro de borrar este registro?</h3>
-        <div>
-          
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    <label class="control-label">Descripción de Centro de Trabajo</label>
-                </dt>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>encuaesta_centro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.centro_desc)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.centro_desc)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.centro_desc)
+        </dd>
 
-            </dl>
+    </dl>
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar registro" class="btn btn-danger" /> |
-            <a href="@Url.Action("Index", "centro")" class="btn btn-primary" target="_blank"><i class="fas fa-undo-alt"></i><span></span><b> Lista de Centros de Trabajo</b></a>
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
         </div>
-            }
-        </div>
-        </div>
+    }
+</div>

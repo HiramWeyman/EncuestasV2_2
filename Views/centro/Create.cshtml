@@ -5,34 +5,32 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<body>
-    <div class="container-fluid" style="height:496px;">
-        <h2>Ingresar Centro de Trabajo</h2>
+<h2>Create</h2>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal">
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    <label class="control-label col-md-5">Descripción de Centro de Trabajo</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.centro_desc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.centro_desc, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Registrar Centro de trabajo" class="btn btn-default" />
-                        @Html.ActionLink("Lista de Centros de Trabajo", "Index", "centro", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })
-                        <a href="@Url.Action("Index", "Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-undo-alt"></i><span></span><b> Regresar a Menu</b></a>
-                    </div>
-                </div>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>encuaesta_centro</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.centro_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.centro_desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.centro_desc, "", new { @class = "text-danger" })
             </div>
-        }
+        </div>
 
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-</body>

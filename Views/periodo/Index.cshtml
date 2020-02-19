@@ -5,37 +5,36 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<div class="container-fluid" style="height:496px;">
-    <h2>Catalogo de Periodos</h2>
-    <a href="@Url.Action("Create","periodo")" class="btn btn-primary" target="_blank"><i class="fas fa-user-plus"></i><span></span><b> Agregar Nuevo Registro</b></a>
-    <a href="@Url.Action("Index", "Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-undo-alt"></i><span></span><b> Regresar a Menu</b></a>
-    <table class="table">
-        <tr>
-            <th>
-                <label class="control-label">Descripción de Periodo</label>
-            </th>
-            <th>
-                <label class="control-label">Estatus</label>
-            </th>
-            <th></th>
-        </tr>
+<h2>Index</h2>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.periodo_desc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.periodo_estatus)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.periodo_id }) |
-                    @Html.ActionLink("Detalle", "Details", new { id = item.periodo_id }) |
-                    @Html.ActionLink("Borrar", "Delete", new { id = item.periodo_id })
-                </td>
-            </tr>
-        }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.periodo_desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.periodo_estatus)
+        </th>
+        <th></th>
+    </tr>
 
-    </table>
-    </div>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.periodo_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.periodo_estatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.periodo_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.periodo_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.periodo_id })
+        </td>
+    </tr>
+}
+
+</table>

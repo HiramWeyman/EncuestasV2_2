@@ -13,17 +13,17 @@ using EncuestasV2.Filters;
 namespace EncuestasV2.Controllers
 {
     [AccederAdmin]
-    public class departamentoController : Controller
+    public class DepartamentoController : Controller
     {
         private csstdura_encuestaEntities db = new csstdura_encuestaEntities();
 
-        // GET: departamento
+        // GET: Departamento
         public async Task<ActionResult> Index()
         {
             return View(await db.encuaesta_departamento.ToListAsync());
         }
 
-        // GET: departamento/Details/5
+        // GET: Departamento/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,13 +38,13 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_departamento);
         }
 
-        // GET: departamento/Create
+        // GET: Departamento/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: departamento/Create
+        // POST: Departamento/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +61,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_departamento);
         }
 
-        // GET: departamento/Edit/5
+        // GET: Departamento/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,7 +76,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_departamento);
         }
 
-        // POST: departamento/Edit/5
+        // POST: Departamento/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,7 +92,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_departamento);
         }
 
-        // GET: departamento/Delete/5
+        // GET: Departamento/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace EncuestasV2.Controllers
             return View(encuaesta_departamento);
         }
 
-        // POST: departamento/Delete/5
+        // POST: Departamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

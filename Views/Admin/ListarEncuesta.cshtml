@@ -71,8 +71,11 @@
     }
 
 <div>
-    @Html.ActionLink("Regresar al Menu", "Index", new { @class = "btn btn-primary my-2 my-sm-0" })
+    @*@Html.ActionLink("Regresar al Menu", "Index", new { @class = "btn btn-primary my-2 my-sm-0" })*@
+    @*<a href="@Url.Action("Index", "Admin")" class="btn btn-primary" target="_blank"><i class="fas fa-undo-alt"></i><span></span><b> Regresar a Menu</b></a>*@
+    @Html.ActionLink("Regresar a Menu", "Index", "Admin", new { @class = "btn btn-primary my-2 my-sm-0 " })
     @Html.ActionLink("Resultado por empresa", "VerResultadoPorEmpresa", "Admin", new { ids_usuarios = ids }, new { @class = "btn btn-primary my-2 my-sm-0" })
+
 
 </div>
 

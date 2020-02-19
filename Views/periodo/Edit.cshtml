@@ -5,44 +5,42 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-    <div class="container-fluid" style="height:496px;">
-        <h2>Editar Periodo</h2>
+<h2>Edit</h2>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>encuaesta_periodo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.periodo_id)
 
-            <div class="form-horizontal">
-              
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.periodo_id)
-
-                <div class="form-group">
-                    <label class="control-label col-md-5">Descripción de Periodo</label>                  
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.periodo_desc, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.periodo_desc, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-5">Estatus</label>                   
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.periodo_estatus, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.periodo_estatus, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Editar Periodo" class="btn btn-default" />
-                        @Html.ActionLink("Lista de Periodos", "Index", "periodo", new { area = "" }, new { @class = "btn btn-primary my-2 my-sm-0" })
-
-                    </div>
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.periodo_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.periodo_desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.periodo_desc, "", new { @class = "text-danger" })
             </div>
-        }
+        </div>
 
-      
+        <div class="form-group">
+            @Html.LabelFor(model => model.periodo_estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.periodo_estatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.periodo_estatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
