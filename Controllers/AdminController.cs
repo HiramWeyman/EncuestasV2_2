@@ -1506,6 +1506,10 @@ namespace EncuestasV2.Controllers
             listarCombos();
 
             ViewBag.listaEmpresa = listaEmpresa;
+            ViewBag.listaSexo = listaSexo;
+            ViewBag.listaEdad = listaEdad;
+            ViewBag.listaEdoCivil = listaEdoCivil;
+            
 
             List<encuesta_usuariosCLS> listaEmpleado = null;
             List<encuesta_usuariosCLS> listaRpta = null;
