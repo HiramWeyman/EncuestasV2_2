@@ -8,6 +8,7 @@
     List<SelectListItem> listaEdades = (List<SelectListItem>)ViewBag.listaEdad;
     List<SelectListItem> listaEdoCivil = (List<SelectListItem>)ViewBag.listaEdoCivil;
     String ids = "";
+    int bandera = 0;
 }
 
     <style>
@@ -60,17 +61,20 @@
         <hr />
         @using (Html.BeginForm("ListarEncuesta", "Admin", FormMethod.Post, new { @id = "Form" }))
         {
-            
+
             <table>
                 <thead>
                     <tr>
                         <th><label>Empresa:</label></th>
+                        <th><label>Genero:</label></th>
+                        <th><label>Edad:</label></th>
+                        <th><label>Estado civil:</label></th>
                     </tr>
                 </thead>
                 <tbody style="height:40px;">
                     <tr>
                         <td>
-                            @Html.DropDownList("usua_empresa", listaEmp, new { @onchange = "pasarValorIDEmpresa(this.value);", @class = "form-control" })
+                            @Html.DropDownList("usua_empresa", listaEmp, new { @class = "form-control", @onchange = "alert(this.value);" })
                         </td>
                         <td>
                             @Html.DropDownList("usua_genero", listaSex, new { @class = "form-control" })
@@ -84,9 +88,9 @@
                     </tr>
                 </tbody>
             </table>
-   
 
-            
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
             <table>
                 <thead>
@@ -105,31 +109,30 @@
                     @foreach (var item in Model)
                     {
                         ids += @item.usua_id + ",";
-                    <tr>
-                        <td>@item.usua_id <input type="hidden" id="id_usuario" name="id_usuario" value="@item.usua_id" /></td>
-                        <td>@item.usua_nombre</td>
-                        <td>@item.empleado_empresa</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>@item.usua_estatus</td>
-                        <td>@item.usua_n_usuario</td>
-                        <td>
-                            @Html.ActionLink("Ver Resultado", "VerResultadoUsuario", "Admin", new { id = item.usua_id }, new { @class = "btn btn-primary my-2 my-sm-0" })
-
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.usua_id <input type="hidden" id="id_usuario" name="id_usuario" value="@item.usua_id" /></td>
+                            <td>@item.usua_nombre</td>
+                            <td>@item.empleado_empresa</td>
+                            <td>@item.empleado_genero</td>
+                            <td>@item.empleado_edad</td>
+                            <td>@item.empleado_edocivil</td>
+                            <td>@item.usua_estatus</td>
+                            <td>@item.usua_n_usuario</td>
+                            <td style="display: inline-table;">
+                                @Html.ActionLink("Ver Resultado", "VerResultadoUsuario", "Admin", new { id = item.usua_id }, new { @class = "btn btn-primary my-2 my-sm-0" })
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
 
             </table>
-           
+
             if (ids.Length > 0)
             {
                 ids = ids.Substring(0, ids.Length - 1);
                 @Html.ActionLink("Regresar a Menu", "Index", "Admin", new { @class = "btn btn-primary my-2 my-sm-0 " })
-                @Html.ActionLink("Resultado por empresa", "VerResultadoPorEmpresa", "Admin", new { ids_usuarios = ids }, new { @class = "btn btn-primary my-2 my-sm-0" })
+                @Html.ActionLink("Resultado por empresa", "VerResultadoPorEmpresa", "Admin", new { ids_usuarios = ids }, new { id = "botonResultadoEmpresas", @class = "btn btn-primary my-2 my-sm-0", @style = "display:none" } )
             }
             else
             {
@@ -151,6 +154,9 @@
 
 <script>
     document.getElementById("id_empresa").value = document.getElementById("usua_empresa").value;
+    if (document.getElementById("id_empresa").value != "") {
+        document.getElementById("botonResultadoEmpresas").style.display = "inline-block";
+    }
 </script>
 
 <script>

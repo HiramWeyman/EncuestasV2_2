@@ -1517,11 +1517,18 @@ namespace EncuestasV2.Controllers
 
             {
                 int id_estatus = db.Database.SqlQuery<int>("select periodo_id from encuaesta_periodo where periodo_estatus = 'A'").FirstOrDefault();
+                
                 listaEmpleado = (from empleado in db.encuesta_usuarios
                                  where empleado.usua_presento == "S"
                                  && empleado.usua_periodo == id_estatus
                                  join empresa in db.encuesta_empresa
                                  on empleado.usua_empresa equals empresa.emp_id
+                                 join genero in db.encuesta_sexo
+                                 on empleado.usua_genero equals genero.sexo_id
+                                 join edad_emp in db.encuesta_edades
+                                 on empleado.usua_edad equals edad_emp.edad_id
+                                 join edo in db.encuesta_edocivil
+                                 on empleado.usua_edo_civil equals edo.edocivil_id
                                  //from empleados in db.encuesta_usuarios
                                  join resultado in db.encuesta_resultados
                                  on empleado.usua_id equals resultado.resu_usua_id
@@ -1535,16 +1542,51 @@ namespace EncuestasV2.Controllers
                                      usua_n_usuario = empleado.usua_n_usuario,
                                      usua_p_usuario = empleado.usua_p_usuario,
                                      usua_empresa = (int)empleado.usua_empresa,
+                                     usua_genero = (int)empleado.usua_genero,
+                                     usua_edad = (int)empleado.usua_edad,
+                                     usua_edo_civil = (int)empleado.usua_edo_civil,
                                      empleado_empresa = empresa.emp_descrip,
+                                     empleado_genero = genero.sexo_desc,
+                                     empleado_edad = edad_emp.edad_desc,
+                                     empleado_edocivil = edo.edocivil_desc
 
                                  }).Distinct().ToList();
 
-                if (empleados_.usua_empresa != 0)
-                {
-                    listaEmpleado = listaEmpleado.Where(p => p.usua_empresa.Equals(empleados_.usua_empresa)).ToList();
-                }
+                Session["ListaUser"] = listaEmpleado;
 
-                listaRpta = listaEmpleado;
+                if (empleados_.usua_id == 0 && empleados_.usua_empresa == 0 && empleados_.usua_genero == 0 && empleados_.usua_edad == 0 && empleados_.usua_edo_civil == 0)
+                {
+
+                    listaRpta = listaEmpleado;
+                    Session["ListaUser"] = listaEmpleado;
+                }
+                else
+                {
+                    if (empleados_.usua_empresa != 0)
+                    {
+                        listaEmpleado = listaEmpleado.Where(p => p.usua_empresa.Equals(empleados_.usua_empresa)).ToList();
+                        Session["ListaUser"] = listaEmpleado;
+                    }
+
+                    if (empleados_.usua_genero != 0)
+                    {
+                        listaEmpleado = listaEmpleado.Where(p => p.usua_genero.ToString().Contains(empleados_.usua_genero.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
+                    }
+                    if (empleados_.usua_edad != 0)
+                    {
+                        listaEmpleado = listaEmpleado.Where(p => p.usua_edad.ToString().Contains(empleados_.usua_edad.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
+                    }
+
+                    if (empleados_.usua_edo_civil != 0)
+                    {
+                        listaEmpleado = listaEmpleado.Where(p => p.usua_edo_civil.ToString().Contains(empleados_.usua_edo_civil.ToString())).ToList();
+                        Session["ListaUser"] = listaEmpleado;
+                    }
+                    Session["ListaUser"] = listaEmpleado;
+                    listaRpta = listaEmpleado;
+                }
 
             }
             return View(listaRpta);
