@@ -7,7 +7,7 @@
 }
 
 <h2>Detalle de Departamento</h2>
-
+@Html.ActionLink("Regresar a Menu", "Index", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
 <div>
     <hr />
     <div style="height:500px;margin-left:10px;">
@@ -18,12 +18,12 @@
                     @Html.DisplayNameFor(model => model.dep_desc)
                 </th>
                 @*<th>
-                    @Html.DisplayNameFor(model => model.dep_empresa)
-                </th>*@
+                        @Html.DisplayNameFor(model => model.dep_empresa)
+                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.dep_empresa_desc)
                 </th>
-              
+
             </tr>
 
             @foreach (var item in Model)
@@ -32,19 +32,22 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.dep_desc)
                     </td>
-           
+
                     <td>
                         @Html.DisplayFor(modelItem => item.dep_empresa_desc)
                     </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.dep_id }) |
+
+                    </td>
                 </tr>
-               res =item.dep_id;
             }
         </table>
     </div>
-   
- </div>
-                <p>
-                    @Html.ActionLink("Edit", "Edit", new { id =res}) |
-                    @Html.ActionLink("Back to List", "Index")
+
+</div>
+<p>
+
+
 </p>
 

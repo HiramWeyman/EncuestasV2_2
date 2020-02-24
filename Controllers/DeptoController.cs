@@ -41,13 +41,14 @@ namespace EncuestasV2.Controllers
                                  on dep.dep_empresa equals empresa.emp_id
                                  select new encuesta__departamentoCLS
                                  {
-                                     dep_id = dep.dep_id,
+                                     dep_id = (int)dep.dep_id,
                                      dep_desc = dep.dep_desc,
                                      dep_empresa =(int) dep.dep_empresa,
                                      dep_empresa_desc = empresa.emp_descrip
                
                                  }).ToList();
             }
+            //Console.WriteLine(listaDepto);
             return View(listaDepto);
                 //return View(db.encuaesta_departamento.ToList());
         }
@@ -77,6 +78,7 @@ namespace EncuestasV2.Controllers
 
                               }).ToList();
             }
+            Console.WriteLine(listaDepto);
             if (listaDepto == null)
             {
                 return HttpNotFound();
@@ -110,19 +112,21 @@ namespace EncuestasV2.Controllers
         }
 
         // GET: Depto/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            encuaesta_departamento encuaesta_departamento = db.encuaesta_departamento.Find(id);
+            encuesta__departamentoCLS Oencuesta_departamentoCLS = new encuesta__departamentoCLS();
 
-            if (encuaesta_departamento == null)
+            using (var db = new csstdura_encuestaEntities())
             {
-                return HttpNotFound();
+                encuaesta_departamento Oencuaesta_departamento = db.encuaesta_departamento.Where(p => p.dep_id.Equals(id)).First();
+                Oencuesta_departamentoCLS.dep_id = Oencuaesta_departamento.dep_id;
+                Oencuesta_departamentoCLS.dep_desc = Oencuaesta_departamento.dep_desc;
+                Oencuesta_departamentoCLS.dep_empresa = (int)Oencuaesta_departamento.dep_empresa;
+
             }
-            return View(encuaesta_departamento);
+            llenarEmpresa();
+            ViewBag.listaEmpresa = listaEmpresa;
+            return View(Oencuesta_departamentoCLS);
         }
 
         // POST: Depto/Edit/5
@@ -130,15 +134,28 @@ namespace EncuestasV2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "dep_id,dep_desc,dep_empresa")] encuaesta_departamento encuaesta_departamento)
+        public ActionResult Edit(encuesta__departamentoCLS Oencuesta__departamentoCLS)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Entry(encuaesta_departamento).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(Oencuesta__departamentoCLS);
+                //db.Entry(encuaesta_departamento).State = EntityState.Modified;: 'Sequence contains no elements'
+
+                //db.SaveChanges();
+               // return RedirectToAction("Index");
             }
-            return View(encuaesta_departamento);
+            int id_departamento = Oencuesta__departamentoCLS.dep_id;
+            
+            using (var db = new csstdura_encuestaEntities())
+            {
+                encuaesta_departamento Oencuaesta_departamento = db.encuaesta_departamento.Where(p => p.dep_id.Equals(id_departamento)).First();
+                Oencuaesta_departamento.dep_desc = Oencuesta__departamentoCLS.dep_desc;
+                Oencuaesta_departamento.dep_empresa = Oencuesta__departamentoCLS.dep_empresa;
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("Index");
+
         }
 
         // GET: Depto/Delete/5
