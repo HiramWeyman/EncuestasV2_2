@@ -16,5 +16,7 @@ namespace EncuestasV2.Models
     {
         public int centro_id { get; set; }
         public string centro_desc { get; set; }
+        public Nullable<int> centro_empresa { get; set; }
+        public Nullable<int> centro_depto { get; set; }
     }
 }

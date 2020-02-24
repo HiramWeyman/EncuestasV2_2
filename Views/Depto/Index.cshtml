@@ -1,0 +1,101 @@
+﻿@model IEnumerable<EncuestasV2.Models.encuesta__departamentoCLS>
+
+@{
+    ViewBag.Title = "Catalogo de Departamentos";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<style>
+    html {
+        font-family: verdana;
+        font-size: 10pt;
+        line-height: 25px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: scroll;
+        display: block;
+    }
+
+    thead {
+        background-color: #EFEFEF;
+    }
+
+    thead,
+    tbody {
+        display: block;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 300px;
+    }
+
+    td,
+    th {
+        min-width: 300px;
+        height: 25px;
+        border: dashed 1px lightblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+    }
+</style>
+
+<script>
+    $('table').on('scroll', function () {
+        $("table > *").width($("table").width() + $("table").scrollLeft());
+    });
+</script>
+<h2>Catalogo de Departamentos</h2>
+
+<p>
+    @*@Html.ActionLink("Nuevo Registro", "Create", new { @class = "btn btn-primary my-2 my-sm-0 " })*@
+    @Html.ActionLink("Agregar Nuevo Registro", "Create", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
+    @*@Html.ActionLink("Regresar a Menu", "Index", "Admin", new { @class = "btn btn-primary my-2 my-sm-0 " })*@
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-primary my-2 my-sm-0"><b> Regresar al Menu</b></a>
+</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div style="height:500px;margin-left:10px;">
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.dep_desc)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.dep_empresa)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.dep_empresa_desc)
+            </th>
+            <th><label>Acciones</label></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dep_desc)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.dep_empresa)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.dep_empresa_desc)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.dep_id }) |
+                    @Html.ActionLink("Detalle", "Details", new { id = item.dep_id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.dep_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+    

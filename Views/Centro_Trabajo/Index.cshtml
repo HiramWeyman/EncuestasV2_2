@@ -15,6 +15,12 @@
         <th>
             @Html.DisplayNameFor(model => model.centro_desc)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.centro_empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.centro_depto)
+        </th>
         <th></th>
     </tr>
 
@@ -22,6 +28,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.centro_desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.centro_empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.centro_depto)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.centro_id }) |

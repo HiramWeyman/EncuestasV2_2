@@ -1,0 +1,50 @@
+﻿@model EncuestasV2.Models.encuesta__departamentoCLS
+
+@{
+    ViewBag.Title = "Ingresar Departamento";
+     List<SelectListItem> listaEmp = (List<SelectListItem>)ViewBag.listaEmpresa;
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <h2>Ingresar Departamento</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    <div style="height:500px;margin-left:10px;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.dep_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dep_desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dep_desc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div>
+                @Html.LabelFor(model => model.dep_empresa_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.dep_empresa, listaEmp, null, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.dep_empresa, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Registrar Departamento" class="btn btn-default" />
+                @Html.ActionLink("Regresar a Menu", "Index", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
+            </div>
+        </div>
+    </div>
+
+    </div>
+    }
+
+

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EncuestasV2.Models.encuesta__departamentoCLS>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    int res = 0;
+}
+
+<h2>Detalle de Departamento</h2>
+
+<div>
+    <hr />
+    <div style="height:500px;margin-left:10px;">
+
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.dep_desc)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.dep_empresa)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.dep_empresa_desc)
+                </th>
+              
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dep_desc)
+                    </td>
+           
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dep_empresa_desc)
+                    </td>
+                </tr>
+               res =item.dep_id;
+            }
+        </table>
+    </div>
+   
+ </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id =res}) |
+                    @Html.ActionLink("Back to List", "Index")
+</p>
+

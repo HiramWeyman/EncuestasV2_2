@@ -21,6 +21,8 @@
           </Key>
           <Property Name="centro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="centro_desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="centro_empresa" Type="int" />
+          <Property Name="centro_depto" Type="int" />
         </EntityType>
         <EntityType Name="encuaesta_departamento">
           <Key>
@@ -28,6 +30,7 @@
           </Key>
           <Property Name="dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dep_desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="dep_empresa" Type="int" />
         </EntityType>
         <EntityType Name="encuaesta_opciones">
           <Key>
@@ -643,6 +646,8 @@
           </Key>
           <Property Name="centro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="centro_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="centro_empresa" Type="Int32" />
+          <Property Name="centro_depto" Type="Int32" />
         </EntityType>
         <EntityType Name="encuaesta_departamento">
           <Key>
@@ -650,6 +655,7 @@
           </Key>
           <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dep_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dep_empresa" Type="Int32" />
         </EntityType>
         <EntityType Name="encuaesta_periodo">
           <Key>
@@ -880,6 +886,8 @@
           <EntitySetMapping Name="encuaesta_centro">
             <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_centro">
               <MappingFragment StoreEntitySet="encuaesta_centro">
+                <ScalarProperty Name="centro_depto" ColumnName="centro_depto" />
+                <ScalarProperty Name="centro_empresa" ColumnName="centro_empresa" />
                 <ScalarProperty Name="centro_desc" ColumnName="centro_desc" />
                 <ScalarProperty Name="centro_id" ColumnName="centro_id" />
               </MappingFragment>
@@ -888,6 +896,7 @@
           <EntitySetMapping Name="encuaesta_departamento">
             <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_departamento">
               <MappingFragment StoreEntitySet="encuaesta_departamento">
+                <ScalarProperty Name="dep_empresa" ColumnName="dep_empresa" />
                 <ScalarProperty Name="dep_desc" ColumnName="dep_desc" />
                 <ScalarProperty Name="dep_id" ColumnName="dep_id" />
               </MappingFragment>
