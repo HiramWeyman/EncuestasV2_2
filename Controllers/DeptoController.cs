@@ -161,13 +161,13 @@ namespace EncuestasV2.Controllers
         // GET: Depto/Delete/5
         public ActionResult Delete(int id)
         {
-            List<encuesta__departamentoCLS> listaDepto = null;
+         List<encuesta__departamentoCLS> listaDepto = null;
             using (var db = new csstdura_encuestaEntities())
             {
                 listaDepto = (from dep in db.encuaesta_departamento
                               join empresa in db.encuesta_empresa
                               on dep.dep_empresa equals empresa.emp_id
-                              where dep.dep_id == id
+                              where dep.dep_id==id
                               select new encuesta__departamentoCLS
                               {
                                   dep_id = dep.dep_id,
@@ -177,7 +177,7 @@ namespace EncuestasV2.Controllers
 
                               }).ToList();
             }
-
+         
             if (listaDepto == null)
             {
                 return HttpNotFound();

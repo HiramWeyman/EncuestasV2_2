@@ -13,6 +13,60 @@ namespace EncuestasV2.Controllers
     public class Centro_TrabajoController : Controller
     {
         private csstdura_encuestaEntities db = new csstdura_encuestaEntities();
+        List<SelectListItem> listaEmpresa;
+         
+        private void llenarEmpresa()
+        {
+            using (var db = new csstdura_encuestaEntities())
+            {
+                listaEmpresa = (from emp in db.encuesta_empresa
+                                select new SelectListItem
+                                {
+                                    Value = emp.emp_id.ToString(),
+                                    Text = emp.emp_descrip,
+                                    Selected = false
+
+                                }).ToList();
+                listaEmpresa.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
+            }
+            ViewBag.listaEmpresa = listaEmpresa;
+
+        }
+
+        public JsonResult llenarDepto(int empresa) {
+            List<encuaesta_departamento> listaDepto = db.encuaesta_departamento.Where(x => x.dep_id == empresa).ToList();
+            //using (var db = new csstdura_encuestaEntities())
+            //{
+            //  listaDepto = (from dep in db.encuaesta_departamento
+            //                  where dep.dep_id == empresa
+            //                  select new SelectListItem
+            //                  {
+            //                      Value = dep.dep_id.ToString(),
+            //                      Text = dep.dep_desc,
+            //                      Selected = false
+
+            //                  }).ToList();
+            //    //listaDepto.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
+            //}
+            return Json(listaDepto, JsonRequestBehavior.AllowGet);
+        }
+        //private void llenarDepto(int empresa)
+        //{
+        //    using (var db = new csstdura_encuestaEntities())
+        //    {
+        //        listaDepto = (from dep in db.encuaesta_departamento
+        //                      where dep.dep_id==empresa
+        //                        select new SelectListItem
+        //                        {
+        //                            Value = dep.dep_id.ToString(),
+        //                            Text = dep.dep_desc,
+        //                            Selected = false
+
+        //                        }).ToList();
+        //        listaDepto.Insert(0, new SelectListItem { Text = "Seleccione", Value = "" });
+        //    }
+        //    ViewBag.listaDepto = listaDepto;
+        //}
 
         // GET: Centro_Trabajo
         public ActionResult Index()
@@ -38,6 +92,10 @@ namespace EncuestasV2.Controllers
         // GET: Centro_Trabajo/Create
         public ActionResult Create()
         {
+            llenarEmpresa();
+            //llenarDepto(empresa);
+            //ViewBag.listaEmpresa = listaEmpresa;
+            //ViewBag.listaDepto = listaDepto;
             return View();
         }
 
