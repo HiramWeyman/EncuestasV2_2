@@ -3,9 +3,47 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout2.cshtml";
-    int res = 0;
+ 
 }
+    <style>
+        html {
+            font-family: verdana;
+            font-size: 10pt;
+            line-height: 25px;
+        }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            overflow-x: scroll;
+            display: block;
+        }
+
+        thead {
+            background-color: #EFEFEF;
+        }
+
+        thead,
+        tbody {
+            display: block;
+        }
+
+        tbody {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 300px;
+        }
+
+        td,
+        th {
+            min-width: 300px;
+            height: 25px;
+            border: dashed 1px lightblue;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+        }
+    </style>
 <h2>Detalle de Departamento</h2>
 @Html.ActionLink("Regresar a Menu", "Index", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
 <div>
@@ -46,8 +84,5 @@
     </div>
 
 </div>
-<p>
 
-
-</p>
 

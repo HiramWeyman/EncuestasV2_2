@@ -78,7 +78,7 @@ namespace EncuestasV2.Controllers
 
                               }).ToList();
             }
-            Console.WriteLine(listaDepto);
+         
             if (listaDepto == null)
             {
                 return HttpNotFound();
@@ -159,18 +159,30 @@ namespace EncuestasV2.Controllers
         }
 
         // GET: Depto/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            List<encuesta__departamentoCLS> listaDepto = null;
+            using (var db = new csstdura_encuestaEntities())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                listaDepto = (from dep in db.encuaesta_departamento
+                              join empresa in db.encuesta_empresa
+                              on dep.dep_empresa equals empresa.emp_id
+                              where dep.dep_id == id
+                              select new encuesta__departamentoCLS
+                              {
+                                  dep_id = dep.dep_id,
+                                  dep_desc = dep.dep_desc,
+                                  dep_empresa = (int)dep.dep_empresa,
+                                  dep_empresa_desc = empresa.emp_descrip
+
+                              }).ToList();
             }
-            encuaesta_departamento encuaesta_departamento = db.encuaesta_departamento.Find(id);
-            if (encuaesta_departamento == null)
+
+            if (listaDepto == null)
             {
                 return HttpNotFound();
             }
-            return View(encuaesta_departamento);
+            return View(listaDepto);
         }
 
         // POST: Depto/Delete/5

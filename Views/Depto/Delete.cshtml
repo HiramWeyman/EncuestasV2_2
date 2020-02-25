@@ -1,41 +1,92 @@
-﻿@model EncuestasV2.Models.encuaesta_departamento
-
+﻿@model IEnumerable<EncuestasV2.Models.encuesta__departamentoCLS>
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+    <style>
+        html {
+            font-family: verdana;
+            font-size: 10pt;
+            line-height: 25px;
+        }
 
-<h2>Delete</h2>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            overflow-x: scroll;
+            display: block;
+        }
 
-<h3>Are you sure you want to delete this?</h3>
+        thead {
+            background-color: #EFEFEF;
+        }
+
+        thead,
+        tbody {
+            display: block;
+        }
+
+        tbody {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 300px;
+        }
+
+        td,
+        th {
+            min-width: 300px;
+            height: 25px;
+            border: dashed 1px lightblue;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px;
+        }
+    </style>
+<h2>Eliminar Departamento</h2>
+
+<h3>Esta seguro de eliminar este departamento?</h3>
 <div>
-    <h4>encuaesta_departamento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.dep_desc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dep_desc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.dep_empresa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.dep_empresa)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar departamento" class="btn btn-default" /> |
+        @Html.ActionLink("Lista de Departamentos", "Index", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
+    </div>
     }
+    <hr />
+    <div style="height:500px;margin-left:10px;">
+
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.dep_desc)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.dep_empresa)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.dep_empresa_desc)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dep_desc)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dep_empresa_desc)
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+
+
 </div>
