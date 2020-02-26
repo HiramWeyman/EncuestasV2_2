@@ -1,46 +1,103 @@
-﻿@model IEnumerable<EncuestasV2.Models.encuaesta_centro>
+﻿@model IEnumerable<EncuestasV2.Models.encuesta_centroCLS>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catalogo de Departamentos";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h2>Index</h2>
+<style>
+    html {
+        font-family: verdana;
+        font-size: 10pt;
+        line-height: 25px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: scroll;
+        display: block;
+    }
+
+    thead {
+        background-color: #EFEFEF;
+    }
+
+    thead,
+    tbody {
+        display: block;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 300px;
+    }
+
+    td,
+    th {
+        min-width: 300px;
+        height: 25px;
+        border: dashed 1px lightblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+    }
+</style>
+
+<script>
+    $('table').on('scroll', function () {
+        $("table > *").width($("table").width() + $("table").scrollLeft());
+    });
+</script>
+<h2>Catalogo de Centros de Trabajo</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Nuevo Registro", "Create", new { @class = "btn btn-primary my-2 my-sm-0 " })*@
+    @Html.ActionLink("Agregar Nuevo Registro", "Create", "Centro_Trabajo", new { @class = "btn btn-primary my-2 my-sm-0 " })
+    @*@Html.ActionLink("Regresar a Menu", "Index", "Admin", new { @class = "btn btn-primary my-2 my-sm-0 " })*@
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-primary my-2 my-sm-0"><b> Regresar al Menu</b></a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.centro_desc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.centro_empresa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.centro_depto)
-        </th>
-        <th></th>
-    </tr>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div style="height:500px;margin-left:10px;">
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.centro_empresa_desc)
+            </th>
+        
+            <th>
+                @Html.DisplayNameFor(model => model.centro_depto_desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.centro_desc)
+            </th>
+            <th><label>Acciones</label></th>
+        </tr>
 
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.centro_empresa_desc)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.dep_empresa)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.centro_depto_desc)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.centro_desc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.centro_empresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.centro_depto)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.centro_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.centro_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.centro_id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.centro_id }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.centro_id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.centro_id })
         </td>
     </tr>
-}
+        }
 
-</table>
+    </table>
+
+</div>

@@ -1,54 +1,73 @@
-﻿@model EncuestasV2.Models.encuaesta_centro
+﻿@using EncuestasV2.Models;
+@model encuesta_centroCLS
 
 @{
     ViewBag.Title = "Edit";
+    List<SelectListItem> listaEmp = (List<SelectListItem>)ViewBag.listaEmpresa;
+    List<SelectListItem> listaDepto = (List<SelectListItem>)ViewBag.listaDepto;
+
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<h2>Edit</h2>
+<script>
+
+    $( document ).ready(function() {
+        $("#empresa").change(function () {
+            $.get("/Centro_Trabajo/llenarDepto", { empresa: $("#empresa").val() }, function (data) {
+                $("#departamento").empty();
+                $.each(data, function (index, row) {
+                    $("#departamento").append("<option value='"+row.dep_id+"'>"+row.dep_desc+"</option>")
+                });
+            });
+         });
+    });
+</script>
+<h2>Editar Centro de Trabajo</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>encuaesta_centro</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.centro_id)
+        <div style="height:500px;margin-left:10px;">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.centro_id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.centro_desc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.centro_desc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.centro_desc, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.centro_empresa_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.centro_empresa, listaEmp, new { @class = "form-control", @id ="empresa" })
+                    @Html.ValidationMessageFor(model => model.centro_empresa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.centro_depto_desc, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.centro_depto, listaDepto, new { @class = "form-control", @id = "departamento" })
+                    @Html.ValidationMessageFor(model => model.centro_depto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.centro_desc, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.centro_desc, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.centro_desc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Actualizar Departamento" class="btn btn-default" />
+                    @Html.ActionLink("Regresar a Menu", "Index", "Depto", new { @class = "btn btn-primary my-2 my-sm-0 " })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.centro_empresa, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.centro_empresa, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.centro_empresa, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.centro_depto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.centro_depto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.centro_depto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

@@ -1,43 +1,95 @@
-﻿@model EncuestasV2.Models.encuaesta_centro
+﻿@model IEnumerable<EncuestasV2.Models.encuesta_centroCLS>
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout2.cshtml";
+
 }
+<style>
+    html {
+        font-family: verdana;
+        font-size: 10pt;
+        line-height: 25px;
+    }
 
-<h2>Details</h2>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: scroll;
+        display: block;
+    }
 
+    thead {
+        background-color: #EFEFEF;
+    }
+
+    thead,
+    tbody {
+        display: block;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 300px;
+    }
+
+    td,
+    th {
+        min-width: 300px;
+        height: 25px;
+        border: dashed 1px lightblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+    }
+</style>
+<h2>Detalle de Centro de Trabajo</h2>
+@Html.ActionLink("Regresar a Menu", "Index", "Centro_Trabajo", new { @class = "btn btn-primary my-2 my-sm-0 " })
 <div>
-    <h4>encuaesta_centro</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.centro_desc)
-        </dt>
+    <div style="height:500px;margin-left:10px;">
 
-        <dd>
-            @Html.DisplayFor(model => model.centro_desc)
-        </dd>
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.centro_empresa_desc)
+                </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.centro_empresa)
-        </dt>
+                <th>
+                    @Html.DisplayNameFor(model => model.centro_depto_desc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.centro_desc)
+                </th>
+                <th>
+                    <label>Acciones</label>
+                </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.centro_empresa)
-        </dd>
+            </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.centro_depto)
-        </dt>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.centro_empresa_desc)
+            </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.centro_depto)
-        </dd>
+            <td>
+                @Html.DisplayFor(modelItem => item.centro_depto_desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.centro_depto_desc)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.centro_desc }) |
 
-    </dl>
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.centro_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+

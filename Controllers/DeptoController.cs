@@ -7,9 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EncuestasV2.Models;
+using EncuestasV2.Filters;
+
 
 namespace EncuestasV2.Controllers
 {
+    [AccederAdmin]
     public class DeptoController : Controller
     {
         private csstdura_encuestaEntities db = new csstdura_encuestaEntities();
@@ -48,9 +51,9 @@ namespace EncuestasV2.Controllers
                
                                  }).ToList();
             }
-            //Console.WriteLine(listaDepto);
+          
             return View(listaDepto);
-                //return View(db.encuaesta_departamento.ToList());
+                
         }
 
         // GET: Depto/Details/5
