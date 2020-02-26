@@ -1,0 +1,420 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E2C8A0FC-8AA3-4A37-8AD3-104DAF0CA327}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EncuestasV2</RootNamespace>
+    <AssemblyName>EncuestasV2</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44384</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\Downloads\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\csstdura_encuesta.mdf" />
+    <Content Include="App_Data\csstdura_encuesta_log.ldf">
+      <DependentUpon>csstdura_encuesta.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\empreasarios3.jpg" />
+    <Content Include="Content\images\empresarios1.jpg" />
+    <Content Include="Content\images\empresarios2.jpg" />
+    <Content Include="Content\images\empresarios3.jpg" />
+    <Content Include="Content\images\platzi-logo.png" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\BDencuesta.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BDencuesta.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BDencuesta.edmx.diagram">
+      <DependentUpon>BDencuesta.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\images\logoPlatzi.webp" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Models\BDencuesta.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDencuesta.edmx</DependentUpon>
+      <LastGenOutput>BDencuesta.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BDencuesta.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDencuesta.edmx</DependentUpon>
+      <LastGenOutput>BDencuesta.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Centro_TrabajoController.cs" />
+    <Compile Include="Controllers\DeptoController.cs" />
+    <Compile Include="Controllers\Encuesta2Controller.cs" />
+    <Compile Include="Controllers\Encuesta3Controller.cs" />
+    <Compile Include="Controllers\EncuestaController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\Acceder.cs" />
+    <Compile Include="Filters\AccederAdmin.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDencuesta.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDencuesta.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDencuesta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDencuesta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDencuesta.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuaesta_centro.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuaesta_departamento.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuaesta_opciones.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuaesta_periodo.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuaesta_rotacion.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_centroCLS.cs" />
+    <Compile Include="Models\encuesta_det_encuesta.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_edades.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_edocivil.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_empresa.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_empresaCLS.cs" />
+    <Compile Include="Models\encuesta_encuesta.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_explab.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_mostrarPreguntas2CLS.cs" />
+    <Compile Include="Models\encuesta_mostrarPreguntasCLS.cs" />
+    <Compile Include="Models\encuesta_procesoedu.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_resultados.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_sexo.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_tiempopuesto.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_tipocontrata.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_tipojornada.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_tipopersonal.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_tipopuesto.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_usuarios.cs">
+      <DependentUpon>BDencuesta.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\encuesta_usuariosCLS.cs" />
+    <Compile Include="Models\encuesta__departamentoCLS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Usuarios\Agregar.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Encuesta\Index.cshtml" />
+    <Content Include="Views\Usuarios\Admin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Admin\Empleados.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Admin\CatalogoEmpresa.cshtml" />
+    <Content Include="Views\Encuesta2\Index.cshtml" />
+    <Content Include="Views\Admin\ListarEmpresa.cshtml" />
+    <Content Include="Views\Admin\EditarEmpresa.cshtml" />
+    <Content Include="Views\Admin\EliminarEmpresa.cshtml" />
+    <Content Include="Views\Encuesta3\Index.cshtml" />
+    <Content Include="Views\Encuesta3\Index4.cshtml" />
+    <Content Include="Views\Admin\EditarUsuarios.cshtml" />
+    <Content Include="Views\Admin\EliminarUsuarios.cshtml" />
+    <Content Include="Views\Encuesta3\Index10.cshtml" />
+    <Content Include="Views\Encuesta3\Index11.cshtml" />
+    <Content Include="Views\Encuesta3\Index5.cshtml" />
+    <Content Include="Views\Encuesta3\Index6.cshtml" />
+    <Content Include="Views\Encuesta3\Index7.cshtml" />
+    <Content Include="Views\Encuesta3\Index8.cshtml" />
+    <Content Include="Views\Encuesta3\Index9.cshtml" />
+    <Content Include="Views\Encuesta3\Index12.cshtml" />
+    <Content Include="Views\Encuesta3\Index13.cshtml" />
+    <Content Include="Views\Encuesta3\Index14.cshtml" />
+    <Content Include="Views\Encuesta3\Index15.cshtml" />
+    <Content Include="Views\Encuesta3\Index16.cshtml" />
+    <Content Include="Views\Encuesta3\Index17.cshtml" />
+    <Content Include="Views\Encuesta3\Index18.cshtml" />
+    <Content Include="Views\Encuesta3\Index19.cshtml" />
+    <Content Include="Views\Encuesta3\Index20.cshtml" />
+    <Content Include="Views\Encuesta3\Index21.cshtml" />
+    <Content Include="Views\Encuesta3\Index22.cshtml" />
+    <Content Include="Views\Encuesta3\Index23.cshtml" />
+    <Content Include="Views\Encuesta3\Index24.cshtml" />
+    <Content Include="Views\Encuesta3\Index25.cshtml" />
+    <Content Include="Views\Encuesta3\Index26.cshtml" />
+    <Content Include="Views\Encuesta3\Index27.cshtml" />
+    <Content Include="Views\Admin\ListarEncuesta.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuario.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuario2.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuario3.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuario4.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaII.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaIICategoria.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaIIFinal.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaIII.cshtml" />
+    <Content Include="Views\Admin\DesactivarUsuarios.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaIIICategoria.cshtml" />
+    <Content Include="Views\Admin\VerResultadoUsuarioGuiaIIIFinal.cshtml" />
+    <Content Include="Views\Depto\Create.cshtml" />
+    <Content Include="Views\Depto\Delete.cshtml" />
+    <Content Include="Views\Depto\Details.cshtml" />
+    <Content Include="Views\Depto\Edit.cshtml" />
+    <Content Include="Views\Depto\Index.cshtml" />
+    <Content Include="Views\Centro_Trabajo\Create.cshtml" />
+    <Content Include="Views\Centro_Trabajo\Delete.cshtml" />
+    <Content Include="Views\Centro_Trabajo\Details.cshtml" />
+    <Content Include="Views\Centro_Trabajo\Edit.cshtml" />
+    <Content Include="Views\Centro_Trabajo\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61339</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44384/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

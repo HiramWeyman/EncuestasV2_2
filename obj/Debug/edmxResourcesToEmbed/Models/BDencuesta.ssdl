@@ -10,12 +10,37 @@
     <Property Name="Model" Type="varbinary(max)" Nullable="false" />
     <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
   </EntityType>
+  <EntityType Name="encuaesta_centro">
+    <Key>
+      <PropertyRef Name="centro_id" />
+    </Key>
+    <Property Name="centro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="centro_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="centro_empresa" Type="int" />
+    <Property Name="centro_depto" Type="int" />
+  </EntityType>
+  <EntityType Name="encuaesta_departamento">
+    <Key>
+      <PropertyRef Name="dep_id" />
+    </Key>
+    <Property Name="dep_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dep_desc" Type="nvarchar" MaxLength="50" />
+    <Property Name="dep_empresa" Type="int" />
+  </EntityType>
   <EntityType Name="encuaesta_opciones">
     <Key>
       <PropertyRef Name="opcion_id" />
     </Key>
     <Property Name="opcion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="opcion_desc" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="encuaesta_periodo">
+    <Key>
+      <PropertyRef Name="periodo_id" />
+    </Key>
+    <Property Name="periodo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="periodo_desc" Type="nvarchar" MaxLength="20" />
+    <Property Name="periodo_estatus" Type="nvarchar" MaxLength="2" />
   </EntityType>
   <EntityType Name="encuaesta_rotacion">
     <Key>
@@ -191,6 +216,9 @@
     <Property Name="usua_tiempo_puesto" Type="int" />
     <Property Name="usua_exp_laboral" Type="int" />
     <Property Name="usua_presento" Type="char" MaxLength="3" />
+    <Property Name="usua_departamento" Type="int" />
+    <Property Name="usua_centro_trabajo" Type="int" />
+    <Property Name="usua_periodo" Type="int" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
@@ -254,7 +282,10 @@
   </Association>
   <EntityContainer Name="csstdura_encuestaModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="encuaesta_centro" EntityType="Self.encuaesta_centro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="encuaesta_departamento" EntityType="Self.encuaesta_departamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="encuaesta_opciones" EntityType="Self.encuaesta_opciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="encuaesta_periodo" EntityType="Self.encuaesta_periodo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="encuaesta_rotacion" EntityType="Self.encuaesta_rotacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="encuesta_det_encuesta" EntityType="Self.encuesta_det_encuesta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="encuesta_edades" EntityType="Self.encuesta_edades" Schema="dbo" store:Type="Tables" />

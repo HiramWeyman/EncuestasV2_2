@@ -176,6 +176,9 @@
     <EntitySetMapping Name="encuesta_usuarios">
       <EntityTypeMapping TypeName="csstdura_encuestaModel.encuesta_usuarios">
         <MappingFragment StoreEntitySet="encuesta_usuarios">
+          <ScalarProperty Name="usua_periodo" ColumnName="usua_periodo" />
+          <ScalarProperty Name="usua_centro_trabajo" ColumnName="usua_centro_trabajo" />
+          <ScalarProperty Name="usua_departamento" ColumnName="usua_departamento" />
           <ScalarProperty Name="usua_presento" ColumnName="usua_presento" />
           <ScalarProperty Name="usua_id" ColumnName="usua_id" />
           <ScalarProperty Name="usua_nombre" ColumnName="usua_nombre" />
@@ -207,6 +210,34 @@
           <ScalarProperty Name="usua_rotacion_turno" ColumnName="usua_rotacion_turno" />
           <ScalarProperty Name="usua_tiempo_puesto" ColumnName="usua_tiempo_puesto" />
           <ScalarProperty Name="usua_exp_laboral" ColumnName="usua_exp_laboral" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuaesta_centro">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_centro">
+        <MappingFragment StoreEntitySet="encuaesta_centro">
+          <ScalarProperty Name="centro_depto" ColumnName="centro_depto" />
+          <ScalarProperty Name="centro_empresa" ColumnName="centro_empresa" />
+          <ScalarProperty Name="centro_desc" ColumnName="centro_desc" />
+          <ScalarProperty Name="centro_id" ColumnName="centro_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuaesta_departamento">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_departamento">
+        <MappingFragment StoreEntitySet="encuaesta_departamento">
+          <ScalarProperty Name="dep_empresa" ColumnName="dep_empresa" />
+          <ScalarProperty Name="dep_desc" ColumnName="dep_desc" />
+          <ScalarProperty Name="dep_id" ColumnName="dep_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="encuaesta_periodo">
+      <EntityTypeMapping TypeName="csstdura_encuestaModel.encuaesta_periodo">
+        <MappingFragment StoreEntitySet="encuaesta_periodo">
+          <ScalarProperty Name="periodo_estatus" ColumnName="periodo_estatus" />
+          <ScalarProperty Name="periodo_desc" ColumnName="periodo_desc" />
+          <ScalarProperty Name="periodo_id" ColumnName="periodo_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

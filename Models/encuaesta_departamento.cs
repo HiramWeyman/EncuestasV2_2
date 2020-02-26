@@ -17,6 +17,5 @@ namespace EncuestasV2.Models
         public int dep_id { get; set; }
         public string dep_desc { get; set; }
         public Nullable<int> dep_empresa { get; set; }
-        public string dep_empresa_desc { get;  set; }
     }
 }

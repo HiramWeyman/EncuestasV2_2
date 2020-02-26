@@ -201,6 +201,9 @@
     <Property Name="usua_exp_laboral" Type="Int32" />
     <NavigationProperty Name="encuesta_resultados" Relationship="Self.FK_encuesta_resultados_encuesta_usuarios" FromRole="encuesta_usuarios" ToRole="encuesta_resultados" />
     <Property Name="usua_presento" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="usua_departamento" Type="Int32" />
+    <Property Name="usua_centro_trabajo" Type="Int32" />
+    <Property Name="usua_periodo" Type="Int32" />
   </EntityType>
   <Association Name="FK_encuesta_det_encuesta_encuesta_encuesta">
     <End Role="encuesta_encuesta" Type="Self.encuesta_encuesta" Multiplicity="0..1" />
@@ -301,5 +304,33 @@
       <End Role="encuesta_usuarios" EntitySet="encuesta_usuarios" />
       <End Role="encuesta_resultados" EntitySet="encuesta_resultados" />
     </AssociationSet>
+    <EntitySet Name="encuaesta_centro" EntityType="csstdura_encuestaModel.encuaesta_centro" />
+    <EntitySet Name="encuaesta_departamento" EntityType="csstdura_encuestaModel.encuaesta_departamento" />
+    <EntitySet Name="encuaesta_periodo" EntityType="csstdura_encuestaModel.encuaesta_periodo" />
   </EntityContainer>
+  <EntityType Name="encuaesta_centro">
+    <Key>
+      <PropertyRef Name="centro_id" />
+    </Key>
+    <Property Name="centro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="centro_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="centro_empresa" Type="Int32" />
+    <Property Name="centro_depto" Type="Int32" />
+  </EntityType>
+  <EntityType Name="encuaesta_departamento">
+    <Key>
+      <PropertyRef Name="dep_id" />
+    </Key>
+    <Property Name="dep_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dep_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dep_empresa" Type="Int32" />
+  </EntityType>
+  <EntityType Name="encuaesta_periodo">
+    <Key>
+      <PropertyRef Name="periodo_id" />
+    </Key>
+    <Property Name="periodo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="periodo_desc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="periodo_estatus" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>
